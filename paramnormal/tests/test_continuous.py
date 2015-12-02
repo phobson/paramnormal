@@ -9,8 +9,12 @@ from paramnormal import continuous
 @nt.nottest
 def generate_knowns(np_rand_fxn, size, *args, **kwargs):
     seed(0)
+
+    # np.random.pareto is actually a Lomax and needs
+    # to be shifted by 1
+    shift = kwargs.pop('shift', 0)
     kwargs.update(dict(size=size))
-    return np_rand_fxn(*args, **kwargs)
+    return np_rand_fxn(*args, **kwargs) + shift
 
 
 @nt.nottest
@@ -80,5 +84,38 @@ class Test_beta(CheckDist_Mixin):
         self.ckwds = dict()
 
         self.np_rand_fxn = np.random.beta
+        self.npargs = self.cargs.copy()
+        self.npkwds = self.ckwds.copy()
+
+
+class Test_chi_squared(CheckDist_Mixin):
+    def setup(self):
+        self.cont_rand_fxn = continuous.chi_squared
+        self.cargs = [2]
+        self.ckwds = dict()
+
+        self.np_rand_fxn = np.random.chisquare
+        self.npargs = self.cargs.copy()
+        self.npkwds = self.ckwds.copy()
+
+
+class Test_pareto(CheckDist_Mixin):
+    def setup(self):
+        self.cont_rand_fxn = continuous.pareto
+        self.cargs = [2]
+        self.ckwds = dict()
+
+        self.np_rand_fxn = np.random.pareto
+        self.npargs = self.cargs.copy()
+        self.npkwds = dict(shift=1)
+
+
+class Test_gamma(CheckDist_Mixin):
+    def setup(self):
+        self.cont_rand_fxn = continuous.gamma
+        self.cargs = [2, 1]
+        self.ckwds = dict()
+
+        self.np_rand_fxn = np.random.gamma
         self.npargs = self.cargs.copy()
         self.npkwds = self.ckwds.copy()
