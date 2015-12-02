@@ -1,3 +1,4 @@
+import numpy as np
 from scipy import stats
 
 
@@ -34,7 +35,7 @@ def normal(mu=0, sigma=1):
 
     """
 
-    return stats.normal(loc=mu, scale=sigma)
+    return stats.norm(loc=mu, scale=sigma)
 
 
 def lognormal(mu=0, sigma=1, offset=0):
