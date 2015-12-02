@@ -122,4 +122,4 @@ def gamma(k, theta):
 
     """
 
-    return stats.gamma(k, scape=theta)
+    return stats.gamma(k, scale=theta)
