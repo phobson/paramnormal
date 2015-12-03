@@ -1,0 +1,11 @@
+paramnormal/__init__.py
+paramnormal/continuous.py
+paramnormal/discrete.py
+paramnormal.egg-info/PKG-INFO
+paramnormal.egg-info/SOURCES.txt
+paramnormal.egg-info/dependency_links.txt
+paramnormal.egg-info/requires.txt
+paramnormal.egg-info/top_level.txt
+paramnormal/tests/__init__.py
+paramnormal/tests/test_continuous.py
+paramnormal/tests/test_discrete.py
