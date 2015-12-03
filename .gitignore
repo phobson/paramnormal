@@ -11,6 +11,7 @@
 *.coverage
 *.noseids
 
+
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
@@ -47,3 +48,10 @@ Thumbs.db
 *.pyproj
 *.sln
 *.suo
+
+# Sphinx Docs #
+###############
+docs/_build
+docs/_static
+docs/_templates
+
