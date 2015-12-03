@@ -1,0 +1,7 @@
+numpy
+pandas
+
+mistune
+jsonschema
+jupyter
+numpydoc
