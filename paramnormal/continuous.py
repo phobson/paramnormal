@@ -1,6 +1,8 @@
 import numpy as np
 from scipy import stats
 
+from . import process_args
+
 
 def uniform(low=0, high=1):
     """ Create a frozen uniform distribution
@@ -16,7 +18,7 @@ def uniform(low=0, high=1):
 
     """
 
-    return stats.uniform(loc=low, scale=high-low)
+    return stats.uniform(**process_args.uniform(low=low, high=high))
 
 
 def normal(mu=0, sigma=1):
@@ -35,7 +37,7 @@ def normal(mu=0, sigma=1):
 
     """
 
-    return stats.norm(loc=mu, scale=sigma)
+    return stats.norm(**process_args.normal(mu=mu, sigma=sigma))
 
 
 def lognormal(mu=0, sigma=1, offset=0):
@@ -58,7 +60,7 @@ def lognormal(mu=0, sigma=1, offset=0):
 
     """
 
-    return stats.lognorm(sigma, scale=np.exp(mu), loc=offset)
+    return stats.lognorm(**process_args.lognormal(mu=mu, sigma=sigma, offset=offset))
 
 
 def beta(alpha, beta):
@@ -74,7 +76,7 @@ def beta(alpha, beta):
 
     """
 
-    return stats.beta(alpha, beta)
+    return stats.beta(**process_args.beta(alpha=alpha, beta=beta))
 
 
 def chi_squared(k):
@@ -90,7 +92,7 @@ def chi_squared(k):
 
     """
 
-    return stats.chi2(k)
+    return stats.chi2(**process_args.chi_squared(k=k))
 
 
 def pareto(alpha):
@@ -106,7 +108,7 @@ def pareto(alpha):
 
     """
 
-    return stats.pareto(alpha)
+    return stats.pareto(**process_args.pareto(alpha=alpha))
 
 
 def gamma(k, theta):
@@ -122,4 +124,4 @@ def gamma(k, theta):
 
     """
 
-    return stats.gamma(k, scale=theta)
+    return stats.gamma(**process_args.gamma(k=k, theta=theta))
