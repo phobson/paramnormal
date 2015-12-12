@@ -17,8 +17,6 @@ SYMBOLS = {
     'α': 'alpha',
     'β': 'beta',
     'γ': 'gamma',
-    'a': 'low',  # uniform
-    'b': 'high',  # uniform
     'θ': 'theta'
 }
 
