@@ -11,9 +11,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   includeme
-   continuous
-   discrete
+   continuous.rst
+   discrete.rst
 
 
 

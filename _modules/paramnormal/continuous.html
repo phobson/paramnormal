@@ -63,7 +63,6 @@
           
           
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../includeme.html">(WIP) paramnormal: Conventionally parameterized probability distributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../continuous.html">Continuous Distributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../discrete.html">Discrete Distributions</a></li>
 </ul>
@@ -105,7 +104,9 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">process_args</span>
 
+<span class="nd">@process_args.greco_deco</span>
 <div class="viewcode-block" id="uniform"><a class="viewcode-back" href="../../continuous.html#paramnormal.continuous.uniform">[docs]</a><span class="k">def</span> <span class="nf">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Create a frozen uniform distribution</span>
 
@@ -120,9 +121,10 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">low</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">**</span><span class="n">process_args</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">high</span><span class="p">))</span>
 
 </div>
+<span class="nd">@process_args.greco_deco</span>
 <div class="viewcode-block" id="normal"><a class="viewcode-back" href="../../continuous.html#paramnormal.continuous.normal">[docs]</a><span class="k">def</span> <span class="nf">normal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Create a frozen normal distribution</span>
 
@@ -139,9 +141,10 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="o">**</span><span class="n">process_args</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">))</span>
 
 </div>
+<span class="nd">@process_args.greco_deco</span>
 <div class="viewcode-block" id="lognormal"><a class="viewcode-back" href="../../continuous.html#paramnormal.continuous.lognormal">[docs]</a><span class="k">def</span> <span class="nf">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Create a frozen lognormal distribution</span>
 
@@ -162,9 +165,10 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">lognorm</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">lognorm</span><span class="p">(</span><span class="o">**</span><span class="n">process_args</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">))</span>
 
 </div>
+<span class="nd">@process_args.greco_deco</span>
 <div class="viewcode-block" id="beta"><a class="viewcode-back" href="../../continuous.html#paramnormal.continuous.beta">[docs]</a><span class="k">def</span> <span class="nf">beta</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Create a frozen beta distribution</span>
 
@@ -178,9 +182,10 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="o">**</span><span class="n">process_args</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">))</span>
 
 </div>
+<span class="nd">@process_args.greco_deco</span>
 <div class="viewcode-block" id="chi_squared"><a class="viewcode-back" href="../../continuous.html#paramnormal.continuous.chi_squared">[docs]</a><span class="k">def</span> <span class="nf">chi_squared</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Create a frozen chi_squared distribution</span>
 
@@ -194,9 +199,10 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="p">(</span><span class="o">**</span><span class="n">process_args</span><span class="o">.</span><span class="n">chi_squared</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">))</span>
 
 </div>
+<span class="nd">@process_args.greco_deco</span>
 <div class="viewcode-block" id="pareto"><a class="viewcode-back" href="../../continuous.html#paramnormal.continuous.pareto">[docs]</a><span class="k">def</span> <span class="nf">pareto</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Create a frozen pareto distribution</span>
 
@@ -210,9 +216,10 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">pareto</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">pareto</span><span class="p">(</span><span class="o">**</span><span class="n">process_args</span><span class="o">.</span><span class="n">pareto</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">))</span>
 
 </div>
+<span class="nd">@process_args.greco_deco</span>
 <div class="viewcode-block" id="gamma"><a class="viewcode-back" href="../../continuous.html#paramnormal.continuous.gamma">[docs]</a><span class="k">def</span> <span class="nf">gamma</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Create a frozen gamma distribution</span>
 
@@ -226,7 +233,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">stats</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="o">**</span><span class="n">process_args</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">))</span></div>
 </pre></div>
 
           </div>
