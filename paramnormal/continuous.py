@@ -3,7 +3,7 @@ from scipy import stats
 
 from . import process_args
 
-
+@process_args.greco_deco
 def uniform(low=0, high=1):
     """ Create a frozen uniform distribution
 
@@ -21,6 +21,7 @@ def uniform(low=0, high=1):
     return stats.uniform(**process_args.uniform(low=low, high=high))
 
 
+@process_args.greco_deco
 def normal(mu=0, sigma=1):
     """ Create a frozen normal distribution
 
@@ -40,6 +41,7 @@ def normal(mu=0, sigma=1):
     return stats.norm(**process_args.normal(mu=mu, sigma=sigma))
 
 
+@process_args.greco_deco
 def lognormal(mu=0, sigma=1, offset=0):
     """ Create a frozen lognormal distribution
 
@@ -63,6 +65,7 @@ def lognormal(mu=0, sigma=1, offset=0):
     return stats.lognorm(**process_args.lognormal(mu=mu, sigma=sigma, offset=offset))
 
 
+@process_args.greco_deco
 def beta(alpha, beta):
     """ Create a frozen beta distribution
 
@@ -79,6 +82,7 @@ def beta(alpha, beta):
     return stats.beta(**process_args.beta(alpha=alpha, beta=beta))
 
 
+@process_args.greco_deco
 def chi_squared(k):
     """ Create a frozen chi_squared distribution
 
@@ -95,6 +99,7 @@ def chi_squared(k):
     return stats.chi2(**process_args.chi_squared(k=k))
 
 
+@process_args.greco_deco
 def pareto(alpha):
     """ Create a frozen pareto distribution
 
@@ -111,6 +116,7 @@ def pareto(alpha):
     return stats.pareto(**process_args.pareto(alpha=alpha))
 
 
+@process_args.greco_deco
 def gamma(k, theta):
     """ Create a frozen gamma distribution
 

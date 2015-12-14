@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import numpy as np
 
 import nose.tools as nt
@@ -58,3 +59,24 @@ def test_gamma():
         process_args.gamma(k=1, theta=2),
         dict(a=1, scale=2)
     )
+
+def test_greco_deco():
+    if not process_args.PY2:
+        d1 = process_args.normal(mu=1, sigma=2)
+        d2 = process_args.normal(μ=1, σ=2)
+        expected = dict(loc=1, scale=2)
+        nt.assert_dict_equal(d1, expected)
+        nt.assert_dict_equal(d2, expected)
+
+        d1 = process_args.beta(alpha=1, beta=2)
+        d2 = process_args.beta(α=1, β=2)
+        expected = {'a': 1, 'b': 2}
+        nt.assert_dict_equal(d1, expected)
+        nt.assert_dict_equal(d2, expected)
+
+        d1 = process_args.gamma(k=1, theta=2)
+        d2 = process_args.gamma(k=1, θ=2)
+        expected = {'a': 1, 'scale': 2}
+        nt.assert_dict_equal(d1, expected)
+        nt.assert_dict_equal(d2, expected)
+
