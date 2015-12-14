@@ -4,7 +4,7 @@ from functools import wraps
 
 import numpy as np
 
-if sys.version_info.major == 2:
+if sys.version_info.major == 2:  # pragma: no cover
     PY2 = True
 else:
     PY2 = False
@@ -24,7 +24,7 @@ SYMBOLS = {
 def greco_deco(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        if PY2:
+        if PY2:  # pragma: no cover
             return func(*args, **kwargs)
         sig = signature(func)
         kwargs = {SYMBOLS.get(k, k): v for k, v in kwargs.items()}
