@@ -1,16 +1,16 @@
-import numpy as np
+import numpy
 
 import nose.tools as nt
 from numpy.random import seed
 import numpy.testing as nptest
 
-from paramnormal import continuous
+from paramnormal import dist
 
 @nt.nottest
 def generate_knowns(np_rand_fxn, size, *args, **kwargs):
     seed(0)
 
-    # np.random.pareto is actually a Lomax and needs
+    # numpy.random.pareto is actually a Lomax and needs
     # to be shifted by 1
     shift = kwargs.pop('shift', 0)
     kwargs.update(dict(size=size))
@@ -46,76 +46,76 @@ class CheckDist_Mixin(object):
 
 class Test_uniform(CheckDist_Mixin):
     def setup(self):
-        self.cont_rand_fxn = continuous.uniform
+        self.cont_rand_fxn = dist.uniform
         self.cargs = []
         self.ckwds = dict(low=1, high=5)
 
-        self.np_rand_fxn = np.random.uniform
+        self.np_rand_fxn = numpy.random.uniform
         self.npargs = self.cargs.copy()
         self.npkwds = self.ckwds.copy()
 
 
 class Test_normal(CheckDist_Mixin):
     def setup(self):
-        self.cont_rand_fxn = continuous.normal
+        self.cont_rand_fxn = dist.normal
         self.cargs = []
         self.ckwds = dict(mu=4, sigma=1.75)
 
-        self.np_rand_fxn = np.random.normal
+        self.np_rand_fxn = numpy.random.normal
         self.npargs = []
         self.npkwds = dict(loc=4, scale=1.75)
 
 
 class Test_lognormal(CheckDist_Mixin):
     def setup(self):
-        self.cont_rand_fxn = continuous.lognormal
+        self.cont_rand_fxn = dist.lognormal
         self.cargs = []
         self.ckwds = dict(mu=4, sigma=1.75)
 
-        self.np_rand_fxn = np.random.lognormal
+        self.np_rand_fxn = numpy.random.lognormal
         self.npargs = self.cargs.copy()
         self.npkwds = dict(mean=4, sigma=1.75)
 
 
 class Test_beta(CheckDist_Mixin):
     def setup(self):
-        self.cont_rand_fxn = continuous.beta
+        self.cont_rand_fxn = dist.beta
         self.cargs = [2, 3]
         self.ckwds = dict()
 
-        self.np_rand_fxn = np.random.beta
+        self.np_rand_fxn = numpy.random.beta
         self.npargs = self.cargs.copy()
         self.npkwds = self.ckwds.copy()
 
 
 class Test_chi_squared(CheckDist_Mixin):
     def setup(self):
-        self.cont_rand_fxn = continuous.chi_squared
+        self.cont_rand_fxn = dist.chi_squared
         self.cargs = [2]
         self.ckwds = dict()
 
-        self.np_rand_fxn = np.random.chisquare
+        self.np_rand_fxn = numpy.random.chisquare
         self.npargs = self.cargs.copy()
         self.npkwds = self.ckwds.copy()
 
 
 class Test_pareto(CheckDist_Mixin):
     def setup(self):
-        self.cont_rand_fxn = continuous.pareto
+        self.cont_rand_fxn = dist.pareto
         self.cargs = [2]
         self.ckwds = dict()
 
-        self.np_rand_fxn = np.random.pareto
+        self.np_rand_fxn = numpy.random.pareto
         self.npargs = self.cargs.copy()
         self.npkwds = dict(shift=1)
 
 
 class Test_gamma(CheckDist_Mixin):
     def setup(self):
-        self.cont_rand_fxn = continuous.gamma
+        self.cont_rand_fxn = dist.gamma
         self.cargs = [2, 1]
         self.ckwds = dict()
 
-        self.np_rand_fxn = np.random.gamma
+        self.np_rand_fxn = numpy.random.gamma
         self.npargs = self.cargs.copy()
         self.npkwds = self.ckwds.copy()

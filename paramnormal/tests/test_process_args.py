@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import numpy as np
+import numpy
 
 import nose.tools as nt
 from numpy.random import seed
@@ -8,11 +8,19 @@ import numpy.testing as nptest
 from paramnormal import process_args
 
 
-def test_uniform():
+def test_uniform_high_low():
     nt.assert_dict_equal(
         process_args.uniform(low=4, high=9),
         dict(loc=4, scale=5)
     )
+
+
+def test_uniform_width_low():
+    nt.assert_dict_equal(
+        process_args.uniform(low=4, width=9),
+        dict(loc=4, scale=9)
+    )
+
 
 @nt.raises(ValueError)
 def test_uniform_no_low():
@@ -29,21 +37,26 @@ def test_normal():
 def test_lognormal():
     nt.assert_dict_equal(
         process_args.lognormal(mu=2, sigma=2.45),
-        dict(scale=np.exp(2), s=2.45, loc=0)
+        dict(scale=numpy.exp(2), s=2.45, loc=0)
     )
+
+
+@nt.raises(ValueError)
+def test_lognormal_no_offset():
+    process_args.lognormal(offset=None)
 
 
 def test_beta():
     nt.assert_dict_equal(
         process_args.beta(alpha=2, beta=5),
-        dict(a=2, b=5)
+        dict(a=2, b=5, loc=0, scale=1)
     )
 
 
 def test_chi_squared():
     nt.assert_dict_equal(
         process_args.chi_squared(k=5),
-        dict(df=5)
+        dict(df=5, loc=0, scale=1)
     )
 
 
@@ -70,7 +83,7 @@ def test_greco_deco():
 
         d1 = process_args.beta(alpha=1, beta=2)
         d2 = process_args.beta(α=1, β=2)
-        expected = {'a': 1, 'b': 2}
+        expected = {'a': 1, 'b': 2, 'loc': 0, 'scale': 1}
         nt.assert_dict_equal(d1, expected)
         nt.assert_dict_equal(d2, expected)
 

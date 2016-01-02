@@ -1,4 +1,3 @@
-import numpy as np
 from scipy import stats
 
 from . import process_args

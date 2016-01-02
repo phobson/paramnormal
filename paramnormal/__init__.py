@@ -1,2 +1,2 @@
-from .continuous import *
-from .discrete import *
+from .dist import *
+from . import fit
