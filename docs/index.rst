@@ -3,17 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to paramnormal's documentation!
-=======================================
+Welcome to paramnormal's
+========================
+
+.. include:: ../readme.rst
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
-   continuous.rst
-   discrete.rst
-
+   dist.rst
+   fit.rst
 
 
 Indices and tables

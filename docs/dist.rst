@@ -1,8 +1,8 @@
-.. _cont_auto:
+.. _dist_auto:
 
-Continuous Distributions
-========================
+Probability Distributions
+=========================
 
-.. automodule:: paramnormal.continuous
+.. automodule:: paramnormal.dist
    :members:
    :undoc-members:
