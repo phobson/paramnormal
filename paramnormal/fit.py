@@ -6,6 +6,12 @@ from scipy import stats
 from . import process_args
 
 
+__all__ = [
+    'normal',
+    'lognormal'
+]
+
+
 _docstring = """\
 
     Parameters
@@ -23,7 +29,7 @@ _docstring = """\
 
     See also
     --------
-    paramnormal.{}
+    paramnormal.dist.{}
 
 """
 
