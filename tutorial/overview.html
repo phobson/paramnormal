@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Why paramnormal ? &mdash; paramnormal 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="paramnormal 0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> paramnormal</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="simple">
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">paramnormal</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/tutorial/overview.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="why-paramnormal">
+<h1>Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?<a class="headerlink" href="#why-paramnormal" title="Permalink to this headline">¶</a></h1>
+<p>In general, both in <code class="docutils literal"><span class="pre">numpy</span></code> and <code class="docutils literal"><span class="pre">scipy.stats</span></code> and in the field of
+statistics in general, you can refer to the <em>location</em> (<code class="docutils literal"><span class="pre">loc</span></code>) and
+scale (<code class="docutils literal"><span class="pre">scale</span></code>) of a distribution. Roughly speaking, they refer to the
+position and spread of the distribution, respectively. For normal
+(gaussian) distribtions <code class="docutils literal"><span class="pre">loc</span></code> refers the mean (symbolized as
+<span class="math">\(\mu\)</span>) and <code class="docutils literal"><span class="pre">scale</span></code> refers to the standard deviation (a.k.a.
+<span class="math">\(\sigma\)</span>).</p>
+<p>The main problem that <code class="docutils literal"><span class="pre">paramnormal</span></code> is trying to solve is that
+sometimes, creating a probability distribution using these parameters
+(and others) in <code class="docutils literal"><span class="pre">scipy.stats</span></code> can be confusing. Also the parameters in
+<code class="docutils literal"><span class="pre">numpy.random</span></code> can be inconsistently named (admittedly, just a minor
+inconvenience).</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+</pre></div>
+</div>
+<p>Consider the lognormal distribution.</p>
+<blockquote>
+<div>In probability theory, a log-normal (or lognormal) distribution is a
+continuous probability distribution of a random variable whose
+logarithm is normally distributed. Thus, if the random variable
+<span class="math">\(X\)</span> is log-normally distributed, then <span class="math">\(Y = \ln(X)\)</span> has a
+normal distribution. Likewise, if <span class="math">\(Y\)</span> has a normal
+distribution, then <span class="math">\(X = \exp(Y)\)</span> has a log-normal
+distribution. <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">(from
+wikipedia)</a></div></blockquote>
+<p>In numpy, you specify the &#8220;mean&#8221; and &#8220;sigma&#8221; of the underlying normal
+distribution. A lot lof scientific programmers know what that would
+mean. But <code class="docutils literal"><span class="pre">mean</span></code> and <code class="docutils literal"><span class="pre">standard_deviation</span></code>, <code class="docutils literal"><span class="pre">loc</span></code> and <code class="docutils literal"><span class="pre">scale</span></code> or
+<code class="docutils literal"><span class="pre">mu</span></code> and <code class="docutils literal"><span class="pre">sigma</span></code> would have been better choices.</p>
+<p>Still, generating random numbers is pretty straight-forward:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>In scipy, you need an additional shape parameter (<code class="docutils literal"><span class="pre">s</span></code>), plus the usual
+<code class="docutils literal"><span class="pre">loc</span></code> and <code class="docutils literal"><span class="pre">scale</span></code>. Aside from the mystery behind what <code class="docutils literal"><span class="pre">s</span></code> might
+bem that seems straight-forward enough.</p>
+<p>Except it&#8217;s not.</p>
+<p>That shape parameter is actually the standard deviation (<span class="math">\(\sigma\)</span>)
+of the underlying normal distribution. The <code class="docutils literal"><span class="pre">scale</span></code> should be set to
+the mean of the raw distribution (<span class="math">\(e ^ \mu\)</span>). Finally, <code class="docutils literal"><span class="pre">loc</span></code>
+actually refers to a sort of offset that can be applied to entire
+distribution. In other words, you can translate the distribution up and
+down to e.g., negative values.</p>
+<p>In my field, civil/environmental engineering, variables that are often
+assumed to be lognormally distributed (e.g., pollutant concentration)
+can never have values less than or equal to 0. So in that since, the
+<code class="docutils literal"><span class="pre">loc</span></code> parameter <strong>nearly always should be set to zero</strong>.</p>
+<p>With that out of the way, recreating the three numbers above in scipy is
+down as such:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">lognorm</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="p">))</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="section" id="a-new-challenger-appears">
+<h2>A new challenger appears<a class="headerlink" href="#a-new-challenger-appears" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">paramnormal</span></code> really just hopes to take away some of this friction.
+consider the following:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">paramnormal</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Hopefully that&#8217;s much more readable and straight-forward.</p>
+</div>
+<div class="section" id="greek-letter-support">
+<h2>Greek-letter support<a class="headerlink" href="#greek-letter-support" title="Permalink to this headline">¶</a></h2>
+<p>Tom Augspurger add a <a class="reference external" href="https://github.com/phobson/paramnormal/commit/b859e601f7ef45acc1d90b5e8cbf14028c715bf1#diff-9486966ced6b55cf6eb6d3aac274249eR14">lovely little
+decorator</a>
+to let you use greek letters in the function signature.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>np.random.seed(0)
+paramnormal.lognormal(μ=mu, σ=sigma).rvs(size=N)
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-distributions">
+<h2>Other distributions<a class="headerlink" href="#other-distributions" title="Permalink to this headline">¶</a></h2>
+<p>As of now, we provide a convenient interface for the following
+distributions in <code class="docutils literal"><span class="pre">scipy.stats</span></code>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">distributions</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="ow">not</span> <span class="n">d</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">d</span> <span class="o">!=</span> <span class="s">&#39;process_args&#39;</span><span class="p">,</span>
+    <span class="nb">dir</span><span class="p">(</span><span class="n">paramnormal</span><span class="o">.</span><span class="n">dist</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">distributions</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">beta</span>
+<span class="n">chi_squared</span>
+<span class="n">gamma</span>
+<span class="n">lognormal</span>
+<span class="n">normal</span>
+<span class="n">pareto</span>
+<span class="n">stats</span>
+<span class="n">uniform</span>
+</pre></div>
+</div>
+<p>Feel free to submit a pull request at
+<a class="reference external" href="https://github.com/phobson/paramnormal">Github</a> to add new
+distributions.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Paul Hobson.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
