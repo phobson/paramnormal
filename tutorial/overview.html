@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="paramnormal 0.1 documentation" href="../index.html"/> 
+    <link rel="top" title="paramnormal 0.1 documentation" href="../index.html"/>
+        <link rel="next" title="Fitting distributions to data with paramnormal." href="fitting.html"/>
+        <link rel="prev" title="(WIP) paramnormal: Conventionally parameterized probability distributions" href="../index.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -61,7 +63,18 @@
         
           
           
-              <ul class="simple">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-new-challenger-appears">A new challenger appears</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#greek-letter-support">Greek-letter support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-distributions">Other distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dist.html">Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fit.html">Fitting Distributions to data</a></li>
 </ul>
 
           
@@ -99,13 +112,12 @@
             
   <div class="section" id="why-paramnormal">
 <h1>Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?<a class="headerlink" href="#why-paramnormal" title="Permalink to this headline">¶</a></h1>
-<p>In general, both in <code class="docutils literal"><span class="pre">numpy</span></code> and <code class="docutils literal"><span class="pre">scipy.stats</span></code> and in the field of
-statistics in general, you can refer to the <em>location</em> (<code class="docutils literal"><span class="pre">loc</span></code>) and
-scale (<code class="docutils literal"><span class="pre">scale</span></code>) of a distribution. Roughly speaking, they refer to the
+<p>Both in <code class="docutils literal"><span class="pre">numpy</span></code> and <code class="docutils literal"><span class="pre">scipy.stats</span></code> and in the field of statistics in
+general, you can refer to the <em>location</em> (<code class="docutils literal"><span class="pre">loc</span></code>) and scale (<code class="docutils literal"><span class="pre">scale</span></code>)
+parameters of a distribution. Roughly speaking, they refer to the
 position and spread of the distribution, respectively. For normal
-(gaussian) distribtions <code class="docutils literal"><span class="pre">loc</span></code> refers the mean (symbolized as
-<span class="math">\(\mu\)</span>) and <code class="docutils literal"><span class="pre">scale</span></code> refers to the standard deviation (a.k.a.
-<span class="math">\(\sigma\)</span>).</p>
+distribtions <code class="docutils literal"><span class="pre">loc</span></code> refers the mean (symbolized as <span class="math">\(\mu\)</span>) and
+<code class="docutils literal"><span class="pre">scale</span></code> refers to the standard deviation (a.k.a. <span class="math">\(\sigma\)</span>).</p>
 <p>The main problem that <code class="docutils literal"><span class="pre">paramnormal</span></code> is trying to solve is that
 sometimes, creating a probability distribution using these parameters
 (and others) in <code class="docutils literal"><span class="pre">scipy.stats</span></code> can be confusing. Also the parameters in
@@ -146,16 +158,17 @@ bem that seems straight-forward enough.</p>
 <p>Except it&#8217;s not.</p>
 <p>That shape parameter is actually the standard deviation (<span class="math">\(\sigma\)</span>)
 of the underlying normal distribution. The <code class="docutils literal"><span class="pre">scale</span></code> should be set to
-the mean of the raw distribution (<span class="math">\(e ^ \mu\)</span>). Finally, <code class="docutils literal"><span class="pre">loc</span></code>
-actually refers to a sort of offset that can be applied to entire
-distribution. In other words, you can translate the distribution up and
-down to e.g., negative values.</p>
-<p>In my field, civil/environmental engineering, variables that are often
+the exponentiated location parameter of the raw distribution
+(<span class="math">\(e ^ \mu\)</span>). Finally, <code class="docutils literal"><span class="pre">loc</span></code> actually refers to a sort of offset
+that can be applied to entire distribution. In other words, you can
+translate the distribution up and down to e.g., negative values.</p>
+<p>In my field (civil/environmental engineering) variables that are often
 assumed to be lognormally distributed (e.g., pollutant concentration)
-can never have values less than or equal to 0. So in that since, the
-<code class="docutils literal"><span class="pre">loc</span></code> parameter <strong>nearly always should be set to zero</strong>.</p>
+can never have values less than or equal to zerlo. So in that sense, the
+<code class="docutils literal"><span class="pre">loc</span></code> parameter in scipy&#8217;s lognormal distribution <strong>nearly always
+should be set to zero</strong>.</p>
 <p>With that out of the way, recreating the three numbers above in scipy is
-down as such:</p>
+done as follows:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">stats</span><span class="o">.</span><span class="n">lognorm</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="p">))</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
@@ -166,7 +179,7 @@ down as such:</p>
 <div class="section" id="a-new-challenger-appears">
 <h2>A new challenger appears<a class="headerlink" href="#a-new-challenger-appears" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal"><span class="pre">paramnormal</span></code> really just hopes to take away some of this friction.
-consider the following:</p>
+Consider the following:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">paramnormal</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -180,7 +193,7 @@ consider the following:</p>
 </div>
 <div class="section" id="greek-letter-support">
 <h2>Greek-letter support<a class="headerlink" href="#greek-letter-support" title="Permalink to this headline">¶</a></h2>
-<p>Tom Augspurger add a <a class="reference external" href="https://github.com/phobson/paramnormal/commit/b859e601f7ef45acc1d90b5e8cbf14028c715bf1#diff-9486966ced6b55cf6eb6d3aac274249eR14">lovely little
+<p>Tom Augspurger added a <a class="reference external" href="https://github.com/phobson/paramnormal/commit/b859e601f7ef45acc1d90b5e8cbf14028c715bf1#diff-9486966ced6b55cf6eb6d3aac274249eR14">lovely little
 decorator</a>
 to let you use greek letters in the function signature.</p>
 <div class="code python highlight-python"><div class="highlight"><pre>np.random.seed(0)
@@ -222,6 +235,15 @@ distributions.</p>
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fitting.html" class="btn btn-neutral float-right" title="Fitting distributions to data with paramnormal.">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="(WIP) paramnormal: Conventionally parameterized probability distributions"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

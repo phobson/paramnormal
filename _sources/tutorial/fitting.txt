@@ -1,0 +1,113 @@
+
+Fitting distributions to data with ``paramnormal``.
+---------------------------------------------------
+
+In addition to explicitly creating distributions from known parameters,
+``paramnormal.fit`` provides a similarly, albeit even less complete,
+interface to ``scipy.stats`` maximum-likelihood estimatation methods.
+
+Again, we'll demonstrate with a lognormal distribution and compare
+parameter estimatation with scipy.
+
+.. code:: python
+
+    %matplotlib inline
+    
+    import warnings
+    warnings.simplefilter('ignore')
+    
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import seaborn
+    clean_bkgd = {'axes.facecolor':'none', 'figure.facecolor':'none'}
+    seaborn.set(style='ticks', rc=clean_bkgd)
+    
+    import paramnormal
+
+Let's start by generating a reasonably-sized random dataset and plotting
+a histogram.
+
+.. code:: python
+
+    np.random.seed(0)
+    x = paramnormal.lognormal(mu=1.75, sigma=0.75).rvs(370)
+    
+    bins = np.logspace(-0.5, 1.75, num=25)
+    fig, ax = plt.subplots()
+    _ = ax.hist(x, bins=bins, normed=True)
+    ax.set_xscale('log')
+    ax.set_xlabel('$X$')
+    ax.set_ylabel('Probability')
+    seaborn.despine()
+
+
+
+.. image:: fitting_files/fitting_3_0.png
+
+
+Pretending for a moment that we didn't generate this dataset with
+explicit distribution parameters, how would we go about estimating them?
+
+Scipy provides a maximum-likelihood estimation for estimating
+parameters:
+
+.. code:: python
+
+    from scipy import stats
+    stats.lognorm.fit(x)
+
+
+
+
+.. parsed-literal::
+
+    (0.77953564806411113, 0.23350251237627717, 5.3711822451406039)
+
+
+
+Unfortunately those parameters don't really make any sense based on what
+we know about our articifical dataset.
+
+That's where paramnormal comes in:
+
+.. code:: python
+
+    params = paramnormal.fit.lognormal(x)
+    params
+
+
+
+
+.. parsed-literal::
+
+    params(mu=1.7370786294627456, sigma=0.73827268519387368, offset=0)
+
+
+
+This matches well with our understanding of the distribution.
+
+The returned ``params`` variable is a ``namedtuple`` that we can easily
+use to create a distribution of our own and generate a nice plot with
+our histogram.
+
+.. code:: python
+
+    dist = paramnormal.lognormal(*params)
+    
+    # theoretical PDF
+    x_hat = np.logspace(-0.5, 1.75, num=100)
+    y_hat = dist.pdf(x_hat)
+    
+    bins = np.logspace(-0.5, 1.75, num=25)
+    fig, ax = plt.subplots()
+    _ = ax.hist(x, bins=bins, normed=True, alpha=0.375)
+    ax.plot(x_hat, y_hat, zorder=2, color='g')
+    ax.set_xscale('log')
+    ax.set_xlabel('$X$')
+    ax.set_ylabel('Probability')
+    seaborn.despine()
+
+
+
+.. image:: fitting_files/fitting_9_0.png
+

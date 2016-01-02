@@ -30,7 +30,9 @@
   
 
   
-    <link rel="top" title="paramnormal 0.1 documentation" href="../index.html"/> 
+    <link rel="top" title="paramnormal 0.1 documentation" href="../index.html"/>
+        <link rel="next" title="Probability Distributions" href="../dist.html"/>
+        <link rel="prev" title="Why paramnormal ?" href="overview.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -61,7 +63,18 @@
         
           
           
-              <ul class="simple">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#a-new-challenger-appears">A new challenger appears</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#greek-letter-support">Greek-letter support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#other-distributions">Other distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dist.html">Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fit.html">Fitting Distributions to data</a></li>
 </ul>
 
           
@@ -100,7 +113,7 @@
   <div class="section" id="fitting-distributions-to-data-with-paramnormal">
 <h1>Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.<a class="headerlink" href="#fitting-distributions-to-data-with-paramnormal" title="Permalink to this headline">¶</a></h1>
 <p>In addition to explicitly creating distributions from known parameters,
-<code class="docutils literal"><span class="pre">paramnormal.fit</span></code> provides a similarly, though even less complete,
+<code class="docutils literal"><span class="pre">paramnormal.fit</span></code> provides a similarly, albeit even less complete,
 interface to <code class="docutils literal"><span class="pre">scipy.stats</span></code> maximum-likelihood estimatation methods.</p>
 <p>Again, we&#8217;ll demonstrate with a lognormal distribution and compare
 parameter estimatation with scipy.</p>
@@ -112,7 +125,8 @@ warnings.simplefilter(&#39;ignore&#39;)
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn
-seaborn.set(style=&#39;ticks&#39;)
+clean_bkgd = {&#39;axes.facecolor&#39;:&#39;none&#39;, &#39;figure.facecolor&#39;:&#39;none&#39;}
+seaborn.set(style=&#39;ticks&#39;, rc=clean_bkgd)
 
 import paramnormal
 </pre></div>
@@ -179,6 +193,15 @@ our histogram.</p>
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../dist.html" class="btn btn-neutral float-right" title="Probability Distributions">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="Why paramnormal ?"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
