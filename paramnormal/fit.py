@@ -29,6 +29,10 @@ _docstring = """\
 
 
 def _pop_none(**kwargs):
+    """
+    Removes any kwargs whose values are `None`.
+    """
+
     final = kwargs.copy()
     for k in kwargs:
         if kwargs[k] is None:
@@ -36,9 +40,10 @@ def _pop_none(**kwargs):
     return final
 
 
-def _fit(scipyname, data, pnormname=None, **guesses):
-    if pnormname is None:
-        pnormname = scipyname
+def _fit(scipyname, data, pnormname, **guesses):
+    """
+    Performs the distribution's MLE fit via scipy.stats
+    """
 
     dist = getattr(stats, scipyname)
     processor = getattr(process_args, pnormname)
