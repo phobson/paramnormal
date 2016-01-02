@@ -53,7 +53,8 @@ Thumbs.db
 docs/_build
 docs/_static
 docs/_templates
-docs/tutorials/*.rst
+docs/tutorial/*.rst
+docs/tutorial/*_files
 scratch
 scratch.*
 .ipynb_checkpoints
