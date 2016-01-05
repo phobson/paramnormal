@@ -63,4 +63,37 @@ class Test_lognormal(object):
             (params.offset, 0.0)
         )
 
+
+class Test_beta(object):
+    @seed
+    def setup(self):
+        self.data = numpy.random.beta(2, 7, size=37)
+        self.fitter = fit.beta
+
+    def test_min_guess(self):
+        params = self.fitter(self.data)
+        check_params(
+            (params.alpha, 1.65675833325),
+            (params.beta, 5.78176888942),
+            (params.loc, 0),
+            (params.scale, 1),
         )
+
+    def test_guess_alpha(self):
+        params = self.fitter(self.data, alpha=2)
+        check_params(
+            (params.alpha, 2),
+            (params.beta, 6.8812340590409891),
+            (params.loc, 0),
+            (params.scale, 1),
+        )
+
+    def test_guess_beta(self):
+        params = self.fitter(self.data, beta=7)
+        check_params(
+            (params.alpha, 1.91476622934291),
+            (params.beta, 7),
+            (params.loc, 0),
+            (params.scale, 1),
+        )
+

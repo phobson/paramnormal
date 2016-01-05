@@ -77,9 +77,20 @@ def lognormal(data, **guesses):
     return template(mu=numpy.log(params[2]), sigma=params[0], offset=params[1])
 
 
+def beta(data, **guesses):
+    """
+    Fit a beta distribution to data.
+    {}
+    """
+    params = _fit('beta', data, pnormname='beta', **guesses)
+    template = namedtuple('params', ['alpha', 'beta', 'loc', 'scale'])
+    return template(*params)
+
+
 fitters = [
     normal,
     lognormal,
+    beta,
 ]
 
 for f in fitters:
