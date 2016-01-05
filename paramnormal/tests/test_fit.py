@@ -22,6 +22,12 @@ def assert_close_enough(actual, expected):
     nt.assert_almost_equal(actual, expected, places=5)
 
 
+@nt.nottest
+def check_params(*value_pairs):
+    for result, expected in value_pairs:
+        assert_close_enough(result, expected)
+
+
 def test__pop_none():
     nt.assert_dict_equal(
         fit._pop_none(a=None, b=1, c=None),
@@ -35,18 +41,13 @@ class Test_normal(object):
         self.data = numpy.random.normal(loc=2.0, scale=6.7, size=37)
         self.fitter = fit.normal
 
-    @nt.nottest
-    @staticmethod
-    def check_params(params, expected_mu, expected_sigma):
-        assert_close_enough(params.mu, expected_mu)
-        assert_close_enough(params.sigma, expected_sigma)
-
     def test_min_guesses(self):
-        self.check_params(
-            self.fitter(self.data),
-            4.1709713618,
-            7.2770395662,
+        params = self.fitter(self.data)
+        check_params(
+            (params.mu, 4.1709713618),
+            (params.sigma, 7.2770395662),
         )
+
 
 class Test_lognormal(object):
     @seed
@@ -54,17 +55,12 @@ class Test_lognormal(object):
         self.data = numpy.random.lognormal(mean=2.0, sigma=6.7, size=37)
         self.fitter = fit.lognormal
 
-    @nt.nottest
-    @staticmethod
-    def check_params(params, expected_mu, expected_sigma, expected_offset):
-        assert_close_enough(params.mu, expected_mu)
-        assert_close_enough(params.sigma, expected_sigma)
-        assert_close_enough(params.offset, expected_offset)
-
     def test_min_guesses(self):
-        self.check_params(
-            self.fitter(self.data),
-            4.1709713618,
-            7.2770395662,
-            0.0
+        params = self.fitter(self.data)
+        check_params(
+            (params.mu, 4.1709713618),
+            (params.sigma, 7.2770395662),
+            (params.offset, 0.0)
+        )
+
         )
