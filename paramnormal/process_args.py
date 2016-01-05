@@ -143,9 +143,13 @@ def lognormal(mu=None, sigma=None, offset=0, fit=False):
     """
 
     loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+    if fit:
+        key = 'f0'
+    else:
+        key = 's'
     if offset is None:
         raise ValueError("`offset` parameter is required. Recommended value is 0.")
-    return {'s': sigma, scale_key: numpy.exp(mu) if mu is not None else mu, loc_key: offset}
+    return {key: sigma, scale_key: numpy.exp(mu) if mu is not None else mu, loc_key: offset}
 
 
 @greco_deco
@@ -172,7 +176,13 @@ def beta(alpha=None, beta=None, loc=0, scale=1, fit=False):
     """
 
     loc_key, scale_key = _get_loc_scale_keys(fit=fit)
-    return {'a': alpha, 'b': beta, loc_key: loc, scale_key: scale}
+    if fit:
+        alpha_key = 'f0'
+        beta_key = 'f1'
+    else:
+        alpha_key = 'a'
+        beta_key = 'b'
+    return {alpha_key: alpha, beta_key: beta, loc_key: loc, scale_key: scale}
 
 
 @greco_deco
