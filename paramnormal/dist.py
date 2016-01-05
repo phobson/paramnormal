@@ -2,9 +2,11 @@ from scipy import stats
 
 from . import process_args
 
+
 @process_args.greco_deco
 def uniform(low=0, high=1):
-    """ Create a frozen uniform distribution
+    """
+    Create a frozen uniform distribution.
 
     Parameters
     ----------
@@ -22,7 +24,8 @@ def uniform(low=0, high=1):
 
 @process_args.greco_deco
 def normal(mu=0, sigma=1):
-    """ Create a frozen normal distribution
+    """
+    Create a frozen normal distribution.
 
     Parameters
     ----------
@@ -42,7 +45,8 @@ def normal(mu=0, sigma=1):
 
 @process_args.greco_deco
 def lognormal(mu=0, sigma=1, offset=0):
-    """ Create a frozen lognormal distribution
+    """
+    Create a frozen lognormal distribution.
 
     Parameters
     ----------
@@ -66,11 +70,13 @@ def lognormal(mu=0, sigma=1, offset=0):
 
 @process_args.greco_deco
 def beta(alpha, beta):
-    """ Create a frozen beta distribution
+    """
+    Create a frozen beta distribution.
 
     Parameters
     ----------
-    alpha, beta : floats
+    alpha, beta : float
+        Shape parameters for the distribution.
 
     Returns
     -------
@@ -83,11 +89,13 @@ def beta(alpha, beta):
 
 @process_args.greco_deco
 def chi_squared(k):
-    """ Create a frozen chi_squared distribution
+    """
+    Create a frozen chi_squared distribution.
 
     Parameters
     ----------
     k : float
+        Shape parameter for the distribution.
 
     Returns
     -------
@@ -100,11 +108,13 @@ def chi_squared(k):
 
 @process_args.greco_deco
 def pareto(alpha):
-    """ Create a frozen pareto distribution
+    """
+    Create a frozen pareto distribution
 
     Parameters
     ----------
     alpha : float
+        Shape parameter for the distribution.
 
     Returns
     -------
@@ -117,11 +127,13 @@ def pareto(alpha):
 
 @process_args.greco_deco
 def gamma(k, theta):
-    """ Create a frozen gamma distribution
+    """
+    Create a frozen gamma distribution.
 
     Parameters
     ----------
-    k, theta : floats
+    k, theta : float
+        Shape parameters for the distribution.
 
     Returns
     -------
