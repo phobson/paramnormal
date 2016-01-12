@@ -7,28 +7,28 @@ from . import utils
 
 
 class BaseDist_Mixin:
-    @utils.greco_deco
-    def __new__(self, **params):
-        dist_params = self._process_args(**params['params'], fit=False)
-        return self.dist(**dist_params)
+    def __new__(cls, **params):
+        dist_params = cls._process_args(fit=False, **params)
+        return cls.dist(**dist_params)
 
     @classmethod
-    @utils.greco_deco
     def _fit(cls, data, **guesses):
         args = utils._pop_none(**cls._process_args(fit=True, **guesses))
         _sp_params = cls.dist.fit(data, **args)
         return _sp_params
 
     @classmethod
-    def fit(cls, data, **guess):
+    def fit(cls, data, **guesses):
         return cls.param_template(*cls._fit(data, **guesses))
 
 
 class normal(BaseDist_Mixin):
     dist = stats.norm
     param_template = namedtuple('params', ['mu', 'sigma'])
+    name = 'normal'
 
     @staticmethod
+    @utils.greco_deco
     def _process_args(mu=None, sigma=None, fit=False):
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         return {loc_key: mu, scale_key: sigma}
@@ -37,15 +37,17 @@ class normal(BaseDist_Mixin):
 class lognormal(BaseDist_Mixin):
     dist = stats.lognorm
     param_template = namedtuple('params', ['mu', 'sigma', 'offset'])
+    name = 'lognormal'
 
     @staticmethod
-    def _process_args( mu=None, sigma=None, offset=0, fit=False):
+    @utils.greco_deco
+    def _process_args(mu=None, sigma=None, offset=0, fit=False):
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         if fit:
             key = 'f0'
         else:
             key = 's'
-        if offset is None:
+        if offset is None and not fit:
             raise ValueError("`offset` parameter is required. Recommended value is 0.")
         return {key: sigma, scale_key: numpy.exp(mu) if mu is not None else mu, loc_key: offset}
 
@@ -57,11 +59,13 @@ class lognormal(BaseDist_Mixin):
 
 class weibull(BaseDist_Mixin):
     dist = stats.weibull_min
-    template = namedtuple('params', ['k', 'loc', 'scale'])
+    param_template = namedtuple('params', ['k', 'loc', 'scale'])
+    name = 'weibull'
 
     @staticmethod
+    @utils.greco_deco
     def _process_args(k=None, loc=0, scale=1, fit=False):
-        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         if fit:
             key = 'f0'
         else:
@@ -74,8 +78,9 @@ class alpha(BaseDist_Mixin):
     param_template = namedtuple('params', ['alpha', 'loc', 'scale'])
 
     @staticmethod
+    @utils.greco_deco
     def _process_args(alpha=None, loc=0, scale=1, fit=False):
-        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         if fit:
             alpha_key = 'f0'
         else:
@@ -88,8 +93,9 @@ class beta(BaseDist_Mixin):
     param_template = namedtuple('params', ['alpha', 'beta', 'loc', 'scale'])
 
     @staticmethod
+    @utils.greco_deco
     def _process_args(alpha=None, beta=None, loc=0, scale=1, fit=False):
-        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         if fit:
             alpha_key = 'f0'
             beta_key = 'f1'
@@ -101,11 +107,12 @@ class beta(BaseDist_Mixin):
 
 class gamma(BaseDist_Mixin):
     dist = stats.gamma
-    param_template = namedtuple('params', ['k', 'theta', 'scale'])
+    param_template = namedtuple('params', ['k', 'loc', 'theta'])
 
     @staticmethod
-    def _process_args(k=None, theta=1, loc=0):
-        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+    @utils.greco_deco
+    def _process_args(k=None, theta=None, loc=0, fit=False):
+        loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         if fit:
             key = 'f0'
         else:
@@ -118,24 +125,26 @@ class chi_squared(BaseDist_Mixin):
     param_template = namedtuple('params', ['k', 'loc', 'scale'])
 
     @staticmethod
+    @utils.greco_deco
     def _process_args(k=None, loc=0, scale=1, fit=False):
-        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         if fit:
             key = 'f0'
         else:
             key = 'df'
-        return {key: k, loc_key: loc, scale_key: 1}
+        return {key: k, loc_key: loc, scale_key: scale}
 
 
-class pareto(BaseDist_Mixin)
+class pareto(BaseDist_Mixin):
     dist = stats.pareto
     param_template = namedtuple('params', ['alpha', 'loc', 'scale'])
 
     @staticmethod
-    def _process_args(alpha=None, fit=False):
-        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+    @utils.greco_deco
+    def _process_args(alpha=None, loc=0, scale=1, fit=False):
+        loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         if fit:
             key = 'f0'
         else:
             key = 'b'
-        return {key: alpha}
+        return {key: alpha, loc_key: loc, scale_key: scale}
