@@ -1,164 +1,141 @@
+from collections import namedtuple
+
+import numpy
 from scipy import stats
 
-from . import process_args
+from . import utils
 
 
-@process_args.greco_deco
-def uniform(low=0, high=1):
-    """
-    Create a frozen uniform distribution.
+class BaseDist_Mixin:
+    @utils.greco_deco
+    def __new__(self, **params):
+        dist_params = self._process_args(**params['params'], fit=False)
+        return self.dist(**dist_params)
 
-    Parameters
-    ----------
-    low, high : floats, optional
-        Lower and upper limits of the distribution.
+    @classmethod
+    @utils.greco_deco
+    def _fit(cls, data, **guesses):
+        args = utils._pop_none(**cls._process_args(fit=True, **guesses))
+        _sp_params = cls.dist.fit(data, **args)
+        return _sp_params
 
-    Returns
-    -------
-    scipy.stats.uniform
-
-    """
-
-    return stats.uniform(**process_args.uniform(low=low, high=high))
-
-
-@process_args.greco_deco
-def normal(mu=0, sigma=1):
-    """
-    Create a frozen normal distribution.
-
-    Parameters
-    ----------
-    mu : float
-        The mean (location) of the distribution.
-    sigma : float
-        The standard deviation (scale) of the distribution.
-
-    Returns
-    -------
-    scipy.stats.normal
-
-    """
-
-    return stats.norm(**process_args.normal(mu=mu, sigma=sigma))
+    @classmethod
+    def fit(cls, data, **guess):
+        return cls.param_template(*cls._fit(data, **guesses))
 
 
-@process_args.greco_deco
-def lognormal(mu=0, sigma=1, offset=0):
-    """
-    Create a frozen lognormal distribution.
+class normal(BaseDist_Mixin):
+    dist = stats.norm
+    param_template = namedtuple('params', ['mu', 'sigma'])
 
-    Parameters
-    ----------
-    mu : float
-        The mean (location) of the underlying normal distribution.
-    sigma : float
-        The standard deviation (scale) of the underlying normal
-        distribution.
-    offset : float, optional (default = 0)
-        Lateral translation parameter availabe in scipy's implementation
-        of the distribution. Highly recommended to leave this at zero.
-
-    Returns
-    -------
-    scipy.stats.lognormal
-
-    """
-
-    return stats.lognorm(**process_args.lognormal(mu=mu, sigma=sigma, offset=offset))
+    @staticmethod
+    def _process_args(mu=None, sigma=None, fit=False):
+        loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
+        return {loc_key: mu, scale_key: sigma}
 
 
-@process_args.greco_deco
-def beta(alpha, beta):
-    """
-    Create a frozen beta distribution.
+class lognormal(BaseDist_Mixin):
+    dist = stats.lognorm
+    param_template = namedtuple('params', ['mu', 'sigma', 'offset'])
 
-    Parameters
-    ----------
-    alpha, beta : float
-        Shape parameters for the distribution.
+    @staticmethod
+    def _process_args( mu=None, sigma=None, offset=0, fit=False):
+        loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
+        if fit:
+            key = 'f0'
+        else:
+            key = 's'
+        if offset is None:
+            raise ValueError("`offset` parameter is required. Recommended value is 0.")
+        return {key: sigma, scale_key: numpy.exp(mu) if mu is not None else mu, loc_key: offset}
 
-    Returns
-    -------
-    scipy.stats.beta
-
-    """
-
-    return stats.beta(**process_args.beta(alpha=alpha, beta=beta))
-
-
-@process_args.greco_deco
-def chi_squared(k):
-    """
-    Create a frozen chi_squared distribution.
-
-    Parameters
-    ----------
-    k : float
-        Shape parameter for the distribution.
-
-    Returns
-    -------
-    scipy.stats.chi_squared
-
-    """
-
-    return stats.chi2(**process_args.chi_squared(k=k))
+    @classmethod
+    def fit(cls, data, **guesses):
+        params = cls._fit(data, **guesses)
+        return cls.param_template(mu=numpy.log(params[2]), sigma=params[0], offset=params[1])
 
 
-@process_args.greco_deco
-def pareto(alpha):
-    """
-    Create a frozen pareto distribution
+class weibull(BaseDist_Mixin):
+    dist = stats.weibull_min
+    template = namedtuple('params', ['k', 'loc', 'scale'])
 
-    Parameters
-    ----------
-    alpha : float
-        Shape parameter for the distribution.
-
-    Returns
-    -------
-    scipy.stats.pareto
-
-    """
-
-    return stats.pareto(**process_args.pareto(alpha=alpha))
+    @staticmethod
+    def _process_args(k=None, loc=0, scale=1, fit=False):
+        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        if fit:
+            key = 'f0'
+        else:
+            key = 'c'
+        return {key: k, loc_key: loc, scale_key: 1}
 
 
-@process_args.greco_deco
-def gamma(k, theta):
-    """
-    Create a frozen gamma distribution.
+class alpha(BaseDist_Mixin):
+    dist = stats.alpha
+    param_template = namedtuple('params', ['alpha', 'loc', 'scale'])
 
-    Parameters
-    ----------
-    k, theta : float
-        Shape parameters for the distribution.
-
-    Returns
-    -------
-    scipy.stats.gamma
-
-    """
-
-    return stats.gamma(**process_args.gamma(k=k, theta=theta))
+    @staticmethod
+    def _process_args(alpha=None, loc=0, scale=1, fit=False):
+        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        if fit:
+            alpha_key = 'f0'
+        else:
+            alpha_key = 'a'
+        return {alpha_key: alpha, loc_key: loc, scale_key: scale}
 
 
-@process_args.greco_deco
-def weibull(k, loc=0, scale=1):
-    """
-    Create a frozen gamma distribution.
+class beta(BaseDist_Mixin):
+    dist = stats.beta
+    param_template = namedtuple('params', ['alpha', 'beta', 'loc', 'scale'])
 
-    Parameters
-    ----------
-    k : float
-        Shape parameter for the distribution.
-    loc, scale : float, optional.
-        Location and scale parameters. Should probably be left alone.
+    @staticmethod
+    def _process_args(alpha=None, beta=None, loc=0, scale=1, fit=False):
+        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        if fit:
+            alpha_key = 'f0'
+            beta_key = 'f1'
+        else:
+            alpha_key = 'a'
+            beta_key = 'b'
+        return {alpha_key: alpha, beta_key: beta, loc_key: loc, scale_key: scale}
 
-    Returns
-    -------
-    scipy.stats.weibull_min
 
-    """
-    return stats.weibull_min(**process_args.weibull(k=k, loc=loc, scale=scale))
+class gamma(BaseDist_Mixin):
+    dist = stats.gamma
+    param_template = namedtuple('params', ['k', 'theta', 'scale'])
+
+    @staticmethod
+    def _process_args(k=None, theta=1, loc=0):
+        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        if fit:
+            key = 'f0'
+        else:
+            key = 'a'
+        return {key: k, loc_key: loc, scale_key: theta}
+
+
+class chi_squared(BaseDist_Mixin):
+    dist = stats.chi2
+    param_template = namedtuple('params', ['k', 'loc', 'scale'])
+
+    @staticmethod
+    def _process_args(k=None, loc=0, scale=1, fit=False):
+        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        if fit:
+            key = 'f0'
+        else:
+            key = 'df'
+        return {key: k, loc_key: loc, scale_key: 1}
+
+
+class pareto(BaseDist_Mixin)
+    dist = stats.pareto
+    param_template = namedtuple('params', ['alpha', 'loc', 'scale'])
+
+    @staticmethod
+    def _process_args(alpha=None, fit=False):
+        loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+        if fit:
+            key = 'f0'
+        else:
+            key = 'b'
+        return {key: alpha}
