@@ -10,15 +10,14 @@ else:
     PY2 = False
     from inspect import signature
 
-
-SYMBOLS = {
-    'μ': 'mu',
-    'σ': 'sigma',
-    'α': 'alpha',
-    'β': 'beta',
-    'γ': 'gamma',
-    'θ': 'theta'
-}
+    SYMBOLS = {
+        'μ': 'mu',
+        'σ': 'sigma',
+        'α': 'alpha',
+        'β': 'beta',
+        'γ': 'gamma',
+        'θ': 'theta'
+    }
 
 
 def greco_deco(func):
@@ -209,7 +208,11 @@ def chi_squared(k=None, loc=0, scale=1, fit=False):
     """
 
     loc_key, scale_key = _get_loc_scale_keys(fit=fit)
-    return {'df': k, loc_key: loc, scale_key: 1}
+    if fit:
+        key = 'f0'
+    else:
+        key = 'df'
+    return {key: k, loc_key: loc, scale_key: 1}
 
 
 @greco_deco
@@ -234,7 +237,11 @@ def pareto(alpha=None, fit=False):
     """
 
     loc_key, scale_key = _get_loc_scale_keys(fit=fit)
-    return {'b': alpha}
+    if fit:
+        key = 'f0'
+    else:
+        key = 'b'
+    return {key: alpha}
 
 
 @greco_deco
@@ -259,4 +266,39 @@ def gamma(k=None, theta=None, fit=False):
     """
 
     loc_key, scale_key = _get_loc_scale_keys(fit=fit)
-    return {'a': k, scale_key: theta}
+    if fit:
+        key = 'f0'
+    else:
+        key = 'a'
+    return {key: k, scale_key: theta}
+
+
+@greco_deco
+def weibull(k=None, loc=0, scale=1, fit=False):
+    """
+    Process arguments for the Weibull distributions.
+
+    Parameters
+    ----------
+    k, theta : float, optional
+        The shape parameter of the distribution.
+    loc, scale : float, optional.
+        Location and scale parameters. Should probably be left alone.
+    fit : bool, optional
+        Whether or not we're processing the arguments to fit the
+        distribution.
+
+    Returns
+    -------
+    params : dict
+        The processed parameters that can be fed directly to
+        ``scipy.stats`` functions and classes.
+
+    """
+    loc_key, scale_key = _get_loc_scale_keys(fit=fit)
+    if fit:
+        key = 'f0'
+    else:
+        key = 'c'
+    return {key: k, scale_key: scale, loc_key: loc}
+

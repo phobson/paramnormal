@@ -97,3 +97,18 @@ class Test_beta(object):
             (params.scale, 1),
         )
 
+
+class Test_weibull(object):
+    @seed
+    def setup(self):
+        self.data = numpy.random.weibull(2, size=37)
+        self.fitter = fit.weibull
+
+    def test_min_guess(self):
+        params = self.fitter(self.data)
+        check_params(
+            (params.k, 2.1663085937500024),
+            (params.loc, 0),
+            (params.scale, 1),
+        )
+

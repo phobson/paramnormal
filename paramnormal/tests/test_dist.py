@@ -6,6 +6,7 @@ import numpy.testing as nptest
 
 from paramnormal import dist
 
+
 @nt.nottest
 def generate_knowns(np_rand_fxn, size, *args, **kwargs):
     seed(0)
@@ -117,5 +118,16 @@ class Test_gamma(CheckDist_Mixin):
         self.ckwds = dict()
 
         self.np_rand_fxn = numpy.random.gamma
+        self.npargs = self.cargs.copy()
+        self.npkwds = self.ckwds.copy()
+
+
+class Test_weibull(CheckDist_Mixin):
+    def setup(self):
+        self.cont_rand_fxn = dist.weibull
+        self.cargs = [2]
+        self.ckwds = dict()
+
+        self.np_rand_fxn = numpy.random.weibull
         self.npargs = self.cargs.copy()
         self.npkwds = self.ckwds.copy()
