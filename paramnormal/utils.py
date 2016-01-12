@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-import sys
 from functools import wraps
 from inspect import signature
-
-import numpy
 
 SYMBOLS = {
     'μ': 'mu',
