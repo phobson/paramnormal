@@ -275,6 +275,26 @@ def gamma(k=None, theta=None, fit=False):
 
 @greco_deco
 def weibull(k=None, loc=0, scale=1, fit=False):
+    """
+    Process arguments for the Weibull distributions.
+
+    Parameters
+    ----------
+    k, theta : float, optional
+        The shape parameter of the distribution.
+    loc, scale : float, optional.
+        Location and scale parameters. Should probably be left alone.
+    fit : bool, optional
+        Whether or not we're processing the arguments to fit the
+        distribution.
+
+    Returns
+    -------
+    params : dict
+        The processed parameters that can be fed directly to
+        ``scipy.stats`` functions and classes.
+
+    """
     loc_key, scale_key = _get_loc_scale_keys(fit=fit)
     if fit:
         key = 'f0'

@@ -123,3 +123,15 @@ def test_gamma():
         process_args.gamma(k=1, theta=2, fit=True),
         dict(f0=1, fscale=2)
     )
+
+
+def test_weibull():
+    nt.assert_dict_equal(
+        process_args.weibull(k=2),
+        dict(c=2, loc=0, scale=1)
+    )
+
+    nt.assert_dict_equal(
+        process_args.weibull(k=2, fit=True),
+        dict(f0=2, floc=0, fscale=1)
+    )
