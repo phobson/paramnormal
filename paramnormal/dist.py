@@ -142,3 +142,23 @@ def gamma(k, theta):
     """
 
     return stats.gamma(**process_args.gamma(k=k, theta=theta))
+
+
+@process_args.greco_deco
+def weibull(k, loc=0, scale=1):
+    """
+    Create a frozen gamma distribution.
+
+    Parameters
+    ----------
+    k : float
+        Shape parameter for the distribution.
+    loc, scale : float, optional.
+        Location and scale parameters. Should probably be left alone.
+
+    Returns
+    -------
+    scipy.stats.weibull_min
+
+    """
+    return stats.weibull_min(**process_args.weibull(k=k, loc=loc, scale=scale))
