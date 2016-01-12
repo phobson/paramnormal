@@ -87,10 +87,21 @@ def beta(data, **guesses):
     return template(*params)
 
 
+def weibull(data, **guess):
+    """
+    Fit a weibull distribution to data.
+    {}
+    """
+    params  = _fit('weibull_min', data, pnormname='weibull', **guess)
+    template = namedtuple('params', ['k', 'loc', 'scale'])
+    return template(*params)
+
+
 fitters = [
     normal,
     lognormal,
     beta,
+    weibull,
 ]
 
 for f in fitters:
