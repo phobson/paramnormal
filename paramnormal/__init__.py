@@ -1,2 +1,1 @@
-from .dist import *
-from . import fit
+from .paramnormal import *
