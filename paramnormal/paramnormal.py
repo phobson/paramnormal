@@ -520,7 +520,7 @@ class gamma(BaseDist_Mixin):
     >>> pn.gamma(k=2, θ=5).rvs(size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.gamma.fit(data)
-    params(k=1.3379069223213478, log=0, theta=7.5830062081633587)
+    params(k=1.3379069223213478, loc=0, theta=7.5830062081633587)
 
     >>> # just estimate theta with a known k
     >>> pn.gamma.fit(data, theta=5)
@@ -706,7 +706,7 @@ class pareto(BaseDist_Mixin):
     See Also
     --------
     scipy.stats.pareto
-    numpy.random.lomax
+    numpy.random.pareto
 
     """
 
