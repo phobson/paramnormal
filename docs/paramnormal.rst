@@ -1,8 +1,9 @@
-.. _dist_auto:
+.. _paramnormal_auto:
 
 Probability Distributions
 =========================
 
-.. automodule:: paramnormal.dist
+.. automodule:: paramnormal.paramnormal
    :members:
    :undoc-members:
+   :show-inheritance:

@@ -1,7 +1,7 @@
-.. _fit_auto:
+.. _utils_auto:
 
-Fitting Distributions to data
-=============================
+Miscellaneous Utilities
+=======================
 
-.. automodule:: paramnormal.fit
+.. automodule:: paramnormal.utils
    :members:

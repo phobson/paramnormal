@@ -16,8 +16,8 @@ API Reference
 .. toctree::
    :maxdepth: 2
 
-   dist.rst
-   fit.rst
+   paramnormal.rst
+   utils.rst
 
 
 Indices and tables
