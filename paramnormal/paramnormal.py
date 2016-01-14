@@ -26,7 +26,7 @@ class BaseDist_Mixin:
         ----------
         data : array-like
             A sample whose distribution parameters will be estimated.
-        **guesses : named arguments of floats
+        guesses : named arguments of floats
             Inital guess values for certain parameters of the
             distribution. See the class docstring for more information
             on the parameters.
@@ -44,7 +44,7 @@ class BaseDist_Mixin:
     @classmethod
     def from_params(cls, params):
         """ Create a distribution from the namedtuple result of the
-        :meth:fit method.
+        :meth:`~fit` method.
 
         Examples
         --------
@@ -65,14 +65,6 @@ class normal(BaseDist_Mixin):
     """
     Create and fit data to a normal distribution.
 
-    Attributes
-    ----------
-    dist : scipy.stats distribution
-        The raw scipy distribution that is being wrapped.
-    param_template : namedtuple
-        A named tuple template for the parameters returned by
-        :meth:`fit`.
-
     Methods
     -------
     fit(data, **guesses)
@@ -80,7 +72,7 @@ class normal(BaseDist_Mixin):
         the parameters of the data's distribution.
     from_params(params)
         Create a new distribution instances from the namedtuple result
-        of the :meth:fit method.
+        of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -142,14 +134,6 @@ class lognormal(BaseDist_Mixin):
     """
     Create and fit data to a lognormal distribution.
 
-    Attributes
-    ----------
-    dist : scipy.stats distribution
-        The raw scipy distribution that is being wrapped.
-    param_template : namedtuple
-        A named tuple template for the parameters returned by
-        :meth:`fit`.
-
     Methods
     -------
     fit(data, **guesses)
@@ -159,7 +143,7 @@ class lognormal(BaseDist_Mixin):
         the `offset` is explicitly set to `None`.
     from_params(params)
         Create a new distribution instances from the namedtuple result
-        of the :meth:fit method.
+        of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -247,14 +231,6 @@ class weibull(BaseDist_Mixin):
     """
     Create and fit data to a weibull distribution.
 
-    Attributes
-    ----------
-    dist : scipy.stats distribution
-        The raw scipy distribution that is being wrapped.
-    param_template : namedtuple
-        A named tuple template for the parameters returned by
-        :meth:`fit`.
-
     Methods
     -------
     fit(data, **guesses)
@@ -265,7 +241,7 @@ class weibull(BaseDist_Mixin):
         `None`.
     from_params(params)
         Create a new distribution instances from the namedtuple result
-        of the :meth:fit method.
+        of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -340,14 +316,6 @@ class alpha(BaseDist_Mixin):
     """
     Create and fit data to a alpha distribution.
 
-    Attributes
-    ----------
-    dist : scipy.stats distribution
-        The raw scipy distribution that is being wrapped.
-    param_template : namedtuple
-        A named tuple template for the parameters returned by
-        :meth:`fit`.
-
     Methods
     -------
     fit(data, **guesses)
@@ -358,7 +326,7 @@ class alpha(BaseDist_Mixin):
         to `None`.
     from_params(params)
         Create a new distribution instances from the namedtuple result
-        of the :meth:fit method.
+        of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -429,14 +397,6 @@ class beta(BaseDist_Mixin):
     """
     Create and fit data to a beta distribution.
 
-    Attributes
-    ----------
-    dist : scipy.stats distribution
-        The raw scipy distribution that is being wrapped.
-    param_template : namedtuple
-        A named tuple template for the parameters returned by
-        :meth:`fit`.
-
     Methods
     -------
     fit(data, **guesses)
@@ -447,7 +407,7 @@ class beta(BaseDist_Mixin):
         explicitly set to `None`.
     from_params(params)
         Create a new distribution instances from the namedtuple result
-        of the :meth:fit method.
+        of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -524,14 +484,6 @@ class gamma(BaseDist_Mixin):
     """
     Create and fit data to a gamma distribution.
 
-    Attributes
-    ----------
-    dist : scipy.stats distribution
-        The raw scipy distribution that is being wrapped.
-    param_template : namedtuple
-        A named tuple template for the parameters returned by
-        :meth:`fit`.
-
     Methods
     -------
     fit(data, **guesses)
@@ -542,7 +494,7 @@ class gamma(BaseDist_Mixin):
         explicitly set to `None`.
     from_params(params)
         Create a new distribution instances from the namedtuple result
-        of the :meth:fit method.
+        of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -617,14 +569,6 @@ class chi_squared(BaseDist_Mixin):
     """
     Create and fit data to a chi-squared distribution.
 
-    Attributes
-    ----------
-    dist : scipy.stats distribution
-        The raw scipy distribution that is being wrapped.
-    param_template : namedtuple
-        A named tuple template for the parameters returned by
-        :meth:`fit`.
-
     Methods
     -------
     fit(data, **guesses)
@@ -635,7 +579,7 @@ class chi_squared(BaseDist_Mixin):
         explicitly set to `None`.
     from_params(params)
         Create a new distribution instances from the namedtuple result
-        of the :meth:fit method.
+        of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -702,14 +646,6 @@ class pareto(BaseDist_Mixin):
     """
     Create and fit data to a pareto distribution.
 
-    Attributes
-    ----------
-    dist : scipy.stats distribution
-        The raw scipy distribution that is being wrapped.
-    param_template : namedtuple
-        A named tuple template for the parameters returned by
-        :meth:`fit`.
-
     Methods
     -------
     fit(data, **guesses)
@@ -720,7 +656,7 @@ class pareto(BaseDist_Mixin):
         explicitly set to `None`.
     from_params(params)
         Create a new distribution instances from the namedtuple result
-        of the :meth:fit method.
+        of the :meth:`~fit` method.
 
     Parameters
     ----------
