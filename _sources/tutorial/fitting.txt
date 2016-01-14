@@ -3,16 +3,14 @@ Fitting distributions to data with ``paramnormal``.
 ---------------------------------------------------
 
 In addition to explicitly creating distributions from known parameters,
-``paramnormal.fit`` provides a similarly, albeit even less complete,
-interface to ``scipy.stats`` maximum-likelihood estimatation methods.
+``paramnormal.[dist].fit`` provides a similar, interface to
+``scipy.stats`` maximum-likelihood estimatation methods.
 
 Again, we'll demonstrate with a lognormal distribution and compare
 parameter estimatation with scipy.
 
 .. code:: python
 
-    %matplotlib inline
-    
     import warnings
     warnings.simplefilter('ignore')
     
@@ -23,9 +21,14 @@ parameter estimatation with scipy.
     seaborn.set(style='ticks', rc=clean_bkgd)
     
     import paramnormal
+    
+    %matplotlib inline
 
 Let's start by generating a reasonably-sized random dataset and plotting
 a histogram.
+
+The primary method of creating a distribution from named parameters is
+shown below.
 
 .. code:: python
 
@@ -54,15 +57,12 @@ parameters:
 .. code:: python
 
     from scipy import stats
-    stats.lognorm.fit(x)
-
-
+    print(stats.lognorm.fit(x))
 
 
 .. parsed-literal::
 
     (0.77953564806411113, 0.23350251237627717, 5.3711822451406039)
-
 
 
 Unfortunately those parameters don't really make any sense based on what
@@ -72,10 +72,8 @@ That's where paramnormal comes in:
 
 .. code:: python
 
-    params = paramnormal.fit.lognormal(x)
-    params
-
-
+    params = paramnormal.lognormal.fit(x)
+    print(params)
 
 
 .. parsed-literal::
@@ -83,16 +81,16 @@ That's where paramnormal comes in:
     params(mu=1.7370786294627456, sigma=0.73827268519387368, offset=0)
 
 
-
 This matches well with our understanding of the distribution.
 
 The returned ``params`` variable is a ``namedtuple`` that we can easily
-use to create a distribution of our own and generate a nice plot with
-our histogram.
+use to create a distribution via the ``.from_params`` methods. From
+there, we can create a nice plot of the probability distribution
+function with our histogram.
 
 .. code:: python
 
-    dist = paramnormal.lognormal(*params)
+    dist = paramnormal.lognormal.from_params(params)
     
     # theoretical PDF
     x_hat = np.logspace(-0.5, 1.75, num=100)
@@ -110,4 +108,56 @@ our histogram.
 
 
 .. image:: fitting_files/fitting_9_0.png
+
+
+Recap
+-----
+
+Fitting data
+~~~~~~~~~~~~
+
+.. code:: python
+
+    params = paramnormal.lognormal.fit(x)
+    print(params)
+
+
+.. parsed-literal::
+
+    params(mu=1.7370786294627456, sigma=0.73827268519387368, offset=0)
+
+
+Creating distributions
+~~~~~~~~~~~~~~~~~~~~~~
+
+"Manually"
+^^^^^^^^^^
+
+.. code:: python
+
+    paramnormal.lognormal(mu=1.75, sigma=0.75, offset=0)
+
+
+
+
+.. parsed-literal::
+
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x10c0e3f28>
+
+
+
+From fit parameters
+^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    paramnormal.lognormal.from_params(params)
+
+
+
+
+.. parsed-literal::
+
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x10c006c18>
+
 

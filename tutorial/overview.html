@@ -71,10 +71,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fitting.html#recap">Recap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fitting.html#fitting-data">Fitting data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fitting.html#creating-distributions">Creating distributions</a></li>
+</ul>
+</li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../dist.html">Probability Distributions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fit.html">Fitting Distributions to data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paramnormal.html">Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">Miscellaneous Utilities</a></li>
 </ul>
 
           
@@ -209,21 +214,21 @@ paramnormal.lognormal(μ=mu, σ=sigma).rvs(size=N)
 <p>As of now, we provide a convenient interface for the following
 distributions in <code class="docutils literal"><span class="pre">scipy.stats</span></code>:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">distributions</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span>
-    <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="ow">not</span> <span class="n">d</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">d</span> <span class="o">!=</span> <span class="s">&#39;process_args&#39;</span><span class="p">,</span>
-    <span class="nb">dir</span><span class="p">(</span><span class="n">paramnormal</span><span class="o">.</span><span class="n">dist</span><span class="p">)</span>
+    <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="ow">not</span> <span class="n">d</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;__&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;BaseDist_Mixin&#39;</span><span class="p">,</span> <span class="s">&#39;stats&#39;</span><span class="p">,</span> <span class="s">&#39;namedtuple&#39;</span><span class="p">,</span> <span class="s">&#39;numpy&#39;</span><span class="p">,</span> <span class="s">&#39;utils&#39;</span><span class="p">],</span>
+    <span class="nb">dir</span><span class="p">(</span><span class="n">paramnormal</span><span class="o">.</span><span class="n">paramnormal</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">distributions</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">beta</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">alpha</span>
+<span class="n">beta</span>
 <span class="n">chi_squared</span>
 <span class="n">gamma</span>
 <span class="n">lognormal</span>
 <span class="n">normal</span>
 <span class="n">pareto</span>
-<span class="n">stats</span>
-<span class="n">uniform</span>
+<span class="n">weibull</span>
 </pre></div>
 </div>
 <p>Feel free to submit a pull request at

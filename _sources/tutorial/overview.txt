@@ -145,8 +145,8 @@ distributions in ``scipy.stats``:
 .. code:: python
 
     distributions = filter(
-        lambda d: not d.startswith('__') and d != 'process_args', 
-        dir(paramnormal.dist)
+        lambda d: not d.startswith('__') and d not in ['BaseDist_Mixin', 'stats', 'namedtuple', 'numpy', 'utils'], 
+        dir(paramnormal.paramnormal)
     )
     for d in distributions:
         print(d)
@@ -154,14 +154,14 @@ distributions in ``scipy.stats``:
 
 .. parsed-literal::
 
+    alpha
     beta
     chi_squared
     gamma
     lognormal
     normal
     pareto
-    stats
-    uniform
+    weibull
 
 
 Feel free to submit a pull request at
