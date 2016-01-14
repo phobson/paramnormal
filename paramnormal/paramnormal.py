@@ -21,6 +21,25 @@ class BaseDist_Mixin:
     def fit(cls, data, **guesses):
         return cls.param_template(*cls._fit(data, **guesses))
 
+    @classmethod
+    def from_params(cls, params):
+        """ Create a distribution from the namedtuple result of the
+        :meth:fit method.
+
+        Examples
+        --------
+        >>> import numpy
+        >>> import paramnormal
+        >>> # silly fake data
+        >>> x = numpy.random.normal(size=37)
+        >>> params = paramnormal.normal.fit(x)
+        >>> dist = = paramnormal.normal.from_params(parama)
+
+        """
+
+        kwargs = dict(zip(params._fields, params))
+        return cls(**kwargs)
+
 
 class normal(BaseDist_Mixin):
     """
@@ -39,6 +58,9 @@ class normal(BaseDist_Mixin):
     fit(data, **guesses)
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution.
+    from_params(params)
+        Create a new distribution instances from the namedtuple result
+        of the :meth:fit method.
 
     Parameters
     ----------
@@ -115,6 +137,9 @@ class lognormal(BaseDist_Mixin):
         the parameters of the data's distribution. By default, `offset`
         is fixed at 0. Thus, only `mu` and `sigma` are estimated unless
         the `offset` is explicitly set to `None`.
+    from_params(params)
+        Create a new distribution instances from the namedtuple result
+        of the :meth:fit method.
 
     Parameters
     ----------
@@ -218,6 +243,9 @@ class weibull(BaseDist_Mixin):
         and `scale` are fixed at 0 and 1, respectively. Thus, only `k`
         is estimated unless `loc` or `scale` are explicitly set to
         `None`.
+    from_params(params)
+        Create a new distribution instances from the namedtuple result
+        of the :meth:fit method.
 
     Parameters
     ----------
@@ -308,6 +336,9 @@ class alpha(BaseDist_Mixin):
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` is estimated unless `loc` or `scale` are explicitly set
         to `None`.
+    from_params(params)
+        Create a new distribution instances from the namedtuple result
+        of the :meth:fit method.
 
     Parameters
     ----------
@@ -394,6 +425,9 @@ class beta(BaseDist_Mixin):
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
+    from_params(params)
+        Create a new distribution instances from the namedtuple result
+        of the :meth:fit method.
 
     Parameters
     ----------
@@ -486,6 +520,9 @@ class gamma(BaseDist_Mixin):
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
+    from_params(params)
+        Create a new distribution instances from the namedtuple result
+        of the :meth:fit method.
 
     Parameters
     ----------
@@ -576,6 +613,9 @@ class chi_squared(BaseDist_Mixin):
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
+    from_params(params)
+        Create a new distribution instances from the namedtuple result
+        of the :meth:fit method.
 
     Parameters
     ----------
@@ -658,6 +698,9 @@ class pareto(BaseDist_Mixin):
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
+    from_params(params)
+        Create a new distribution instances from the namedtuple result
+        of the :meth:fit method.
 
     Parameters
     ----------
