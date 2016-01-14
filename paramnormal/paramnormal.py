@@ -19,6 +19,26 @@ class BaseDist_Mixin:
 
     @classmethod
     def fit(cls, data, **guesses):
+        """ Fit a distribution to sample using scipy's maximum
+        likelihood estimation methods.
+
+        Parameters
+        ----------
+        data : array-like
+            A sample whose distribution parameters will be estimated.
+        **guesses : named arguments of floats
+            Inital guess values for certain parameters of the
+            distribution. See the class docstring for more information
+            on the parameters.
+
+        Returns
+        -------
+        params : namedtuple
+            A namedtuple containing all of the paramaters of the
+            distribution.
+
+        """
+
         return cls.param_template(*cls._fit(data, **guesses))
 
     @classmethod
