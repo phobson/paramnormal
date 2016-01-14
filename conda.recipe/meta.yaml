@@ -1,0 +1,43 @@
+package:
+  name: paramnormal
+  version: v0.1.0
+
+source:
+  git_url: https://github.com/phobson/paramnormal.git
+  git_tag: v0.1.0
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - python
+    - numpy
+    - scipy
+
+  run:
+    - python
+    - numpy
+    - scipy
+
+test:
+  imports:
+    - paramnormal
+
+  commands:
+    - nosetests
+
+  requires:
+    - nose
+
+about:
+  home: http://phobson.github.io/paramnormal/
+  license:  BSD License
+  summary: 'Conventionally parameterized probability distributions.'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml/configure
