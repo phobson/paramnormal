@@ -60,6 +60,12 @@ class CheckDist_Mixin(object):
     def test_random_3737(self):
         self.do_check(3737)
 
+    def test_from_params(self):
+        data = generate_test_dist(self.dist, 37, *self.cargs, **self.ckwds)
+        params = self.dist.fit(data)
+        newdist = self.dist.from_params(params)
+        nt.assert_true(isinstance(newdist, stats._distn_infrastructure.rv_frozen))
+
 
 class Test_normal(CheckDist_Mixin):
     def setup(self):
