@@ -17,6 +17,10 @@ inconvenience).
 
 .. code:: python
 
+    %matplotlib inline
+
+.. code:: python
+
     import numpy as np
     from scipy import stats
 
@@ -144,24 +148,21 @@ distributions in ``scipy.stats``:
 
 .. code:: python
 
-    distributions = filter(
-        lambda d: not d.startswith('__') and d not in ['BaseDist_Mixin', 'stats', 'namedtuple', 'numpy', 'utils'], 
-        dir(paramnormal.paramnormal)
-    )
-    for d in distributions:
+    for d in paramnormal.paramnormal.__all__:
         print(d)
 
 
 .. parsed-literal::
 
+    normal
+    lognormal
+    weibull
     alpha
     beta
-    chi_squared
     gamma
-    lognormal
-    normal
+    chi_squared
     pareto
-    weibull
+    exponential
 
 
 Feel free to submit a pull request at

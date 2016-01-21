@@ -123,7 +123,7 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
 
 
-<div class="viewcode-block" id="BaseDist_Mixin"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.paramnormal.BaseDist_Mixin">[docs]</a><span class="k">class</span> <span class="nc">BaseDist_Mixin</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">BaseDist_Mixin</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
         <span class="n">dist_params</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">_process_args</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="o">**</span><span class="n">dist_params</span><span class="p">)</span>
@@ -135,7 +135,7 @@
         <span class="k">return</span> <span class="n">_sp_params</span>
 
     <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="BaseDist_Mixin.fit"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.paramnormal.BaseDist_Mixin.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Fit a distribution to sample using scipy&#39;s maximum</span>
 <span class="sd">        likelihood estimation methods.</span>
 
@@ -157,9 +157,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">param_template</span><span class="p">(</span><span class="o">*</span><span class="n">cls</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">))</span>
-</div>
+
     <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="BaseDist_Mixin.from_params"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.paramnormal.BaseDist_Mixin.from_params">[docs]</a>    <span class="k">def</span> <span class="nf">from_params</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_params</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Create a distribution from the namedtuple result of the</span>
 <span class="sd">        :meth:`~fit` method.</span>
 
@@ -177,7 +177,7 @@
         <span class="n">kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">_fields</span><span class="p">,</span> <span class="n">params</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-</div></div>
+
 <div class="viewcode-block" id="normal"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.paramnormal.normal">[docs]</a><span class="k">class</span> <span class="nc">normal</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to a normal distribution.</span>
@@ -556,7 +556,7 @@
 
 <span class="sd">    &gt;&gt;&gt; # silly fake data</span>
 <span class="sd">    &gt;&gt;&gt; numpy.random.seed(0)</span>
-<span class="sd">    &gt;&gt;&gt; pn.beta(alpha=2, beta=5).rvs(size=37)</span>
+<span class="sd">    &gt;&gt;&gt; data = pn.beta(alpha=2, beta=5).rvs(size=37)</span>
 <span class="sd">    &gt;&gt;&gt; # pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="sd">    &gt;&gt;&gt; pn.beta.fit(data)</span>
 <span class="sd">    params(alpha=1.6784891179355, beta=4.2459121691279, loc=0, scale=1)</span>
@@ -643,7 +643,7 @@
 
 <span class="sd">    &gt;&gt;&gt; # silly fake data</span>
 <span class="sd">    &gt;&gt;&gt; numpy.random.seed(0)</span>
-<span class="sd">    &gt;&gt;&gt; pn.gamma(k=2, θ=5).rvs(size=37)</span>
+<span class="sd">    &gt;&gt;&gt; data = pn.gamma(k=2, θ=5).rvs(size=37)</span>
 <span class="sd">    &gt;&gt;&gt; # pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="sd">    &gt;&gt;&gt; pn.gamma.fit(data)</span>
 <span class="sd">    params(k=1.3379069223213478, loc=0, theta=7.5830062081633587)</span>
@@ -724,7 +724,7 @@
 
 <span class="sd">    &gt;&gt;&gt; # silly fake data</span>
 <span class="sd">    &gt;&gt;&gt; numpy.random.seed(0)</span>
-<span class="sd">    &gt;&gt;&gt; pn.chi_squared(k=2).rvs(size=37)</span>
+<span class="sd">    &gt;&gt;&gt; data = pn.chi_squared(k=2).rvs(size=37)</span>
 <span class="sd">    &gt;&gt;&gt; # pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="sd">    &gt;&gt;&gt; pn.chi_squared.fit(data)</span>
 <span class="sd">    params(k=2.2668945312500028, loc=0, scale=1)</span>
@@ -769,8 +769,8 @@
 <span class="sd">        Use scipy&#39;s maximum likelihood estimation methods to estimate</span>
 <span class="sd">        the parameters of the data&#39;s distribution. By default, `loc`</span>
 <span class="sd">        and `scale` are fixed at 0 and 1, respectively. Thus, only</span>
-<span class="sd">        `alpha` and `beta` are estimated unless `loc` or `scale` are</span>
-<span class="sd">        explicitly set to `None`.</span>
+<span class="sd">        `alpha` is estimated unless `loc` or `scale` are explicitly</span>
+<span class="sd">        set to `None`.</span>
 <span class="sd">    from_params(params)</span>
 <span class="sd">        Create a new distribution instances from the namedtuple result</span>
 <span class="sd">        of the :meth:`~fit` method.</span>
@@ -785,7 +785,7 @@
 <span class="sd">        respectively.</span>
 
 <span class="sd">        .. note ::</span>
-<span class="sd">           When fitting a beta distribution to a dataset, this will</span>
+<span class="sd">           When fitting a pareto distribution to a dataset, this will</span>
 <span class="sd">           be fixed at its default value unless you explicitly set</span>
 <span class="sd">           it to other values. Set to `None` if you wish that it be</span>
 <span class="sd">           estimated entirely from scratch.</span>
@@ -805,7 +805,7 @@
 
 <span class="sd">    &gt;&gt;&gt; # silly fake data</span>
 <span class="sd">    &gt;&gt;&gt; numpy.random.seed(0)</span>
-<span class="sd">    &gt;&gt;&gt; pn.pareto(alpha=2).rvs(size=37)</span>
+<span class="sd">    &gt;&gt;&gt; data = pn.pareto(alpha=2).rvs(size=37)</span>
 <span class="sd">    &gt;&gt;&gt; # pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="sd">    &gt;&gt;&gt; pn.pareto.fit(data)</span>
 <span class="sd">    params(alpha=1.7850585937500019, loc=0, scale=1)</span>
@@ -816,7 +816,7 @@
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2.html</span>
+<span class="sd">    http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pareto.html</span>
 <span class="sd">    https://en.wikipedia.org/wiki/pareto_distribution</span>
 
 <span class="sd">    See Also</span>
@@ -837,7 +837,99 @@
             <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;f0&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;b&#39;</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span></div>
+        <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
+
+</div>
+<div class="viewcode-block" id="exponential"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.paramnormal.exponential">[docs]</a><span class="k">class</span> <span class="nc">exponential</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create and fit data to an exponential distribution.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    fit(data, **guesses)</span>
+<span class="sd">        Use scipy&#39;s maximum likelihood estimation methods to estimate</span>
+<span class="sd">        the parameters of the data&#39;s distribution. By default, `loc`</span>
+<span class="sd">        isfixed at 0. Thus, only `lambda_` is estimated unless `loc` is</span>
+<span class="sd">        explicitly set to `None`.</span>
+<span class="sd">    from_params(params)</span>
+<span class="sd">        Create a new distribution instances from the namedtuple result</span>
+<span class="sd">        of the :meth:`~fit` method.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lambda_ : float</span>
+<span class="sd">        The shape parameter of the distribution.</span>
+<span class="sd">    loc : float, optional</span>
+<span class="sd">        Location parameter of the distribution. This default to, and</span>
+<span class="sd">        should probably be left at, 0,</span>
+
+<span class="sd">        .. note ::</span>
+<span class="sd">           When fitting an exponential distribution to a dataset, this</span>
+<span class="sd">           will be fixed at its default value unless you explicitly set</span>
+<span class="sd">           it to other values. Set to `None` if you wish that it be</span>
+<span class="sd">           estimated entirely from scratch.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy</span>
+<span class="sd">    &gt;&gt;&gt; import paramnormal as pn</span>
+<span class="sd">    &gt;&gt;&gt; numpy.random.seed(0)</span>
+<span class="sd">    &gt;&gt;&gt; pn.exponential(lambda_=2).rvs(size=3)</span>
+<span class="sd">    array([ 0.39793725,  0.62796538,  0.46161157])</span>
+
+<span class="sd">    &gt;&gt;&gt; # you can also use greek letters</span>
+<span class="sd">    &gt;&gt;&gt; numpy.random.seed(0)</span>
+<span class="sd">    &gt;&gt;&gt; pn.exponential(λ=2).rvs(size=3)</span>
+<span class="sd">    array([ 0.39793725,  0.62796538,  0.46161157])</span>
+
+<span class="sd">    &gt;&gt;&gt; # silly fake data</span>
+<span class="sd">    &gt;&gt;&gt; numpy.random.seed(0)</span>
+<span class="sd">    &gt;&gt;&gt; data = pn.exponential(λ=2).rvs(size=37)</span>
+<span class="sd">    &gt;&gt;&gt; # pretend `data` is unknown and we want to fit a dist. to it</span>
+<span class="sd">    &gt;&gt;&gt; pn.exponential.fit(data)</span>
+<span class="sd">    params(lambda_=1.7849050026146085, loc=0)</span>
+
+<span class="sd">    &gt;&gt;&gt; # include `loc` in the estimate</span>
+<span class="sd">    &gt;&gt;&gt; pn.exponential.fit(data, loc=None)</span>
+<span class="sd">    params(lambda_=1.8154701618164411, loc=0.0094842718426853996)</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.expon.html</span>
+<span class="sd">    https://en.wikipedia.org/wiki/exponential_distribution</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    scipy.stats.expon</span>
+<span class="sd">    numpy.random.exponential</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">expon</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;lambda_&#39;</span><span class="p">,</span> <span class="s">&#39;loc&#39;</span><span class="p">])</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@utils.greco_deco</span>
+    <span class="k">def</span> <span class="nf">_process_args</span><span class="p">(</span><span class="n">lambda_</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="n">loc_key</span><span class="p">,</span> <span class="n">scale_key</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">_get_loc_scale_keys</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">lambda_</span><span class="o">**-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">lambda_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">lambda_</span><span class="p">}</span>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="exponential.fit"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.paramnormal.exponential.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">param_template</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lambda_</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**-</span><span class="mi">1</span><span class="p">)</span>
+
+</div></div>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;normal&#39;</span><span class="p">,</span>
+    <span class="s">&#39;lognormal&#39;</span><span class="p">,</span>
+    <span class="s">&#39;weibull&#39;</span><span class="p">,</span>
+    <span class="s">&#39;alpha&#39;</span><span class="p">,</span>
+    <span class="s">&#39;beta&#39;</span><span class="p">,</span>
+    <span class="s">&#39;gamma&#39;</span><span class="p">,</span>
+    <span class="s">&#39;chi_squared&#39;</span><span class="p">,</span>
+    <span class="s">&#39;pareto&#39;</span><span class="p">,</span>
+    <span class="s">&#39;exponential&#39;</span><span class="p">,</span>
+<span class="p">]</span>
 </pre></div>
 
           </div>

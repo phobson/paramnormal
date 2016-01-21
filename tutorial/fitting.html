@@ -122,18 +122,19 @@
 <code class="docutils literal"><span class="pre">scipy.stats</span></code> maximum-likelihood estimatation methods.</p>
 <p>Again, we&#8217;ll demonstrate with a lognormal distribution and compare
 parameter estimatation with scipy.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>import warnings
-warnings.simplefilter(&#39;ignore&#39;)
+<div class="code python highlight-python"><div class="highlight"><pre>%matplotlib inline
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s">&#39;ignore&#39;</span><span class="p">)</span>
 
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn
-clean_bkgd = {&#39;axes.facecolor&#39;:&#39;none&#39;, &#39;figure.facecolor&#39;:&#39;none&#39;}
-seaborn.set(style=&#39;ticks&#39;, rc=clean_bkgd)
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="n">clean_bkgd</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;axes.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="s">&#39;figure.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">}</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&#39;ticks&#39;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="n">clean_bkgd</span><span class="p">)</span>
 
-import paramnormal
-
-%matplotlib inline
+<span class="kn">import</span> <span class="nn">paramnormal</span>
 </pre></div>
 </div>
 <p>Let&#8217;s start by generating a reasonably-sized random dataset and plotting
@@ -152,7 +153,7 @@ shown below.</p>
 <span class="n">seaborn</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/fitting_3_0.png" src="../_images/fitting_3_0.png" />
+<img alt="../_images/fitting_4_0.png" src="../_images/fitting_4_0.png" />
 <p>Pretending for a moment that we didn&#8217;t generate this dataset with
 explicit distribution parameters, how would we go about estimating them?</p>
 <p>Scipy provides a maximum-likelihood estimation for estimating
@@ -195,7 +196,7 @@ function with our histogram.</p>
 <span class="n">seaborn</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/fitting_9_0.png" src="../_images/fitting_9_0.png" />
+<img alt="../_images/fitting_10_0.png" src="../_images/fitting_10_0.png" />
 </div>
 <div class="section" id="recap">
 <h1>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h1>
@@ -216,7 +217,7 @@ function with our histogram.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">1.75</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x10c0e3f28&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x108853b38&gt;
 </pre></div>
 </div>
 </div>
@@ -225,7 +226,7 @@ function with our histogram.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">from_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x10c006c18&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x108865c88&gt;
 </pre></div>
 </div>
 </div>

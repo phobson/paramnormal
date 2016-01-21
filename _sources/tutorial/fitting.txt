@@ -11,6 +11,10 @@ parameter estimatation with scipy.
 
 .. code:: python
 
+    %matplotlib inline
+
+.. code:: python
+
     import warnings
     warnings.simplefilter('ignore')
     
@@ -21,8 +25,6 @@ parameter estimatation with scipy.
     seaborn.set(style='ticks', rc=clean_bkgd)
     
     import paramnormal
-    
-    %matplotlib inline
 
 Let's start by generating a reasonably-sized random dataset and plotting
 a histogram.
@@ -45,7 +47,7 @@ shown below.
 
 
 
-.. image:: fitting_files/fitting_3_0.png
+.. image:: fitting_files/fitting_4_0.png
 
 
 Pretending for a moment that we didn't generate this dataset with
@@ -107,7 +109,7 @@ function with our histogram.
 
 
 
-.. image:: fitting_files/fitting_9_0.png
+.. image:: fitting_files/fitting_10_0.png
 
 
 Recap
@@ -142,7 +144,7 @@ Creating distributions
 
 .. parsed-literal::
 
-    <scipy.stats._distn_infrastructure.rv_frozen at 0x10c0e3f28>
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x108853b38>
 
 
 
@@ -158,6 +160,6 @@ From fit parameters
 
 .. parsed-literal::
 
-    <scipy.stats._distn_infrastructure.rv_frozen at 0x10c006c18>
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x108865c88>
 
 
