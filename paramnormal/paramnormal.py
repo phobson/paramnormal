@@ -439,7 +439,7 @@ class beta(BaseDist_Mixin):
 
     >>> # silly fake data
     >>> numpy.random.seed(0)
-    >>> pn.beta(alpha=2, beta=5).rvs(size=37)
+    >>> data = pn.beta(alpha=2, beta=5).rvs(size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.beta.fit(data)
     params(alpha=1.6784891179355, beta=4.2459121691279, loc=0, scale=1)
@@ -526,7 +526,7 @@ class gamma(BaseDist_Mixin):
 
     >>> # silly fake data
     >>> numpy.random.seed(0)
-    >>> pn.gamma(k=2, θ=5).rvs(size=37)
+    >>> data = pn.gamma(k=2, θ=5).rvs(size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.gamma.fit(data)
     params(k=1.3379069223213478, loc=0, theta=7.5830062081633587)
@@ -607,7 +607,7 @@ class chi_squared(BaseDist_Mixin):
 
     >>> # silly fake data
     >>> numpy.random.seed(0)
-    >>> pn.chi_squared(k=2).rvs(size=37)
+    >>> data = pn.chi_squared(k=2).rvs(size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.chi_squared.fit(data)
     params(k=2.2668945312500028, loc=0, scale=1)
@@ -652,8 +652,8 @@ class pareto(BaseDist_Mixin):
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
         and `scale` are fixed at 0 and 1, respectively. Thus, only
-        `alpha` and `beta` are estimated unless `loc` or `scale` are
-        explicitly set to `None`.
+        `alpha` is estimated unless `loc` or `scale` are explicitly
+        set to `None`.
     from_params(params)
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
@@ -668,7 +668,7 @@ class pareto(BaseDist_Mixin):
         respectively.
 
         .. note ::
-           When fitting a beta distribution to a dataset, this will
+           When fitting a pareto distribution to a dataset, this will
            be fixed at its default value unless you explicitly set
            it to other values. Set to `None` if you wish that it be
            estimated entirely from scratch.
@@ -688,7 +688,7 @@ class pareto(BaseDist_Mixin):
 
     >>> # silly fake data
     >>> numpy.random.seed(0)
-    >>> pn.pareto(alpha=2).rvs(size=37)
+    >>> data = pn.pareto(alpha=2).rvs(size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.pareto.fit(data)
     params(alpha=1.7850585937500019, loc=0, scale=1)
@@ -699,7 +699,7 @@ class pareto(BaseDist_Mixin):
 
     References
     ----------
-    http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2.html
+    http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pareto.html
     https://en.wikipedia.org/wiki/pareto_distribution
 
     See Also
@@ -721,3 +721,95 @@ class pareto(BaseDist_Mixin):
         else:
             key = 'b'
         return {key: alpha, loc_key: loc, scale_key: scale}
+
+
+class exponential(BaseDist_Mixin):
+    """
+    Create and fit data to an exponential distribution.
+
+    Methods
+    -------
+    fit(data, **guesses)
+        Use scipy's maximum likelihood estimation methods to estimate
+        the parameters of the data's distribution. By default, `loc`
+        isfixed at 0. Thus, only `lambda_` is estimated unless `loc` is
+        explicitly set to `None`.
+    from_params(params)
+        Create a new distribution instances from the namedtuple result
+        of the :meth:`~fit` method.
+
+    Parameters
+    ----------
+    lambda_ : float
+        The shape parameter of the distribution.
+    loc : float, optional
+        Location parameter of the distribution. This default to, and
+        should probably be left at, 0,
+
+        .. note ::
+           When fitting an exponential distribution to a dataset, this
+           will be fixed at its default value unless you explicitly set
+           it to other values. Set to `None` if you wish that it be
+           estimated entirely from scratch.
+
+    Examples
+    --------
+    >>> import numpy
+    >>> import paramnormal as pn
+    >>> numpy.random.seed(0)
+    >>> pn.exponential(lambda_=2).rvs(size=3)
+    array([ 0.39793725,  0.62796538,  0.46161157])
+
+    >>> # you can also use greek letters
+    >>> numpy.random.seed(0)
+    >>> pn.exponential(λ=2).rvs(size=3)
+    array([ 0.39793725,  0.62796538,  0.46161157])
+
+    >>> # silly fake data
+    >>> numpy.random.seed(0)
+    >>> data = pn.exponential(λ=2).rvs(size=37)
+    >>> # pretend `data` is unknown and we want to fit a dist. to it
+    >>> pn.exponential.fit(data)
+    params(lambda_=1.7849050026146085, loc=0)
+
+    >>> # include `loc` in the estimate
+    >>> pn.exponential.fit(data, loc=None)
+    params(lambda_=1.8154701618164411, loc=0.0094842718426853996)
+
+    References
+    ----------
+    http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.expon.html
+    https://en.wikipedia.org/wiki/exponential_distribution
+
+    See Also
+    --------
+    scipy.stats.expon
+    numpy.random.exponential
+
+    """
+    dist = stats.expon
+    param_template = namedtuple('params', ['lambda_', 'loc'])
+
+    @staticmethod
+    @utils.greco_deco
+    def _process_args(lambda_=None, loc=0, fit=False):
+        loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
+        return {loc_key: loc, scale_key: lambda_**-1 if lambda_ is not None else lambda_}
+
+    @classmethod
+    def fit(cls, data, **guesses):
+        params = cls._fit(data, **guesses)
+        return cls.param_template(loc=params[0], lambda_=params[1]**-1)
+
+
+__all__ = [
+    'normal',
+    'lognormal',
+    'weibull',
+    'alpha',
+    'beta',
+    'gamma',
+    'chi_squared',
+    'pareto',
+    'exponential',
+]

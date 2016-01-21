@@ -342,3 +342,36 @@ class Test_pareto(CheckDist_Mixin):
             (params.loc, 0),
             (params.scale, 1),
         )
+
+
+class Test_exponential(CheckDist_Mixin):
+    def setup(self):
+        self.dist = paramnormal.exponential
+        self.cargs = []
+        self.ckwds = dict(lambda_=2)
+
+        self.np_rand_fxn = numpy.random.exponential
+        self.npargs = [0.5]
+        self.npkwds = dict()
+
+    def test_process_args(self):
+        nt.assert_dict_equal(
+            self.dist._process_args(lambda_=2.0),
+            dict(loc=0, scale=0.5)
+        )
+
+        nt.assert_dict_equal(
+            self.dist._process_args(lambda_=2.0, fit=True),
+            dict(floc=0, fscale=0.5)
+        )
+
+    @seed
+    def test_fit(self):
+        data = numpy.random.exponential(0.5, size=37)
+        params = self.dist.fit(data)
+        check_params(
+            (params.lambda_, 1.7849050026146085),
+            (params.loc, 0),
+        )
+
+

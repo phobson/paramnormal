@@ -8,7 +8,8 @@ SYMBOLS = {
     'α': 'alpha',
     'β': 'beta',
     'γ': 'gamma',
-    'θ': 'theta'
+    'λ': 'lambda_',
+    'θ': 'theta',
 }
 
 
