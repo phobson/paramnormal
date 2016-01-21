@@ -1,1 +1,1 @@
-from .paramnormal import *
+from .dist import *
