@@ -381,6 +381,7 @@ class alpha(BaseDist_Mixin):
 
     dist = stats.alpha
     param_template = namedtuple('params', ['alpha', 'loc', 'scale'])
+    name = 'alpha'
 
     @staticmethod
     @utils.greco_deco
@@ -466,6 +467,7 @@ class beta(BaseDist_Mixin):
 
     dist = stats.beta
     param_template = namedtuple('params', ['alpha', 'beta', 'loc', 'scale'])
+    name = 'beta'
 
     @staticmethod
     @utils.greco_deco
@@ -553,6 +555,7 @@ class gamma(BaseDist_Mixin):
 
     dist = stats.gamma
     param_template = namedtuple('params', ['k', 'loc', 'theta'])
+    name = 'gamma'
 
     @staticmethod
     @utils.greco_deco
@@ -630,6 +633,7 @@ class chi_squared(BaseDist_Mixin):
 
     dist = stats.chi2
     param_template = namedtuple('params', ['k', 'loc', 'scale'])
+    nane = 'chi_squared'
 
     @staticmethod
     @utils.greco_deco
@@ -711,6 +715,7 @@ class pareto(BaseDist_Mixin):
 
     dist = stats.pareto
     param_template = namedtuple('params', ['alpha', 'loc', 'scale'])
+    name = 'pareto'
 
     @staticmethod
     @utils.greco_deco
@@ -789,6 +794,7 @@ class exponential(BaseDist_Mixin):
     """
     dist = stats.expon
     param_template = namedtuple('params', ['lambda_', 'loc'])
+    name = 'exponential'
 
     @staticmethod
     @utils.greco_deco
