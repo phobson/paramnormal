@@ -2,6 +2,8 @@
 from functools import wraps
 from inspect import signature
 
+import numpy
+
 SYMBOLS = {
     'μ': 'mu',
     'σ': 'sigma',
@@ -21,6 +23,15 @@ def greco_deco(func):
         kwargs = {SYMBOLS.get(k, k): v for k, v in kwargs.items()}
         bound = sig.bind(*args, **kwargs)
         return func(**bound.arguments)
+    return wrapper
+
+
+def seed(func):
+    """ Decorator to seed the RNG before any function. """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        numpy.random.seed(0)
+        return func(*args, **kwargs)
     return wrapper
 
 

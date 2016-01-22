@@ -7,15 +7,7 @@ import nose.tools as nt
 import numpy.testing as nptest
 
 from paramnormal import dist
-
-
-@nt.nottest
-def seed(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        numpy.random.seed(0)
-        return func(*args, **kwargs)
-    return wrapper
+from paramnormal.utils import seed
 
 
 @nt.nottest
