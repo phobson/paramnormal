@@ -27,7 +27,7 @@ install:
   # We just set up a conda environment with the right Python version. This
   # should not need changing.
 
-  - conda create --yes -n test python=$TRAVIS_PYTHON_VERSION scipy nose
+  - conda create --yes -n test python=$TRAVIS_PYTHON_VERSION scipy nose seaborn
   - source activate test
   - conda install --yes coverage docopt requests pyyaml
   - pip install coveralls
