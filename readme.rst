@@ -1,5 +1,5 @@
-(WIP) paramnormal: Conventionally parameterized probability distributions
-=========================================================================
+paramnormal: Conventionally parameterized probability distributions
+===================================================================
 .. image:: https://travis-ci.org/phobson/paramnormal.svg?branch=master
     :target: https://travis-ci.org/phobson/paramnormal
 
