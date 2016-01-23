@@ -9,6 +9,7 @@ Tutorials
 
    tutorial/overview
    tutorial/fitting
+   tutorial/activities
 
 API Reference
 -------------
