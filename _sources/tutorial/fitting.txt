@@ -21,10 +21,11 @@ parameter estimatation with scipy.
     import numpy as np
     import matplotlib.pyplot as plt
     import seaborn
-    clean_bkgd = {'axes.facecolor':'none', 'figure.facecolor':'none'}
-    seaborn.set(style='ticks', rc=clean_bkgd)
     
     import paramnormal
+    
+    clean_bkgd = {'axes.facecolor':'none', 'figure.facecolor':'none'}
+    seaborn.set(style='ticks', rc=clean_bkgd)
 
 Let's start by generating a reasonably-sized random dataset and plotting
 a histogram.
@@ -44,11 +45,6 @@ shown below.
     ax.set_xlabel('$X$')
     ax.set_ylabel('Probability')
     seaborn.despine()
-
-
-
-.. image:: fitting_files/fitting_4_0.png
-
 
 Pretending for a moment that we didn't generate this dataset with
 explicit distribution parameters, how would we go about estimating them?
@@ -107,16 +103,11 @@ function with our histogram.
     ax.set_ylabel('Probability')
     seaborn.despine()
 
-
-
-.. image:: fitting_files/fitting_10_0.png
-
-
 Recap
------
+~~~~~
 
 Fitting data
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 .. code:: python
 
@@ -130,10 +121,9 @@ Fitting data
 
 
 Creating distributions
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
-"Manually"
-^^^^^^^^^^
+The manual way:
 
 .. code:: python
 
@@ -144,12 +134,11 @@ Creating distributions
 
 .. parsed-literal::
 
-    <scipy.stats._distn_infrastructure.rv_frozen at 0x108853b38>
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x108344e48>
 
 
 
-From fit parameters
-^^^^^^^^^^^^^^^^^^^
+From fit parameters:
 
 .. code:: python
 
@@ -160,6 +149,6 @@ From fit parameters
 
 .. parsed-literal::
 
-    <scipy.stats._distn_infrastructure.rv_frozen at 0x108865c88>
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x108344ba8>
 
 

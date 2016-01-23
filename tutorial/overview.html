@@ -70,16 +70,21 @@
 <li class="toctree-l2"><a class="reference internal" href="#other-distributions">Other distributions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fitting.html#recap">Recap</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fitting.html#fitting-data">Fitting data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fitting.html#creating-distributions">Creating distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fitting.html#recap">Recap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="activities.html">Paramnormal Activity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="activities.html#random-number-generation">Random number generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="activities.html#fitting-distribution">Fitting distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="activities.html#plotting">Plotting</a></li>
 </ul>
 </li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../paramnormal.html">Probability Distributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">Miscellaneous Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../activity.html">Paramnormal Activities</a></li>
 </ul>
 
           
@@ -194,6 +199,10 @@ Consider the following:</p>
 <span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre>/Users/paul/miniconda3/envs/pnorm/lib/python3.5/site-packages/matplotlib/__init__.py:872: UserWarning: axes.color_cycle is deprecated and replaced with axes.prop_cycle; please use the latter.
+  warnings.warn(self.msg_depr % (key, alt_key))
+</pre></div>
+</div>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -216,7 +225,7 @@ paramnormal.lognormal(μ=mu, σ=sigma).rvs(size=N)
 <h2>Other distributions<a class="headerlink" href="#other-distributions" title="Permalink to this headline">¶</a></h2>
 <p>As of now, we provide a convenient interface for the following
 distributions in <code class="docutils literal"><span class="pre">scipy.stats</span></code>:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">paramnormal</span><span class="o">.</span><span class="n">paramnormal</span><span class="o">.</span><span class="n">__all__</span><span class="p">:</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">paramnormal</span><span class="o">.</span><span class="n">dist</span><span class="o">.</span><span class="n">__all__</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>

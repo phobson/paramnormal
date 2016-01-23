@@ -1,0 +1,230 @@
+
+Paramnormal Activity
+--------------------
+
+Perhaps the most convenient way to access the functionality of
+``paramnormal`` is through the ``activity`` module.
+
+Random number generation, distribution fitting, and basic plotting are
+exposed through ``activity``.
+
+Random number generation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Through the top-level API, you could do the following to generate
+lognormal random numbers.
+
+.. code:: python
+
+    %matplotlib inline
+
+.. code:: python
+
+    import warnings
+    warnings.simplefilter('ignore')
+    
+    from numpy.random import seed
+    from matplotlib import pyplot
+    import seaborn
+    
+    import paramnormal
+    
+    clean_bkgd = {'axes.facecolor':'none', 'figure.facecolor':'none'}
+    seaborn.set(style='ticks', rc=clean_bkgd)
+    
+    seed(0)
+    paramnormal.lognormal(mu=0.75, sigma=1.25).rvs(5)
+
+
+
+
+.. parsed-literal::
+
+    array([ 19.20297918,   3.49102891,   7.19526003,  34.85220823,  21.85538813])
+
+
+
+What's happening here is that
+``paramnormal.lognormal(mu=0.75, sigma=1.25)`` tranlates the arguments,
+passes them to ``scipy.stats.lognorm``, and returns scipy's distribution
+object. Then we call the ``rvs`` method of that object to generate five
+random numbers in an array.
+
+Through the ``activity`` API, that equivalent to:
+
+.. code:: python
+
+    seed(0)
+    paramnormal.activity.random('lognormal', mu=0.75, sigma=1.25, shape=5)
+
+
+
+
+.. parsed-literal::
+
+    array([ 19.20297918,   3.49102891,   7.19526003,  34.85220823,  21.85538813])
+
+
+
+And of source, Greek letters are still supported.
+
+.. code:: python
+
+    seed(0)
+    paramnormal.activity.random('lognormal', μ=0.75, σ=1.25, shape=5)
+
+
+
+
+.. parsed-literal::
+
+    array([ 19.20297918,   3.49102891,   7.19526003,  34.85220823,  21.85538813])
+
+
+
+Lastly, you can reuse an already full-specified distribution and the
+``shape`` parameter can take a tuple to return *N*-dimensional arrays.
+
+.. code:: python
+
+    seed(0)
+    my_dist = paramnormal.lognormal(μ=0.75, σ=1.25)
+    paramnormal.activity.random(my_dist, shape=(2, 4))
+
+
+
+
+.. parsed-literal::
+
+    array([[ 19.20297918,   3.49102891,   7.19526003,  34.85220823],
+           [ 21.85538813,   0.62400472,   6.94214304,   1.75207971]])
+
+
+
+Fitting distribution
+~~~~~~~~~~~~~~~~~~~~
+
+Fitting distribution to data follows a similar pattern.
+
+.. code:: python
+
+    data = paramnormal.activity.random('beta', α=3, β=2, shape=37)
+    
+    paramnormal.activity.fit('beta', data)
+
+
+
+
+.. parsed-literal::
+
+    params(alpha=2.609817838242197, beta=1.9104280289172266, loc=0, scale=1)
+
+
+
+You can still fix the primary parameters and unconstrain the defaults.
+
+.. code:: python
+
+    paramnormal.activity.fit('beta', data, β=2, loc=None)
+
+
+
+
+.. parsed-literal::
+
+    params(alpha=2.7441640478582361, beta=2, loc=-0.0031375474001911555, scale=1)
+
+
+
+Plotting
+~~~~~~~~
+
+There is a very limited amount of plotting functionality built into
+paramnormal. For the time being, we just plot the probability
+distribution function (PDF), and offload everything else to the seaborn
+module if it's available.
+
+.. code:: python
+
+    ax = paramnormal.activity.plot('beta', α=3, β=2)
+    ax.figure
+
+
+
+
+.. image:: activities_files/activities_14_0.png
+
+
+
+You can plot on an existing figure through the ``ax`` argument and
+control the line style through ``line_opts``.
+
+.. code:: python
+
+    seaborn.set(style='ticks', rc=clean_bkgd)
+    fig, (ax1, ax2) = pyplot.subplots(nrows=2, sharex=True, sharey=True)
+    ax1 = paramnormal.activity.plot('beta', α=6, β=2, ax=ax1, line_opts=dict(color='firebrick', lw=3))
+    ax2 = paramnormal.activity.plot('beta', α=2, β=6, ax=ax2, line_opts=dict(color='forestgreen', lw=1.25))
+    ax1.set_ylabel('α=6, β=2')
+    ax2.set_ylabel('α=2, β=6')
+    seaborn.despine(fig)
+    fig
+
+
+
+
+.. image:: activities_files/activities_16_0.png
+
+
+
+Of course, you can create a fully-specified distribtion and omit the
+distribution parameters.
+
+.. code:: python
+
+    beta = paramnormal.beta(α=3, β=2)
+    ax = paramnormal.activity.plot(beta)
+    ax.figure
+
+
+
+
+.. image:: activities_files/activities_18_0.png
+
+
+
+Passing an array of sample data will fit the distribution to that data
+and allow you to use ``seaborn.distplot``.
+
+.. code:: python
+
+    data = paramnormal.activity.random('beta', α=3, β=2, shape=125)
+    ax = paramnormal.activity.plot('beta', data, distplot=True)
+    seaborn.despine()
+    ax.legend()
+    ax.figure
+
+
+
+
+.. image:: activities_files/activities_20_0.png
+
+
+
+And you can control ``seaborn.distplot`` through ``displot_opts``.
+
+.. code:: python
+
+    data = paramnormal.activity.random('normal', μ=0.75, σ=1.25, shape=125)
+    ax = paramnormal.activity.plot('normal', data, distplot=True,
+                                   distplot_opts=dict(hist=True, rug=True, kde=False, norm_hist=True))
+    seaborn.despine()
+    ax.legend()
+    ax.figure
+
+
+
+
+.. image:: activities_files/activities_22_0.png
+
+

@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>paramnormal.activity &mdash; paramnormal 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="paramnormal 0.1 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> paramnormal</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/overview.html#a-new-challenger-appears">A new challenger appears</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/overview.html#greek-letter-support">Greek-letter support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/overview.html#other-distributions">Other distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/fitting.html#recap">Recap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/activities.html">Paramnormal Activity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/activities.html#random-number-generation">Random number generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/activities.html#fitting-distribution">Fitting distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/activities.html#plotting">Plotting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../paramnormal.html">Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html">Miscellaneous Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../activity.html">Paramnormal Activities</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">paramnormal</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>paramnormal.activity</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for paramnormal.activity</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">seaborn.apionly</span> <span class="kn">as</span> <span class="nn">seaborn</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c"># pragma: no cover</span>
+    <span class="n">seaborn</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="kn">from</span> <span class="nn">paramnormal</span> <span class="kn">import</span> <span class="n">dist</span>
+<span class="kn">from</span> <span class="nn">paramnormal</span> <span class="kn">import</span> <span class="n">utils</span>
+
+
+<span class="k">def</span> <span class="nf">_check_distro</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="c"># check if we&#39;re returning the class definition or an instance</span>
+    <span class="n">as_class</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;as_class&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="s">&#39;pdf&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">distro</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="s">&#39;from_params&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_check_distro</span><span class="p">(</span><span class="n">distro</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">as_class</span><span class="o">=</span><span class="n">as_class</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">distro</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">distro</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;{} is not a valid paramnormal distribution&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">distro</span><span class="p">))</span>
+
+    <span class="n">_params</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">_pop_none</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">as_class</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">distro</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">distro</span><span class="p">(</span><span class="o">**</span><span class="n">_params</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">figure</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;`ax` must be None or a matplotlib Axes.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+
+
+<div class="viewcode-block" id="random"><a class="viewcode-back" href="../../activity.html#paramnormal.activity.random">[docs]</a><span class="k">def</span> <span class="nf">random</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate random data from a probability distribution.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    distro : str or paramnormal class</span>
+<span class="sd">        The distribution from which the random data will be generated.</span>
+<span class="sd">    params : keyword arguments of floats</span>
+<span class="sd">        The parameters required to define the distribution. See each</span>
+<span class="sd">        distribution&#39;s docstring for more info.</span>
+<span class="sd">    shape : int or tuple of ints, optional</span>
+<span class="sd">        The shape of the array into which the generated data will be</span>
+<span class="sd">        placed. If `None`, a scalar will be retured.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    random : numpy.array or scalar</span>
+<span class="sd">        The random array (or scalar) generated.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy</span>
+<span class="sd">    &gt;&gt;&gt; import paramnormal</span>
+<span class="sd">    &gt;&gt;&gt; numpy.random.seed(0)</span>
+<span class="sd">    &gt;&gt;&gt; # define dist with a string</span>
+<span class="sd">    &gt;&gt;&gt; paramnormal.activity.random(&#39;normal&#39;, mu=5, sigma=1.75, shape=1)</span>
+<span class="sd">    array([ 8.08709161])</span>
+<span class="sd">    &gt;&gt;&gt; # or you can specify the actual class</span>
+<span class="sd">    &gt;&gt;&gt; paramnormal.activity.random(paramnormal.normal, mu=5, sigma=1.75, shape=None)</span>
+<span class="sd">    5.700275114642641</span>
+<span class="sd">    &gt;&gt;&gt; # greek letters still work</span>
+<span class="sd">    &gt;&gt;&gt; paramnormal.activity.random(&#39;beta&#39;, α=2.5, β=1.2, shape=(3,3))</span>
+<span class="sd">    array([[ 0.43771761,  0.84131634,  0.4390664 ],</span>
+<span class="sd">           [ 0.7037142 ,  0.88282672,  0.09080825],</span>
+<span class="sd">           [ 0.98747135,  0.63227551,  0.98108498]])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;shape&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+    <span class="n">distro</span> <span class="o">=</span> <span class="n">_check_distro</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">distro</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="fit"><a class="viewcode-back" href="../../activity.html#paramnormal.activity.fit">[docs]</a><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">as_params</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Estimate the distribution parameters of sample data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    distro : str or paramnormal class</span>
+<span class="sd">        The distribution from which the random data will be generated.</span>
+<span class="sd">    data : array-like</span>
+<span class="sd">        The data from which the distribution will be fit.</span>
+<span class="sd">    guesses : named arguments of floats</span>
+<span class="sd">        Inital guess values for certain parameters of the</span>
+<span class="sd">        distribution. See the class docstring for more information</span>
+<span class="sd">        on the parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    params : namedtuple</span>
+<span class="sd">        A namedtuple containing all of the paramaters of the</span>
+<span class="sd">        distribution.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy</span>
+<span class="sd">    &gt;&gt;&gt; import paramnormal</span>
+<span class="sd">    &gt;&gt;&gt; numpy.random.seed(0)</span>
+<span class="sd">    &gt;&gt;&gt; x = numpy.random.normal(loc=5.75, scale=2.25, size=37)</span>
+<span class="sd">    &gt;&gt;&gt; paramnormal.activity.fit(&#39;normal&#39;, x)</span>
+<span class="sd">    params(mu=6.4790576880446782, sigma=2.4437818960405617)</span>
+
+<span class="sd">    &gt;&gt;&gt; paramnormal.activity.fit(&#39;normal&#39;, x, sigma=2)</span>
+<span class="sd">    params(mu=6.4790576880446782, sigma=2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">distro</span> <span class="o">=</span> <span class="n">_check_distro</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">as_class</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">distro</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">as_params</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">params</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">distro</span><span class="o">.</span><span class="n">from_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+</div>
+<span class="k">def</span> <span class="nf">_plot_pdf</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">xlimits</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">xscale</span><span class="o">=</span><span class="s">&#39;linear&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">line_opts</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">_check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">xscale</span> <span class="o">==</span> <span class="s">&#39;log&#39;</span><span class="p">:</span>
+        <span class="n">xlimits</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">xlimits</span><span class="p">)</span>
+        <span class="n">spacer</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">logspace</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">spacer</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span>
+
+    <span class="n">x_hat</span> <span class="o">=</span> <span class="n">spacer</span><span class="p">(</span><span class="n">xlimits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlimits</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">distro</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x_hat</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_hat</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">,</span> <span class="o">**</span><span class="n">line_opts</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span>
+
+
+<div class="viewcode-block" id="plot"><a class="viewcode-back" href="../../activity.html#paramnormal.activity.plot">[docs]</a><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fit_dist</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+         <span class="n">xscale</span><span class="o">=</span><span class="s">&#39;linear&#39;</span><span class="p">,</span> <span class="n">line_opts</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">distplot</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+         <span class="n">distplot_opts</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot the PDF of a dataset and other representations of the</span>
+<span class="sd">    distribution (histogram, kernel density estimate, and rug plot).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    distro : str or distribution</span>
+<span class="sd">        The (name of) the distribution to be plotted.</span>
+<span class="sd">    data : array-like, optional</span>
+<span class="sd">        An array-like object that can be passed to</span>
+<span class="sd">        :func:`~seaborn.distplot` and :func:`~fit`.</span>
+<span class="sd">    fit_dist : bool, optional</span>
+<span class="sd">        Toggles fitting ``distro`` to ``data``. If False, ``distro``</span>
+<span class="sd">        must be a fully specified distribution so that the PDF can be</span>
+<span class="sd">        plotted.</span>
+<span class="sd">    ax : matplotlib.Axes, optional</span>
+<span class="sd">        Axes on which the everything gets drawn. If not provided, a new</span>
+<span class="sd">        one is created.</span>
+<span class="sd">    pad : float, optional</span>
+<span class="sd">        The fraction of beyond min and max values of data where the PDF</span>
+<span class="sd">        will be drawn.</span>
+<span class="sd">    xscale : str, optional</span>
+<span class="sd">        Specfifies a `&#39;log&#39;` or `&#39;linear&#39;` scale on the plot.</span>
+<span class="sd">    line_opts : dict, optional</span>
+<span class="sd">        Plotting options passed to :meth:`~ax.plot` when drawing the PDF.</span>
+<span class="sd">    distplot : bool, Optional</span>
+<span class="sd">        Toggles the use of :func:`~seaborn.distplot`. The default is</span>
+<span class="sd">        `False`.</span>
+
+<span class="sd">        .. note:</span>
+<span class="sd">           ``data`` must not be `None` for this to have an effect.</span>
+
+<span class="sd">    distplot_opts : dict, optional</span>
+<span class="sd">        Dictionary of parameters to be passed to</span>
+<span class="sd">        :func:`~seaborn.distplot`.</span>
+<span class="sd">    guesses : keyword arguments, optional</span>
+<span class="sd">        Additional parameters for specifying the distribution.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ax : matplotlib.Axes</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    seaborn.distplot</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    Plot a simple PDF of a fully-specified normal distribution.</span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">        :context: close-figs</span>
+
+<span class="sd">        &gt;&gt;&gt; import numpy</span>
+<span class="sd">        &gt;&gt;&gt; import seaborn</span>
+<span class="sd">        &gt;&gt;&gt; import paramnormal</span>
+<span class="sd">        &gt;&gt;&gt; clean_bkgd = {&#39;axes.facecolor&#39;: &#39;none&#39;, &#39;figure.facecolor&#39;: &#39;none&#39;}</span>
+<span class="sd">        &gt;&gt;&gt; seaborn.set(style=&#39;ticks&#39;, rc=clean_bkgd)</span>
+<span class="sd">        &gt;&gt;&gt; norm_dist = paramnormal.normal(μ=5.4, σ=2.5)</span>
+<span class="sd">        &gt;&gt;&gt; ax = paramnormal.activity.plot(norm_dist)</span>
+
+<span class="sd">    Pass a data sample to fit the distribution on-the-fly.</span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">        :context: close-figs</span>
+
+<span class="sd">        &gt;&gt;&gt; paramnormal.utils.seed(0)</span>
+<span class="sd">        &gt;&gt;&gt; data = paramnormal.activity.random(&#39;normal&#39;, μ=5.4, σ=2.5, shape=(37))</span>
+<span class="sd">        &gt;&gt;&gt; ax = paramnormal.activity.plot(&#39;normal&#39;, data=data)</span>
+
+<span class="sd">    Use seaborn to show other representations of the distribution of</span>
+<span class="sd">    real data:</span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">        :context: close-figs</span>
+
+<span class="sd">        &gt;&gt;&gt; ax = paramnormal.activity.plot(&#39;normal&#39;, data=data, distplot=True)</span>
+<span class="sd">        &gt;&gt;&gt; ax.legend(loc=&#39;upper left&#39;)</span>
+
+<span class="sd">    Use ``line_opts`` and ``distplot_opts`` to customize more complex</span>
+<span class="sd">    plots.</span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">        :context: close-figs</span>
+
+<span class="sd">        &gt;&gt;&gt; paramnormal.utils.seed(0)</span>
+<span class="sd">        &gt;&gt;&gt; data = paramnormal.activity.random(&#39;lognormal&#39;, μ=0.75, σ=1.2, shape=125)</span>
+<span class="sd">        &gt;&gt;&gt; logdata = numpy.log10(data)</span>
+<span class="sd">        &gt;&gt;&gt; line_opts = dict(color=&#39;firebrick&#39;, lw=3.5, label=&#39;Fit PDF&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; distplot_opts = dict(rug=True, kde=False, norm_hist=True)</span>
+<span class="sd">        &gt;&gt;&gt; ax = paramnormal.activity.plot(&#39;lognormal&#39;, data=data, distplot=True,</span>
+<span class="sd">        ...                                xscale=&#39;log&#39;, pad=0.01,</span>
+<span class="sd">        ...                                line_opts=line_opts,</span>
+<span class="sd">        ...                                distplot_opts=distplot_opts)</span>
+
+
+
+<span class="sd">    Notice that the bins in log-space don&#39;t work so well. We can</span>
+<span class="sd">    compute them outselves.</span>
+
+<span class="sd">    .. plot::</span>
+<span class="sd">        :context: close-figs</span>
+
+<span class="sd">        &gt;&gt;&gt; paramnormal.utils.seed(0)</span>
+<span class="sd">        &gt;&gt;&gt; data = paramnormal.activity.random(&#39;lognormal&#39;, μ=0.75, σ=1.2, shape=125)</span>
+<span class="sd">        &gt;&gt;&gt; logdata = numpy.log10(data)</span>
+<span class="sd">        &gt;&gt;&gt; bins = numpy.logspace(logdata.min(), logdata.max(), num=30)</span>
+<span class="sd">        &gt;&gt;&gt; distplot_opts = dict(rug=True, kde=False, norm_hist=True, bins=bins)</span>
+<span class="sd">        &gt;&gt;&gt; ax = paramnormal.activity.plot(&#39;lognormal&#39;, data=data, distplot=True,</span>
+<span class="sd">        ...                                xscale=&#39;log&#39;, pad=0.01,</span>
+<span class="sd">        ...                                line_opts=line_opts,</span>
+<span class="sd">        ...                                distplot_opts=distplot_opts)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">distro</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">as_params</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">distro</span> <span class="o">=</span> <span class="n">_check_distro</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">_check_ax</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+    <span class="n">line_opts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="k">if</span> <span class="n">line_opts</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">line_opts</span>
+    <span class="n">line_opts</span><span class="p">[</span><span class="s">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">line_opts</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;label&#39;</span><span class="p">,</span> <span class="s">&#39;PDF&#39;</span><span class="p">)</span>
+    <span class="n">xlimits</span> <span class="o">=</span> <span class="n">distro</span><span class="o">.</span><span class="n">ppf</span><span class="p">([</span><span class="n">pad</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pad</span><span class="o">/</span><span class="mi">100</span><span class="p">])</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">_plot_pdf</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">xlimits</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">xscale</span><span class="o">=</span><span class="n">xscale</span><span class="p">,</span> <span class="o">**</span><span class="n">line_opts</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="n">xscale</span><span class="p">)</span>
+
+    <span class="n">distplot_opts</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">distplot_opts</span> <span class="k">else</span> <span class="n">distplot_opts</span>
+    <span class="n">distplot_opts</span><span class="p">[</span><span class="s">&#39;kde&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">distplot_opts</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">&#39;kde&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">distplot</span> <span class="ow">and</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">seaborn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">seaborn</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">distplot_opts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">distplot_opts</span><span class="p">[</span><span class="s">&#39;kde&#39;</span><span class="p">]:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s">&#39;KDE&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Paul Hobson.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

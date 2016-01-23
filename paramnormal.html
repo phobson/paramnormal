@@ -32,7 +32,7 @@
   
     <link rel="top" title="paramnormal 0.1 documentation" href="index.html"/>
         <link rel="next" title="Miscellaneous Utilities" href="utils.html"/>
-        <link rel="prev" title="Fitting distributions to data with paramnormal." href="tutorial/fitting.html"/> 
+        <link rel="prev" title="Paramnormal Activity" href="tutorial/activities.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -70,16 +70,21 @@
 <li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#other-distributions">Other distributions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/fitting.html#recap">Recap</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/fitting.html#fitting-data">Fitting data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/fitting.html#creating-distributions">Creating distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/fitting.html#recap">Recap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/activities.html">Paramnormal Activity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#random-number-generation">Random number generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#fitting-distribution">Fitting distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#plotting">Plotting</a></li>
 </ul>
 </li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Probability Distributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">Miscellaneous Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="activity.html">Paramnormal Activities</a></li>
 </ul>
 
           
@@ -115,12 +120,12 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="module-paramnormal.paramnormal">
-<span id="probability-distributions"></span><span id="paramnormal-auto"></span><h1>Probability Distributions<a class="headerlink" href="#module-paramnormal.paramnormal" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-paramnormal.dist">
+<span id="probability-distributions"></span><span id="paramnormal-auto"></span><h1>Probability Distributions<a class="headerlink" href="#module-paramnormal.dist" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="paramnormal.paramnormal.normal">
-<em class="property">class </em><code class="descclassname">paramnormal.paramnormal.</code><code class="descname">normal</code><a class="reference internal" href="_modules/paramnormal/paramnormal.html#normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.normal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.paramnormal.BaseDist_Mixin</span></code></p>
+<dt id="paramnormal.dist.normal">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">normal</code><a class="reference internal" href="_modules/paramnormal/dist.html#normal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
 <p>Create and fit data to a normal distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -175,42 +180,28 @@ array([ 8.52810469,  5.80031442,  6.95747597])
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="16%" />
-<col width="84%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>fit(data, <a href="#id1"><span class="problematic" id="id2">**</span></a>guesses)</td>
-<td>Use scipy&#8217;s maximum likelihood estimation methods to estimate the parameters of the data&#8217;s distribution.</td>
-</tr>
-<tr class="row-even"><td>from_params(params)</td>
-<td>Create a new distribution instances from the namedtuple result of the <code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code> method.</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.normal.dist">
-<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.norm_gen object&gt;</em><a class="headerlink" href="#paramnormal.paramnormal.normal.dist" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.normal.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.norm_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.normal.dist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.normal.param_template">
-<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.paramnormal.normal.param_template" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.normal.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.normal.param_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.normal.name">
-<code class="descname">name</code><em class="property"> = 'normal'</em><a class="headerlink" href="#paramnormal.paramnormal.normal.name" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.normal.name">
+<code class="descname">name</code><em class="property"> = 'normal'</em><a class="headerlink" href="#paramnormal.dist.normal.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="paramnormal.paramnormal.lognormal">
-<em class="property">class </em><code class="descclassname">paramnormal.paramnormal.</code><code class="descname">lognormal</code><a class="reference internal" href="_modules/paramnormal/paramnormal.html#lognormal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.lognormal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.paramnormal.BaseDist_Mixin</span></code></p>
+<dt id="paramnormal.dist.lognormal">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">lognormal</code><a class="reference internal" href="_modules/paramnormal/dist.html#lognormal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.lognormal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
 <p>Create and fit data to a lognormal distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -270,61 +261,47 @@ array([ 5054.85624027,   330.40342795,  1050.97750604])
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="go">params(mu=5.6480512782619359, sigma=2.1722505742582769, offset=0)</span>
+<span class="go">params(mu=5.6480511731060181, sigma=2.172250571711877, offset=0)</span>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># estimate sigma when mu is fixed a known value:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">4.75</span><span class="p">)</span>
-<span class="go">params(mu=4.75, sigma=2.3505677305181645)</span>
+<span class="go">params(mu=4.75, sigma=2.3505859375000036, offset=0)</span>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `offset` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-<span class="go">params(mu=5.6538159643, sigma=2.1596452081, offset=-0.12039282462)</span>
+<span class="go">params(mu=5.6538159643068386, sigma=2.1596452081058795, offset=-0.12039282461824304)</span>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>fit(data, <a href="#id3"><span class="problematic" id="id4">**</span></a>guesses)</td>
-<td>Use scipy&#8217;s maximum likelihood estimation methods to estimate the parameters of the data&#8217;s distribution. By default, <cite>offset</cite> is fixed at 0. Thus, only <cite>mu</cite> and <cite>sigma</cite> are estimated unless the <cite>offset</cite> is explicitly set to <cite>None</cite>.</td>
-</tr>
-<tr class="row-even"><td>from_params(params)</td>
-<td>Create a new distribution instances from the namedtuple result of the <a class="reference internal" href="#paramnormal.paramnormal.lognormal.fit" title="paramnormal.paramnormal.lognormal.fit"><code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code></a> method.</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.lognormal.dist">
-<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.lognorm_gen object&gt;</em><a class="headerlink" href="#paramnormal.paramnormal.lognormal.dist" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.lognormal.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.lognorm_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.lognormal.dist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.lognormal.param_template">
-<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.paramnormal.lognormal.param_template" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.lognormal.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.lognormal.param_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.lognormal.name">
-<code class="descname">name</code><em class="property"> = 'lognormal'</em><a class="headerlink" href="#paramnormal.paramnormal.lognormal.name" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.lognormal.name">
+<code class="descname">name</code><em class="property"> = 'lognormal'</em><a class="headerlink" href="#paramnormal.dist.lognormal.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="classmethod">
-<dt id="paramnormal.paramnormal.lognormal.fit">
-<em class="property">classmethod </em><code class="descname">fit</code><span class="sig-paren">(</span><em>data</em>, <em>**guesses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paramnormal/paramnormal.html#lognormal.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.lognormal.fit" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.lognormal.fit">
+<em class="property">classmethod </em><code class="descname">fit</code><span class="sig-paren">(</span><em>data</em>, <em>**guesses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paramnormal/dist.html#lognormal.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.lognormal.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="paramnormal.paramnormal.weibull">
-<em class="property">class </em><code class="descclassname">paramnormal.paramnormal.</code><code class="descname">weibull</code><a class="reference internal" href="_modules/paramnormal/paramnormal.html#weibull"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.weibull" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.paramnormal.BaseDist_Mixin</span></code></p>
+<dt id="paramnormal.dist.weibull">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">weibull</code><a class="reference internal" href="_modules/paramnormal/dist.html#weibull"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.weibull" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
 <p>Create and fit data to a weibull distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -383,46 +360,32 @@ they be estimated entirely from scratch.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` and `scale` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">weibull</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-<span class="go">params(k=14.12010770249, loc=-1.38985653558, scale=2.432032433984)</span>
+<span class="go">params(k=14.120107702486127, loc=-1.389856535577052, scale=2.4320324339845572)</span>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="7%" />
-<col width="93%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>fit(data, <a href="#id5"><span class="problematic" id="id6">**</span></a>guesses)</td>
-<td>Use scipy&#8217;s maximum likelihood estimation methods to estimate the parameters of the data&#8217;s distribution. By default, <cite>loc</cite> and <cite>scale</cite> are fixed at 0 and 1, respectively. Thus, only <cite>k</cite> is estimated unless <cite>loc</cite> or <cite>scale</cite> are explicitly set to <cite>None</cite>.</td>
-</tr>
-<tr class="row-even"><td>from_params(params)</td>
-<td>Create a new distribution instances from the namedtuple result of the <code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code> method.</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.weibull.dist">
-<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.frechet_r_gen object&gt;</em><a class="headerlink" href="#paramnormal.paramnormal.weibull.dist" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.weibull.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.frechet_r_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.weibull.dist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.weibull.param_template">
-<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.paramnormal.weibull.param_template" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.weibull.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.weibull.param_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.weibull.name">
-<code class="descname">name</code><em class="property"> = 'weibull'</em><a class="headerlink" href="#paramnormal.paramnormal.weibull.name" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.weibull.name">
+<code class="descname">name</code><em class="property"> = 'weibull'</em><a class="headerlink" href="#paramnormal.dist.weibull.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="paramnormal.paramnormal.alpha">
-<em class="property">class </em><code class="descclassname">paramnormal.paramnormal.</code><code class="descname">alpha</code><a class="reference internal" href="_modules/paramnormal/paramnormal.html#alpha"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.alpha" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.paramnormal.BaseDist_Mixin</span></code></p>
+<dt id="paramnormal.dist.alpha">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">alpha</code><a class="reference internal" href="_modules/paramnormal/dist.html#alpha"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
 <p>Create and fit data to a alpha distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -461,13 +424,13 @@ they be estimated entirely from scratch.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">alpha</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="go">array([ 0.9553641 ,  1.04662991,  0.98415009])</span>
+<span class="go">array([ 0.20502995,  0.22566277,  0.21099298])</span>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # you can also use greek letters
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; pn.alpha(α=5).rvs(size=3)
-array([ 0.9553641 ,  1.04662991,  0.98415009])
+array([ 0.20502995,  0.22566277,  0.21099298])
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># silly fake data</span>
@@ -480,41 +443,32 @@ array([ 0.9553641 ,  1.04662991,  0.98415009])
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` and `scale` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-<span class="go">params(alpha=8.6781299501, loc=-0.15002784430, scale=3.1262971852)</span>
+<span class="go">params(alpha=8.6781299501492342, loc=-0.15002784429644306, scale=3.1262971852456447)</span>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="7%" />
-<col width="93%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>fit(data, <a href="#id7"><span class="problematic" id="id8">**</span></a>guesses)</td>
-<td>Use scipy&#8217;s maximum likelihood estimation methods to estimate the parameters of the data&#8217;s distribution. By default, <cite>loc</cite> and <cite>scale</cite> are fixed at 0 and 1, respectively. Thus, only <cite>alpha</cite> is estimated unless <cite>loc</cite> or <cite>scale</cite> are explicitly set to <cite>None</cite>.</td>
-</tr>
-<tr class="row-even"><td>from_params(params)</td>
-<td>Create a new distribution instances from the namedtuple result of the <code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code> method.</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.alpha.dist">
-<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.alpha_gen object&gt;</em><a class="headerlink" href="#paramnormal.paramnormal.alpha.dist" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.alpha.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.alpha_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.alpha.dist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.alpha.param_template">
-<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.paramnormal.alpha.param_template" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.alpha.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.alpha.param_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="paramnormal.dist.alpha.name">
+<code class="descname">name</code><em class="property"> = 'alpha'</em><a class="headerlink" href="#paramnormal.dist.alpha.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="paramnormal.paramnormal.beta">
-<em class="property">class </em><code class="descclassname">paramnormal.paramnormal.</code><code class="descname">beta</code><a class="reference internal" href="_modules/paramnormal/paramnormal.html#beta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.beta" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.paramnormal.BaseDist_Mixin</span></code></p>
+<dt id="paramnormal.dist.beta">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">beta</code><a class="reference internal" href="_modules/paramnormal/dist.html#beta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.beta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
 <p>Create and fit data to a beta distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -553,13 +507,13 @@ they be estimated entirely from scratch.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="go">array([ 0.9553641 ,  1.04662991,  0.98415009])</span>
+<span class="go">array([ 0.47917138,  0.6550558 ,  0.21501632])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; you can also use greek letters
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # you can also use greek letters
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; pn.beta(α=2, β=5).rvs(size=3)
-array([ 0.9553641 ,  1.04662991,  0.98415009])
+array([ 0.47917138,  0.6550558 ,  0.21501632])
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># silly fake data</span>
@@ -567,51 +521,42 @@ array([ 0.9553641 ,  1.04662991,  0.98415009])
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="go">params(alpha=1.6784891179355, beta=4.2459121691279, loc=0, scale=1)</span>
+<span class="go">params(alpha=1.6784891179355115, beta=4.2459121691279398, loc=0, scale=1)</span>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># just estimate beta with a known alpha</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">params(alpha=2, beta=4.96992644, loc=0, scale=1)</span>
+<span class="go">params(alpha=2, beta=4.9699264393421139, loc=0, scale=1)</span>
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` and `scale` in the estimate</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-<span class="go">params(alpha=1.81112, beta=4.69728, loc=-0.00540140, scale=1.03884)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="go">params(alpha=1.8111139255547926, beta=4.6972775768688697, loc=-0.0054013993799938431, scale=1.0388376932132561)</span>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="7%" />
-<col width="93%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>fit(data, <a href="#id9"><span class="problematic" id="id10">**</span></a>guesses)</td>
-<td>Use scipy&#8217;s maximum likelihood estimation methods to estimate the parameters of the data&#8217;s distribution. By default, <cite>loc</cite> and <cite>scale</cite> are fixed at 0 and 1, respectively. Thus, only <cite>alpha</cite> and <cite>beta</cite> are estimated unless <cite>loc</cite> or <cite>scale</cite> are explicitly set to <cite>None</cite>.</td>
-</tr>
-<tr class="row-even"><td>from_params(params)</td>
-<td>Create a new distribution instances from the namedtuple result of the <code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code> method.</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.beta.dist">
-<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.beta_gen object&gt;</em><a class="headerlink" href="#paramnormal.paramnormal.beta.dist" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.beta.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.beta_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.beta.dist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.beta.param_template">
-<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.paramnormal.beta.param_template" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.beta.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.beta.param_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="paramnormal.dist.beta.name">
+<code class="descname">name</code><em class="property"> = 'beta'</em><a class="headerlink" href="#paramnormal.dist.beta.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="paramnormal.paramnormal.gamma">
-<em class="property">class </em><code class="descclassname">paramnormal.paramnormal.</code><code class="descname">gamma</code><a class="reference internal" href="_modules/paramnormal/paramnormal.html#gamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.gamma" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.paramnormal.BaseDist_Mixin</span></code></p>
+<dt id="paramnormal.dist.gamma">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">gamma</code><a class="reference internal" href="_modules/paramnormal/dist.html#gamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.gamma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
 <p>Create and fit data to a gamma distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -664,7 +609,7 @@ array([ 25.69414788,  11.19240456,  27.13566137])
 &gt;&gt;&gt; data = pn.gamma(k=2, θ=5).rvs(size=37)
 &gt;&gt;&gt; # pretend `data` is unknown and we want to fit a dist. to it
 &gt;&gt;&gt; pn.gamma.fit(data)
-params(k=1.3379069223213478, loc=0, theta=7.5830062081633587)
+params(k=1.3379069223213471, loc=0, theta=7.5830062081633622)
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># just estimate theta with a known k</span>
@@ -674,41 +619,32 @@ params(k=1.3379069223213478, loc=0, theta=7.5830062081633587)
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">gamma</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-<span class="go">params(k=1.099611776886, loc=0.2991473526658, theta=8.954245031559)</span>
+<span class="go">params(k=1.0996117768860174, loc=0.29914735266576881, theta=8.9542450315590756)</span>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="7%" />
-<col width="93%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>fit(data, <a href="#id11"><span class="problematic" id="id12">**</span></a>guesses)</td>
-<td>Use scipy&#8217;s maximum likelihood estimation methods to estimate the parameters of the data&#8217;s distribution. By default, <cite>loc</cite> and <cite>scale</cite> are fixed at 0 and 1, respectively. Thus, only <cite>alpha</cite> and <cite>beta</cite> are estimated unless <cite>loc</cite> or <cite>scale</cite> are explicitly set to <cite>None</cite>.</td>
-</tr>
-<tr class="row-even"><td>from_params(params)</td>
-<td>Create a new distribution instances from the namedtuple result of the <code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code> method.</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.gamma.dist">
-<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.gamma_gen object&gt;</em><a class="headerlink" href="#paramnormal.paramnormal.gamma.dist" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.gamma.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.gamma_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.gamma.dist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.gamma.param_template">
-<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.paramnormal.gamma.param_template" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.gamma.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.gamma.param_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="paramnormal.dist.gamma.name">
+<code class="descname">name</code><em class="property"> = 'gamma'</em><a class="headerlink" href="#paramnormal.dist.gamma.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="paramnormal.paramnormal.chi_squared">
-<em class="property">class </em><code class="descclassname">paramnormal.paramnormal.</code><code class="descname">chi_squared</code><a class="reference internal" href="_modules/paramnormal/paramnormal.html#chi_squared"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.chi_squared" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.paramnormal.BaseDist_Mixin</span></code></p>
+<dt id="paramnormal.dist.chi_squared">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">chi_squared</code><a class="reference internal" href="_modules/paramnormal/dist.html#chi_squared"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.chi_squared" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
 <p>Create and fit data to a chi-squared distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -765,37 +701,28 @@ be estimated entirely from scratch.</p>
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="7%" />
-<col width="93%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>fit(data, <a href="#id13"><span class="problematic" id="id14">**</span></a>guesses)</td>
-<td>Use scipy&#8217;s maximum likelihood estimation methods to estimate the parameters of the data&#8217;s distribution. By default, <cite>loc</cite> and <cite>scale</cite> are fixed at 0 and 1, respectively. Thus, only <cite>alpha</cite> and <cite>beta</cite> are estimated unless <cite>loc</cite> or <cite>scale</cite> are explicitly set to <cite>None</cite>.</td>
-</tr>
-<tr class="row-even"><td>from_params(params)</td>
-<td>Create a new distribution instances from the namedtuple result of the <code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code> method.</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.chi_squared.dist">
-<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.chi2_gen object&gt;</em><a class="headerlink" href="#paramnormal.paramnormal.chi_squared.dist" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.chi_squared.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.chi2_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.chi_squared.dist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.chi_squared.param_template">
-<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.paramnormal.chi_squared.param_template" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.chi_squared.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.chi_squared.param_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="paramnormal.dist.chi_squared.nane">
+<code class="descname">nane</code><em class="property"> = 'chi_squared'</em><a class="headerlink" href="#paramnormal.dist.chi_squared.nane" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="paramnormal.paramnormal.pareto">
-<em class="property">class </em><code class="descclassname">paramnormal.paramnormal.</code><code class="descname">pareto</code><a class="reference internal" href="_modules/paramnormal/paramnormal.html#pareto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.pareto" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.paramnormal.BaseDist_Mixin</span></code></p>
+<dt id="paramnormal.dist.pareto">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">pareto</code><a class="reference internal" href="_modules/paramnormal/dist.html#pareto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.pareto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
 <p>Create and fit data to a pareto distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -839,7 +766,7 @@ estimated entirely from scratch.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # you can also use greek letters
 &gt;&gt;&gt; numpy.random.seed(0)
-&gt;&gt;&gt; pn.pareto(α=5).rvs(size=3)
+&gt;&gt;&gt; pn.pareto(α=2).rvs(size=3)
 array([ 1.48875061,  1.87379424,  1.58662889])
 </pre></div>
 </div>
@@ -857,37 +784,28 @@ array([ 1.48875061,  1.87379424,  1.58662889])
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="7%" />
-<col width="93%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>fit(data, <a href="#id15"><span class="problematic" id="id16">**</span></a>guesses)</td>
-<td>Use scipy&#8217;s maximum likelihood estimation methods to estimate the parameters of the data&#8217;s distribution. By default, <cite>loc</cite> and <cite>scale</cite> are fixed at 0 and 1, respectively. Thus, only <cite>alpha</cite> is estimated unless <cite>loc</cite> or <cite>scale</cite> are explicitly set to <cite>None</cite>.</td>
-</tr>
-<tr class="row-even"><td>from_params(params)</td>
-<td>Create a new distribution instances from the namedtuple result of the <code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code> method.</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.pareto.dist">
-<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.pareto_gen object&gt;</em><a class="headerlink" href="#paramnormal.paramnormal.pareto.dist" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.pareto.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.pareto_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.pareto.dist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.pareto.param_template">
-<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.paramnormal.pareto.param_template" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.pareto.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.pareto.param_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="paramnormal.dist.pareto.name">
+<code class="descname">name</code><em class="property"> = 'pareto'</em><a class="headerlink" href="#paramnormal.dist.pareto.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
-<dt id="paramnormal.paramnormal.exponential">
-<em class="property">class </em><code class="descclassname">paramnormal.paramnormal.</code><code class="descname">exponential</code><a class="reference internal" href="_modules/paramnormal/paramnormal.html#exponential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.exponential" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.paramnormal.BaseDist_Mixin</span></code></p>
+<dt id="paramnormal.dist.exponential">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">exponential</code><a class="reference internal" href="_modules/paramnormal/dist.html#exponential"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.exponential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
 <p>Create and fit data to an exponential distribution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -948,34 +866,25 @@ params(lambda_=1.7849050026146085, loc=0)
 </pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="9%" />
-<col width="91%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>fit(data, <a href="#id17"><span class="problematic" id="id18">**</span></a>guesses)</td>
-<td>Use scipy&#8217;s maximum likelihood estimation methods to estimate the parameters of the data&#8217;s distribution. By default, <cite>loc</cite> isfixed at 0. Thus, only <cite>lambda_</cite> is estimated unless <cite>loc</cite> is explicitly set to <cite>None</cite>.</td>
-</tr>
-<tr class="row-even"><td>from_params(params)</td>
-<td>Create a new distribution instances from the namedtuple result of the <a class="reference internal" href="#paramnormal.paramnormal.exponential.fit" title="paramnormal.paramnormal.exponential.fit"><code class="xref py py-meth docutils literal"><span class="pre">fit()</span></code></a> method.</td>
-</tr>
-</tbody>
-</table>
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.exponential.dist">
-<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.expon_gen object&gt;</em><a class="headerlink" href="#paramnormal.paramnormal.exponential.dist" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.exponential.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.expon_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.exponential.dist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="paramnormal.paramnormal.exponential.param_template">
-<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.paramnormal.exponential.param_template" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.exponential.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.exponential.param_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
 </dd></dl>
 
+<dl class="attribute">
+<dt id="paramnormal.dist.exponential.name">
+<code class="descname">name</code><em class="property"> = 'exponential'</em><a class="headerlink" href="#paramnormal.dist.exponential.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="classmethod">
-<dt id="paramnormal.paramnormal.exponential.fit">
-<em class="property">classmethod </em><code class="descname">fit</code><span class="sig-paren">(</span><em>data</em>, <em>**guesses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paramnormal/paramnormal.html#exponential.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.paramnormal.exponential.fit" title="Permalink to this definition">¶</a></dt>
+<dt id="paramnormal.dist.exponential.fit">
+<em class="property">classmethod </em><code class="descname">fit</code><span class="sig-paren">(</span><em>data</em>, <em>**guesses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paramnormal/dist.html#exponential.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.exponential.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -991,7 +900,7 @@ params(lambda_=1.7849050026146085, loc=0)
         <a href="utils.html" class="btn btn-neutral float-right" title="Miscellaneous Utilities">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="tutorial/fitting.html" class="btn btn-neutral" title="Fitting distributions to data with paramnormal."><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial/activities.html" class="btn btn-neutral" title="Paramnormal Activity"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -109,6 +109,12 @@ Consider the following:
     paramnormal.lognormal(mu=mu, sigma=sigma).rvs(size=N)
 
 
+.. parsed-literal::
+
+    /Users/paul/miniconda3/envs/pnorm/lib/python3.5/site-packages/matplotlib/__init__.py:872: UserWarning: axes.color_cycle is deprecated and replaced with axes.prop_cycle; please use the latter.
+      warnings.warn(self.msg_depr % (key, alt_key))
+
+
 
 
 .. parsed-literal::
@@ -148,7 +154,7 @@ distributions in ``scipy.stats``:
 
 .. code:: python
 
-    for d in paramnormal.paramnormal.__all__:
+    for d in paramnormal.dist.__all__:
         print(d)
 
 

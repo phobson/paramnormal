@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Paramnormal Activities &mdash; paramnormal 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="paramnormal 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Miscellaneous Utilities" href="utils.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> paramnormal</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#a-new-challenger-appears">A new challenger appears</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#greek-letter-support">Greek-letter support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#other-distributions">Other distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/fitting.html#recap">Recap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/activities.html">Paramnormal Activity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#random-number-generation">Random number generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#fitting-distribution">Fitting distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#plotting">Plotting</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="paramnormal.html">Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Miscellaneous Utilities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Paramnormal Activities</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">paramnormal</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Paramnormal Activities</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/activity.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="module-paramnormal.activity">
+<span id="paramnormal-activities"></span><span id="act-auto"></span><h1>Paramnormal Activities<a class="headerlink" href="#module-paramnormal.activity" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="paramnormal.activity.random">
+<code class="descclassname">paramnormal.activity.</code><code class="descname">random</code><span class="sig-paren">(</span><em>distro</em>, <em>**params</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paramnormal/activity.html#random"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.activity.random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate random data from a probability distribution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>distro</strong> : str or paramnormal class</p>
+<blockquote>
+<div><p>The distribution from which the random data will be generated.</p>
+</div></blockquote>
+<p><strong>params</strong> : keyword arguments of floats</p>
+<blockquote>
+<div><p>The parameters required to define the distribution. See each
+distribution&#8217;s docstring for more info.</p>
+</div></blockquote>
+<p><strong>shape</strong> : int or tuple of ints, optional</p>
+<blockquote>
+<div><p>The shape of the array into which the generated data will be
+placed. If <cite>None</cite>, a scalar will be retured.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>random</strong> : numpy.array or scalar</p>
+<blockquote class="last">
+<div><p>The random array (or scalar) generated.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; import numpy
+&gt;&gt;&gt; import paramnormal
+&gt;&gt;&gt; numpy.random.seed(0)
+&gt;&gt;&gt; # define dist with a string
+&gt;&gt;&gt; paramnormal.activity.random(&#39;normal&#39;, mu=5, sigma=1.75, shape=1)
+array([ 8.08709161])
+&gt;&gt;&gt; # or you can specify the actual class
+&gt;&gt;&gt; paramnormal.activity.random(paramnormal.normal, mu=5, sigma=1.75, shape=None)
+5.700275114642641
+&gt;&gt;&gt; # greek letters still work
+&gt;&gt;&gt; paramnormal.activity.random(&#39;beta&#39;, α=2.5, β=1.2, shape=(3,3))
+array([[ 0.43771761,  0.84131634,  0.4390664 ],
+       [ 0.7037142 ,  0.88282672,  0.09080825],
+       [ 0.98747135,  0.63227551,  0.98108498]])
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="paramnormal.activity.fit">
+<code class="descclassname">paramnormal.activity.</code><code class="descname">fit</code><span class="sig-paren">(</span><em>distro</em>, <em>data</em>, <em>as_params=True</em>, <em>**guesses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paramnormal/activity.html#fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.activity.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the distribution parameters of sample data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>distro</strong> : str or paramnormal class</p>
+<blockquote>
+<div><p>The distribution from which the random data will be generated.</p>
+</div></blockquote>
+<p><strong>data</strong> : array-like</p>
+<blockquote>
+<div><p>The data from which the distribution will be fit.</p>
+</div></blockquote>
+<p><strong>guesses</strong> : named arguments of floats</p>
+<blockquote>
+<div><p>Inital guess values for certain parameters of the
+distribution. See the class docstring for more information
+on the parameters.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>params</strong> : namedtuple</p>
+<blockquote class="last">
+<div><p>A namedtuple containing all of the paramaters of the
+distribution.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">5.75</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">2.25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="go">params(mu=6.4790576880446782, sigma=2.4437818960405617)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">params(mu=6.4790576880446782, sigma=2)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="paramnormal.activity.plot">
+<code class="descclassname">paramnormal.activity.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>distro</em>, <em>data=None</em>, <em>fit_dist=True</em>, <em>ax=None</em>, <em>pad=0.1</em>, <em>xscale='linear'</em>, <em>line_opts=None</em>, <em>distplot=False</em>, <em>distplot_opts=None</em>, <em>**guesses</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/paramnormal/activity.html#plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.activity.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the PDF of a dataset and other representations of the
+distribution (histogram, kernel density estimate, and rug plot).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>distro</strong> : str or distribution</p>
+<blockquote>
+<div><p>The (name of) the distribution to be plotted.</p>
+</div></blockquote>
+<p><strong>data</strong> : array-like, optional</p>
+<blockquote>
+<div><p>An array-like object that can be passed to
+<code class="xref py py-func docutils literal"><span class="pre">distplot()</span></code> and <a class="reference internal" href="#paramnormal.activity.fit" title="paramnormal.activity.fit"><code class="xref py py-func docutils literal"><span class="pre">fit()</span></code></a>.</p>
+</div></blockquote>
+<p><strong>fit_dist</strong> : bool, optional</p>
+<blockquote>
+<div><p>Toggles fitting <code class="docutils literal"><span class="pre">distro</span></code> to <code class="docutils literal"><span class="pre">data</span></code>. If False, <code class="docutils literal"><span class="pre">distro</span></code>
+must be a fully specified distribution so that the PDF can be
+plotted.</p>
+</div></blockquote>
+<p><strong>ax</strong> : matplotlib.Axes, optional</p>
+<blockquote>
+<div><p>Axes on which the everything gets drawn. If not provided, a new
+one is created.</p>
+</div></blockquote>
+<p><strong>pad</strong> : float, optional</p>
+<blockquote>
+<div><p>The fraction of beyond min and max values of data where the PDF
+will be drawn.</p>
+</div></blockquote>
+<p><strong>xscale</strong> : str, optional</p>
+<blockquote>
+<div><p>Specfifies a <cite>&#8216;log&#8217;</cite> or <cite>&#8216;linear&#8217;</cite> scale on the plot.</p>
+</div></blockquote>
+<p><strong>line_opts</strong> : dict, optional</p>
+<blockquote>
+<div><p>Plotting options passed to <code class="xref py py-meth docutils literal"><span class="pre">plot()</span></code> when drawing the PDF.</p>
+</div></blockquote>
+<p><strong>distplot</strong> : bool, Optional</p>
+<blockquote>
+<div><p>Toggles the use of <code class="xref py py-func docutils literal"><span class="pre">distplot()</span></code>. The default is
+<cite>False</cite>.</p>
+</div></blockquote>
+<p><strong>distplot_opts</strong> : dict, optional</p>
+<blockquote>
+<div><p>Dictionary of parameters to be passed to
+<code class="xref py py-func docutils literal"><span class="pre">distplot()</span></code>.</p>
+</div></blockquote>
+<p><strong>guesses</strong> : keyword arguments, optional</p>
+<blockquote>
+<div><p>Additional parameters for specifying the distribution.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><strong>ax</strong> : matplotlib.Axes</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal"><span class="pre">seaborn.distplot</span></code></p>
+</div>
+<p class="rubric">Examples</p>
+<p>Plot a simple PDF of a fully-specified normal distribution.</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; import numpy
+&gt;&gt;&gt; import seaborn
+&gt;&gt;&gt; import paramnormal
+&gt;&gt;&gt; clean_bkgd = {&#39;axes.facecolor&#39;: &#39;none&#39;, &#39;figure.facecolor&#39;: &#39;none&#39;}
+&gt;&gt;&gt; seaborn.set(style=&#39;ticks&#39;, rc=clean_bkgd)
+&gt;&gt;&gt; norm_dist = paramnormal.normal(μ=5.4, σ=2.5)
+&gt;&gt;&gt; ax = paramnormal.activity.plot(norm_dist)
+</pre></div>
+</div>
+<div class="figure">
+<img alt="_images/activity-1.png" src="_images/activity-1.png" />
+</div>
+<p>Pass a data sample to fit the distribution on-the-fly.</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; paramnormal.utils.seed(0)
+&gt;&gt;&gt; data = paramnormal.activity.random(&#39;normal&#39;, μ=5.4, σ=2.5, shape=(37))
+&gt;&gt;&gt; ax = paramnormal.activity.plot(&#39;normal&#39;, data=data)
+</pre></div>
+</div>
+<div class="figure">
+<img alt="_images/activity-2.png" src="_images/activity-2.png" />
+</div>
+<p>Use seaborn to show other representations of the distribution of
+real data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">distplot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;upper left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="figure">
+<img alt="_images/activity-3.png" src="_images/activity-3.png" />
+</div>
+<p>Use <code class="docutils literal"><span class="pre">line_opts</span></code> and <code class="docutils literal"><span class="pre">distplot_opts</span></code> to customize more complex
+plots.</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; paramnormal.utils.seed(0)
+&gt;&gt;&gt; data = paramnormal.activity.random(&#39;lognormal&#39;, μ=0.75, σ=1.2, shape=125)
+&gt;&gt;&gt; logdata = numpy.log10(data)
+&gt;&gt;&gt; line_opts = dict(color=&#39;firebrick&#39;, lw=3.5, label=&#39;Fit PDF&#39;)
+&gt;&gt;&gt; distplot_opts = dict(rug=True, kde=False, norm_hist=True)
+&gt;&gt;&gt; ax = paramnormal.activity.plot(&#39;lognormal&#39;, data=data, distplot=True,
+...                                xscale=&#39;log&#39;, pad=0.01,
+...                                line_opts=line_opts,
+...                                distplot_opts=distplot_opts)
+</pre></div>
+</div>
+<div class="figure">
+<img alt="_images/activity-4.png" src="_images/activity-4.png" />
+</div>
+<p>Notice that the bins in log-space don&#8217;t work so well. We can
+compute them outselves.</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; paramnormal.utils.seed(0)
+&gt;&gt;&gt; data = paramnormal.activity.random(&#39;lognormal&#39;, μ=0.75, σ=1.2, shape=125)
+&gt;&gt;&gt; logdata = numpy.log10(data)
+&gt;&gt;&gt; bins = numpy.logspace(logdata.min(), logdata.max(), num=30)
+&gt;&gt;&gt; distplot_opts = dict(rug=True, kde=False, norm_hist=True, bins=bins)
+&gt;&gt;&gt; ax = paramnormal.activity.plot(&#39;lognormal&#39;, data=data, distplot=True,
+...                                xscale=&#39;log&#39;, pad=0.01,
+...                                line_opts=line_opts,
+...                                distplot_opts=distplot_opts)
+</pre></div>
+</div>
+<div class="figure">
+<img alt="_images/activity-5.png" src="_images/activity-5.png" />
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="utils.html" class="btn btn-neutral" title="Miscellaneous Utilities"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Paul Hobson.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

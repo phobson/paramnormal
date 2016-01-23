@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="paramnormal 0.1 documentation" href="../index.html"/>
-        <link rel="next" title="Probability Distributions" href="../paramnormal.html"/>
+        <link rel="next" title="Paramnormal Activity" href="activities.html"/>
         <link rel="prev" title="Why paramnormal ?" href="overview.html"/> 
 
   
@@ -70,16 +70,21 @@
 <li class="toctree-l2"><a class="reference internal" href="overview.html#other-distributions">Other distributions</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#recap">Recap</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#fitting-data">Fitting data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-distributions">Creating distributions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#recap">Recap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="activities.html">Paramnormal Activity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="activities.html#random-number-generation">Random number generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="activities.html#fitting-distribution">Fitting distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="activities.html#plotting">Plotting</a></li>
 </ul>
 </li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../paramnormal.html">Probability Distributions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utils.html">Miscellaneous Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../activity.html">Paramnormal Activities</a></li>
 </ul>
 
           
@@ -131,10 +136,11 @@ parameter estimatation with scipy.</p>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span>
-<span class="n">clean_bkgd</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;axes.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="s">&#39;figure.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">}</span>
-<span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&#39;ticks&#39;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="n">clean_bkgd</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">paramnormal</span>
+
+<span class="n">clean_bkgd</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;axes.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="s">&#39;figure.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">}</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&#39;ticks&#39;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="n">clean_bkgd</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Let&#8217;s start by generating a reasonably-sized random dataset and plotting
@@ -153,7 +159,6 @@ shown below.</p>
 <span class="n">seaborn</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/fitting_4_0.png" src="../_images/fitting_4_0.png" />
 <p>Pretending for a moment that we didn&#8217;t generate this dataset with
 explicit distribution parameters, how would we go about estimating them?</p>
 <p>Scipy provides a maximum-likelihood estimation for estimating
@@ -196,12 +201,10 @@ function with our histogram.</p>
 <span class="n">seaborn</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/fitting_10_0.png" src="../_images/fitting_10_0.png" />
-</div>
 <div class="section" id="recap">
-<h1>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h1>
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="fitting-data">
-<h2>Fitting data<a class="headerlink" href="#fitting-data" title="Permalink to this headline">¶</a></h2>
+<h3>Fitting data<a class="headerlink" href="#fitting-data" title="Permalink to this headline">¶</a></h3>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">params</span> <span class="o">=</span> <span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
@@ -211,22 +214,19 @@ function with our histogram.</p>
 </div>
 </div>
 <div class="section" id="creating-distributions">
-<h2>Creating distributions<a class="headerlink" href="#creating-distributions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="manually">
-<h3>&#8220;Manually&#8221;<a class="headerlink" href="#manually" title="Permalink to this headline">¶</a></h3>
+<h3>Creating distributions<a class="headerlink" href="#creating-distributions" title="Permalink to this headline">¶</a></h3>
+<p>The manual way:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">1.75</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x108853b38&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x108344e48&gt;
 </pre></div>
 </div>
-</div>
-<div class="section" id="from-fit-parameters">
-<h3>From fit parameters<a class="headerlink" href="#from-fit-parameters" title="Permalink to this headline">¶</a></h3>
+<p>From fit parameters:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">from_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x108865c88&gt;
+<div class="highlight-python"><div class="highlight"><pre>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x108344ba8&gt;
 </pre></div>
 </div>
 </div>
@@ -239,7 +239,7 @@ function with our histogram.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../paramnormal.html" class="btn btn-neutral float-right" title="Probability Distributions">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="activities.html" class="btn btn-neutral float-right" title="Paramnormal Activity">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="overview.html" class="btn btn-neutral" title="Why paramnormal ?"><span class="fa fa-arrow-circle-left"></span> Previous</a>
