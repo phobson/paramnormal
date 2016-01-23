@@ -8,12 +8,6 @@ Perhaps the most convenient way to access the functionality of
 Random number generation, distribution fitting, and basic plotting are
 exposed through ``activity``.
 
-Random number generation
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-Through the top-level API, you could do the following to generate
-lognormal random numbers.
-
 .. code:: python
 
     %matplotlib inline
@@ -31,7 +25,15 @@ lognormal random numbers.
     
     clean_bkgd = {'axes.facecolor':'none', 'figure.facecolor':'none'}
     seaborn.set(style='ticks', rc=clean_bkgd)
-    
+
+Random number generation
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Through the top-level API, you could do the following to generate
+lognormal random numbers.
+
+.. code:: python
+
     seed(0)
     paramnormal.lognormal(mu=0.75, sigma=1.25).rvs(5)
 
@@ -66,7 +68,7 @@ Through the ``activity`` API, that equivalent to:
 
 
 
-And of source, Greek letters are still supported.
+And of course, Greek letters are still supported.
 
 .. code:: python
 
@@ -152,7 +154,7 @@ module if it's available.
 
 
 
-.. image:: activities_files/activities_14_0.png
+.. image:: activities_files/activities_16_0.png
 
 
 
@@ -173,7 +175,7 @@ control the line style through ``line_opts``.
 
 
 
-.. image:: activities_files/activities_16_0.png
+.. image:: activities_files/activities_18_0.png
 
 
 
@@ -189,7 +191,7 @@ distribution parameters.
 
 
 
-.. image:: activities_files/activities_18_0.png
+.. image:: activities_files/activities_20_0.png
 
 
 
@@ -207,7 +209,7 @@ and allow you to use ``seaborn.distplot``.
 
 
 
-.. image:: activities_files/activities_20_0.png
+.. image:: activities_files/activities_22_0.png
 
 
 
@@ -225,6 +227,6 @@ And you can control ``seaborn.distplot`` through ``displot_opts``.
 
 
 
-.. image:: activities_files/activities_22_0.png
+.. image:: activities_files/activities_24_0.png
 
 

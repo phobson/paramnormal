@@ -126,10 +126,6 @@
 <code class="docutils literal"><span class="pre">paramnormal</span></code> is through the <code class="docutils literal"><span class="pre">activity</span></code> module.</p>
 <p>Random number generation, distribution fitting, and basic plotting are
 exposed through <code class="docutils literal"><span class="pre">activity</span></code>.</p>
-<div class="section" id="random-number-generation">
-<h2>Random number generation<a class="headerlink" href="#random-number-generation" title="Permalink to this headline">¶</a></h2>
-<p>Through the top-level API, you could do the following to generate
-lognormal random numbers.</p>
 <div class="code python highlight-python"><div class="highlight"><pre>%matplotlib inline
 </pre></div>
 </div>
@@ -144,8 +140,13 @@ lognormal random numbers.</p>
 
 <span class="n">clean_bkgd</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;axes.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="s">&#39;figure.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">}</span>
 <span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&#39;ticks&#39;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="n">clean_bkgd</span><span class="p">)</span>
-
-<span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="random-number-generation">
+<h2>Random number generation<a class="headerlink" href="#random-number-generation" title="Permalink to this headline">¶</a></h2>
+<p>Through the top-level API, you could do the following to generate
+lognormal random numbers.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.25</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -165,7 +166,7 @@ random numbers in an array.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">19.20297918</span><span class="p">,</span>   <span class="mf">3.49102891</span><span class="p">,</span>   <span class="mf">7.19526003</span><span class="p">,</span>  <span class="mf">34.85220823</span><span class="p">,</span>  <span class="mf">21.85538813</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>And of source, Greek letters are still supported.</p>
+<p>And of course, Greek letters are still supported.</p>
 <div class="code python highlight-python"><div class="highlight"><pre>seed(0)
 paramnormal.activity.random(&#39;lognormal&#39;, μ=0.75, σ=1.25, shape=5)
 </pre></div>
@@ -214,7 +215,7 @@ module if it&#8217;s available.</p>
 ax.figure
 </pre></div>
 </div>
-<img alt="../_images/activities_14_0.png" src="../_images/activities_14_0.png" />
+<img alt="../_images/activities_16_0.png" src="../_images/activities_16_0.png" />
 <p>You can plot on an existing figure through the <code class="docutils literal"><span class="pre">ax</span></code> argument and
 control the line style through <code class="docutils literal"><span class="pre">line_opts</span></code>.</p>
 <div class="code python highlight-python"><div class="highlight"><pre>seaborn.set(style=&#39;ticks&#39;, rc=clean_bkgd)
@@ -227,7 +228,7 @@ seaborn.despine(fig)
 fig
 </pre></div>
 </div>
-<img alt="../_images/activities_16_0.png" src="../_images/activities_16_0.png" />
+<img alt="../_images/activities_18_0.png" src="../_images/activities_18_0.png" />
 <p>Of course, you can create a fully-specified distribtion and omit the
 distribution parameters.</p>
 <div class="code python highlight-python"><div class="highlight"><pre>beta = paramnormal.beta(α=3, β=2)
@@ -235,7 +236,7 @@ ax = paramnormal.activity.plot(beta)
 ax.figure
 </pre></div>
 </div>
-<img alt="../_images/activities_18_0.png" src="../_images/activities_18_0.png" />
+<img alt="../_images/activities_20_0.png" src="../_images/activities_20_0.png" />
 <p>Passing an array of sample data will fit the distribution to that data
 and allow you to use <code class="docutils literal"><span class="pre">seaborn.distplot</span></code>.</p>
 <div class="code python highlight-python"><div class="highlight"><pre>data = paramnormal.activity.random(&#39;beta&#39;, α=3, β=2, shape=125)
@@ -245,7 +246,7 @@ ax.legend()
 ax.figure
 </pre></div>
 </div>
-<img alt="../_images/activities_20_0.png" src="../_images/activities_20_0.png" />
+<img alt="../_images/activities_22_0.png" src="../_images/activities_22_0.png" />
 <p>And you can control <code class="docutils literal"><span class="pre">seaborn.distplot</span></code> through <code class="docutils literal"><span class="pre">displot_opts</span></code>.</p>
 <div class="code python highlight-python"><div class="highlight"><pre>data = paramnormal.activity.random(&#39;normal&#39;, μ=0.75, σ=1.25, shape=125)
 ax = paramnormal.activity.plot(&#39;normal&#39;, data, distplot=True,
@@ -255,7 +256,7 @@ ax.legend()
 ax.figure
 </pre></div>
 </div>
-<img alt="../_images/activities_22_0.png" src="../_images/activities_22_0.png" />
+<img alt="../_images/activities_24_0.png" src="../_images/activities_24_0.png" />
 </div>
 </div>
 
