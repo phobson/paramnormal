@@ -4,6 +4,7 @@ from scipy import stats
 
 import nose.tools as nt
 import numpy.testing as nptest
+from matplotlib.testing.decorators import image_comparison, cleanup
 
 from paramnormal import activity
 from paramnormal import dist
@@ -61,11 +62,13 @@ class Test__check_distro(object):
 
 
 class Test__check_ax(object):
+    @cleanup
     def test_None(self):
         fig, ax = activity._check_ax(None)
         nt.assert_true(isinstance(fig, pyplot.Figure))
         nt.assert_true(isinstance(ax, pyplot.Axes))
 
+    @cleanup
     def test_ax(self):
         fig, ax = pyplot.subplots()
 
@@ -74,6 +77,7 @@ class Test__check_ax(object):
         nt.assert_equal(fig, fig1)
 
     @nt.raises(ValueError)
+    @cleanup
     def test_error(self):
         activity._check_ax('junk')
 
@@ -109,3 +113,49 @@ class Test_fit(object):
         )
 
         assert_dists_are_equivalent(dist, stats.norm(params.mu, params.sigma))
+
+@image_comparison(baseline_images=['test_plot_basic'], extensions=['png'])
+@seed
+def test_plot_basic():
+    # first
+    fig, ax1 = pyplot.subplots()
+    norm_dist = dist.normal(μ=5.4, σ=2.5)
+    ax1 = activity.plot(norm_dist, ax=ax1)
+
+
+@image_comparison(baseline_images=['test_plot_fit'], extensions=['png'])
+@seed
+def test_plot_fit():
+    # second
+    fig2, ax2 = pyplot.subplots()
+    norm_dist = dist.normal(μ=5.4, σ=2.5)
+    data = activity.random('normal', μ=5.4, σ=2.5, shape=37)
+    ax2 = activity.plot(norm_dist, ax=ax2, line_opts=dict(label='Theoretical PDF'))
+    ax2 = activity.plot('normal', data=data, ax=ax2, line_opts=dict(label='Fit PDF'))
+    ax2.legend()
+
+
+@image_comparison(baseline_images=['test_plot_distplot'], extensions=['png'])
+@seed
+def test_plot_distplot():
+    # third
+    fig3, ax3 = pyplot.subplots()
+    data = activity.random('normal', μ=5.4, σ=2.5, shape=37)
+    ax3 = activity.plot('normal', data=data, distplot=True, ax=ax3)
+    ax3.legend(loc='upper left')
+
+
+@image_comparison(baseline_images=['test_plot_distplot_lognormal'], extensions=['png'])
+@seed
+def test_distplot_lognormal():
+    # fourth
+    fig4, ax4 = pyplot.subplots()
+    data = activity.random('lognormal', μ=0.75, σ=1.2, shape=125)
+    logdata = numpy.log10(data)
+    bins = numpy.logspace(logdata.min(), logdata.max(), num=30)
+    distplot_opts = dict(rug=True, kde=False, norm_hist=True, bins=bins)
+    line_opts = dict(color='firebrick', lw=3.5, label='Fit PDF')
+    ax4 = activity.plot('lognormal', data=data, distplot=True,
+                        xscale='log', pad=0.01, ax=ax4,
+                        line_opts=line_opts,
+                        distplot_opts=distplot_opts)

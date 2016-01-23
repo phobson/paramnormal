@@ -8,8 +8,12 @@
 *.so
 *.pyc
 *.egg-info
-*.coverage
-*.noseids
+
+
+# test output
+.noseids
+.coverage
+result_images
 
 # Packages #
 ############
