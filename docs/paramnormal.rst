@@ -3,7 +3,7 @@
 Probability Distributions
 =========================
 
-.. automodule:: paramnormal.paramnormal
+.. automodule:: paramnormal.dist
    :members:
    :undoc-members:
    :show-inheritance:

@@ -18,6 +18,7 @@ API Reference
 
    paramnormal.rst
    utils.rst
+   activity.rst
 
 
 Indices and tables
