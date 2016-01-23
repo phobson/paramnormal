@@ -19,12 +19,14 @@ before_install:
   - export PATH=$HOME/miniconda/bin:$PATH
   - conda update --yes conda
 
+
 install:
   - conda create --yes -n test python=$TRAVIS_PYTHON_VERSION scipy nose seaborn
   - source activate test
   - conda install --yes coverage docopt requests pyyaml
   - pip install coveralls
   - pip install .
+  - cp testing/matplotlibrc .
 
 script:
   - nosetests --with-coverage --cover-package=paramnormal --verbose
