@@ -111,11 +111,12 @@ def fit(distro, data, as_params=True, **guesses):
     >>> import numpy
     >>> import paramnormal
     >>> numpy.random.seed(0)
-    >>> x = numpy.random.normal(loc=5.75, scale=2.25, shape=37)
+    >>> x = numpy.random.normal(loc=5.75, scale=2.25, size=37)
     >>> paramnormal.activity.fit('normal', x)
-    params(mu=5.6970632496039011, sigma=2.2023685655141056)
+    params(mu=6.4790576880446782, sigma=2.4437818960405617)
+
     >>> paramnormal.activity.fit('normal', x, sigma=2)
-    params(mu=5.6970632496039011, sigma=2)
+    params(mu=6.4790576880446782, sigma=2)
     """
 
     distro = _check_distro(distro, as_class=True)
