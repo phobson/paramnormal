@@ -199,8 +199,8 @@ def plot(distro, data=None, fit_dist=True, ax=None, pad=0.1,
         :context: close-figs
 
         >>> import numpy
-        >>> import paramnormal
         >>> import seaborn
+        >>> import paramnormal
         >>> clean_bkgd = {'axes.facecolor': 'none', 'figure.facecolor': 'none'}
         >>> seaborn.set(style='ticks', rc=clean_bkgd)
         >>> norm_dist = paramnormal.normal(μ=5.4, σ=2.5)
@@ -275,8 +275,10 @@ def plot(distro, data=None, fit_dist=True, ax=None, pad=0.1,
     ax.set_xscale(xscale)
 
     distplot_opts = dict() if not distplot_opts else distplot_opts
+    distplot_opts['kde'] = distplot_opts.pop('kde', True)
     if distplot and data is not None and seaborn is not None:
         seaborn.distplot(data, ax=ax, **distplot_opts)
-        ax.lines[-1].set_label('KDE')
+        if distplot_opts['kde']:
+            ax.lines[1].set_label('KDE')
 
     return ax
