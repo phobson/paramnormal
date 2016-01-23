@@ -1,3 +1,5 @@
+import sys
+
 import numpy
 from matplotlib import pyplot
 from scipy import stats
@@ -115,6 +117,7 @@ class Test_fit(object):
         assert_dists_are_equivalent(dist, stats.norm(params.mu, params.sigma))
 
 @image_comparison(baseline_images=['test_plot_basic'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
 @seed
 def test_plot_basic():
     # first
@@ -124,6 +127,7 @@ def test_plot_basic():
 
 
 @image_comparison(baseline_images=['test_plot_fit'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
 @seed
 def test_plot_fit():
     # second
@@ -136,6 +140,7 @@ def test_plot_fit():
 
 
 @image_comparison(baseline_images=['test_plot_distplot'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
 @seed
 def test_plot_distplot():
     # third
@@ -146,6 +151,7 @@ def test_plot_distplot():
 
 
 @image_comparison(baseline_images=['test_plot_distplot_lognormal'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
 @seed
 def test_distplot_lognormal():
     # fourth
