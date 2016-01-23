@@ -9,9 +9,9 @@ from setuptools import setup, find_packages
 DESCRIPTION = "paramnormal: Conventionally parameterized probability distributions"
 LONG_DESCRIPTION = DESCRIPTION
 NAME = "paramnormal"
-VERSION = "0.1"
+VERSION = "v0.2.0"
 AUTHOR = "Paul Hobson"
-AUTHOR_EMAIL = "phobson@geosyntec.com"
+AUTHOR_EMAIL = "pmhobson@gmail.com"
 URL = "https://github.com/phobson/paramnormal"
 DOWNLOAD_URL = "https://github.com/phobson/paramnormal/archive/master.zip"
 LICENSE = "BSD 3-clause"
@@ -29,7 +29,7 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',
 ]
-INSTALL_REQUIRES = ['numpy', 'scipy']
+INSTALL_REQUIRES = ['numpy', 'scipy', 'matplotlib']
 PACKAGE_DATA = {}
 DATA_FILES = []
 

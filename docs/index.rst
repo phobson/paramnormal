@@ -9,6 +9,7 @@ Tutorials
 
    tutorial/overview
    tutorial/fitting
+   tutorial/activities
 
 API Reference
 -------------
@@ -18,6 +19,7 @@ API Reference
 
    paramnormal.rst
    utils.rst
+   activity.rst
 
 
 Indices and tables

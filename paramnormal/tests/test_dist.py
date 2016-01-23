@@ -6,16 +6,8 @@ from scipy import stats
 import nose.tools as nt
 import numpy.testing as nptest
 
-from paramnormal import paramnormal
-
-
-@nt.nottest
-def seed(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        numpy.random.seed(0)
-        return func(*args, **kwargs)
-    return wrapper
+from paramnormal import dist
+from paramnormal.utils import seed
 
 
 @nt.nottest
@@ -69,7 +61,7 @@ class CheckDist_Mixin(object):
 
 class Test_normal(CheckDist_Mixin):
     def setup(self):
-        self.dist = paramnormal.normal
+        self.dist = dist.normal
         self.cargs = []
         self.ckwds = dict(mu=4, sigma=1.75)
 
@@ -100,7 +92,7 @@ class Test_normal(CheckDist_Mixin):
 
 class Test_lognormal(CheckDist_Mixin):
     def setup(self):
-        self.dist = paramnormal.lognormal
+        self.dist = dist.lognormal
         self.cargs = []
         self.ckwds = dict(mu=4, sigma=1.75)
 
@@ -136,7 +128,7 @@ class Test_lognormal(CheckDist_Mixin):
 
 class Test_weibull(CheckDist_Mixin):
     def setup(self):
-        self.dist = paramnormal.weibull
+        self.dist = dist.weibull
         self.cargs = []
         self.ckwds = dict(k=2)
 
@@ -168,7 +160,7 @@ class Test_weibull(CheckDist_Mixin):
 
 class Test_alpha(CheckDist_Mixin):
     def setup(self):
-        self.dist = paramnormal.alpha
+        self.dist = dist.alpha
         self.cargs = []
         self.ckwds = dict(alpha=2)
 
@@ -200,7 +192,7 @@ class Test_alpha(CheckDist_Mixin):
 
 class Test_beta(CheckDist_Mixin):
     def setup(self):
-        self.dist = paramnormal.beta
+        self.dist = dist.beta
         self.cargs = []
         self.ckwds = dict(alpha=2, beta=3)
 
@@ -250,7 +242,7 @@ class Test_beta(CheckDist_Mixin):
 
 class Test_gamma(CheckDist_Mixin):
     def setup(self):
-        self.dist = paramnormal.gamma
+        self.dist = dist.gamma
         self.cargs = []
         self.ckwds = dict(k=2, theta=1)
 
@@ -282,7 +274,7 @@ class Test_gamma(CheckDist_Mixin):
 
 class Test_chi_squared(CheckDist_Mixin):
     def setup(self):
-        self.dist = paramnormal.chi_squared
+        self.dist = dist.chi_squared
         self.cargs = []
         self.ckwds = dict(k=2)
 
@@ -314,7 +306,7 @@ class Test_chi_squared(CheckDist_Mixin):
 
 class Test_pareto(CheckDist_Mixin):
     def setup(self):
-        self.dist = paramnormal.pareto
+        self.dist = dist.pareto
         self.cargs = []
         self.ckwds = dict(alpha=2)
 
@@ -346,7 +338,7 @@ class Test_pareto(CheckDist_Mixin):
 
 class Test_exponential(CheckDist_Mixin):
     def setup(self):
-        self.dist = paramnormal.exponential
+        self.dist = dist.exponential
         self.cargs = []
         self.ckwds = dict(lambda_=2)
 

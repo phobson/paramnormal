@@ -17,6 +17,9 @@ import sys
 import os
 import shlex
 import sphinx
+import seaborn
+clean_bkgd = {'axes.facecolor': 'none', 'figure.facecolor': 'none'}
+seaborn.set(style='ticks', rc=clean_bkgd)
 
 source_suffix = ['.rst']
 
@@ -52,6 +55,12 @@ source_suffix = '.rst'
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
+
+# Include the example source for plots in API docs
+plot_include_source = True
+plot_formats = [("png", 90)]
+plot_html_show_formats = False
+plot_html_show_source_link = False
 
 # The master toctree document.
 master_doc = 'index'

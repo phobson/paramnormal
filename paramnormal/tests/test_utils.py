@@ -5,24 +5,24 @@ import nose.tools as nt
 from numpy.random import seed
 import numpy.testing as nptest
 
-from paramnormal import paramnormal, utils
+from paramnormal import dist, utils
 
 
 def test_greco_deco():
-    d1 = paramnormal.normal._process_args(mu=1, sigma=2)
-    d2 = paramnormal.normal._process_args(μ=1, σ=2)
+    d1 = dist.normal._process_args(mu=1, sigma=2)
+    d2 = dist.normal._process_args(μ=1, σ=2)
     expected = dict(loc=1, scale=2)
     nt.assert_dict_equal(d1, expected)
     nt.assert_dict_equal(d2, expected)
 
-    d1 = paramnormal.beta._process_args(alpha=1, beta=2)
-    d2 = paramnormal.beta._process_args(α=1, β=2)
+    d1 = dist.beta._process_args(alpha=1, beta=2)
+    d2 = dist.beta._process_args(α=1, β=2)
     expected = {'a': 1, 'b': 2, 'loc': 0, 'scale': 1}
     nt.assert_dict_equal(d1, expected)
     nt.assert_dict_equal(d2, expected)
 
-    d1 = paramnormal.gamma._process_args(k=1, theta=2)
-    d2 = paramnormal.gamma._process_args(k=1, θ=2)
+    d1 = dist.gamma._process_args(k=1, theta=2)
+    d2 = dist.gamma._process_args(k=1, θ=2)
     expected = {'a': 1, 'loc': 0, 'scale': 2}
     nt.assert_dict_equal(d1, expected)
     nt.assert_dict_equal(d2, expected)

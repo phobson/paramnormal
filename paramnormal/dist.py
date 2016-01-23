@@ -53,7 +53,7 @@ class BaseDist_Mixin:
         >>> # silly fake data
         >>> x = numpy.random.normal(size=37)
         >>> params = paramnormal.normal.fit(x)
-        >>> dist = = paramnormal.normal.from_params(parama)
+        >>> dist = paramnormal.normal.from_params(params)
 
         """
 
@@ -67,10 +67,10 @@ class normal(BaseDist_Mixin):
 
     Methods
     -------
-    fit(data, **guesses)
+    fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution.
-    from_params(params)
+    from_params
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
 
@@ -136,12 +136,12 @@ class lognormal(BaseDist_Mixin):
 
     Methods
     -------
-    fit(data, **guesses)
+    fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `offset`
         is fixed at 0. Thus, only `mu` and `sigma` are estimated unless
         the `offset` is explicitly set to `None`.
-    from_params(params)
+    from_params
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
 
@@ -183,15 +183,15 @@ class lognormal(BaseDist_Mixin):
     >>> data = numpy.random.lognormal(5, 2, size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.lognormal.fit(data)
-    params(mu=5.6480512782619359, sigma=2.1722505742582769, offset=0)
+    params(mu=5.6480511731060181, sigma=2.172250571711877, offset=0)
 
     >>> # estimate sigma when mu is fixed a known value:
     >>> pn.lognormal.fit(data, mu=4.75)
-    params(mu=4.75, sigma=2.3505677305181645)
+    params(mu=4.75, sigma=2.3505859375000036, offset=0)
 
     >>> # include `offset` in the estimate
     >>> pn.lognormal.fit(data, offset=None)
-    params(mu=5.6538159643, sigma=2.1596452081, offset=-0.12039282462)
+    params(mu=5.6538159643068386, sigma=2.1596452081058795, offset=-0.12039282461824304)
 
     References
     ----------
@@ -233,13 +233,13 @@ class weibull(BaseDist_Mixin):
 
     Methods
     -------
-    fit(data, **guesses)
+    fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
         and `scale` are fixed at 0 and 1, respectively. Thus, only `k`
         is estimated unless `loc` or `scale` are explicitly set to
         `None`.
-    from_params(params)
+    from_params
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
 
@@ -282,7 +282,7 @@ class weibull(BaseDist_Mixin):
 
     >>> # include `loc` and `scale` in the estimate
     >>> pn.weibull.fit(data, loc=None, scale=None)
-    params(k=14.12010770249, loc=-1.38985653558, scale=2.432032433984)
+    params(k=14.120107702486127, loc=-1.389856535577052, scale=2.4320324339845572)
 
     References
     ----------
@@ -318,13 +318,13 @@ class alpha(BaseDist_Mixin):
 
     Methods
     -------
-    fit(data, **guesses)
+    fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` is estimated unless `loc` or `scale` are explicitly set
         to `None`.
-    from_params(params)
+    from_params
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
 
@@ -351,12 +351,12 @@ class alpha(BaseDist_Mixin):
     >>> import paramnormal as pn
     >>> numpy.random.seed(0)
     >>> pn.alpha(alpha=5).rvs(size=3)
-    array([ 0.9553641 ,  1.04662991,  0.98415009])
+    array([ 0.20502995,  0.22566277,  0.21099298])
 
     >>> # you can also use greek letters
     >>> numpy.random.seed(0)
     >>> pn.alpha(α=5).rvs(size=3)
-    array([ 0.9553641 ,  1.04662991,  0.98415009])
+    array([ 0.20502995,  0.22566277,  0.21099298])
 
     >>> # silly fake data
     >>> numpy.random.seed(0)
@@ -367,7 +367,7 @@ class alpha(BaseDist_Mixin):
 
     >>> # include `loc` and `scale` in the estimate
     >>> pn.alpha.fit(data, loc=None, scale=None)
-    params(alpha=8.6781299501, loc=-0.15002784430, scale=3.1262971852)
+    params(alpha=8.6781299501492342, loc=-0.15002784429644306, scale=3.1262971852456447)
 
     References
     ----------
@@ -381,6 +381,7 @@ class alpha(BaseDist_Mixin):
 
     dist = stats.alpha
     param_template = namedtuple('params', ['alpha', 'loc', 'scale'])
+    name = 'alpha'
 
     @staticmethod
     @utils.greco_deco
@@ -399,13 +400,13 @@ class beta(BaseDist_Mixin):
 
     Methods
     -------
-    fit(data, **guesses)
+    fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
-    from_params(params)
+    from_params
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
 
@@ -430,27 +431,27 @@ class beta(BaseDist_Mixin):
     >>> import paramnormal as pn
     >>> numpy.random.seed(0)
     >>> pn.beta(alpha=2, beta=5).rvs(size=3)
-    array([ 0.9553641 ,  1.04662991,  0.98415009])
+    array([ 0.47917138,  0.6550558 ,  0.21501632])
 
-    >>> you can also use greek letters
+    >>> # you can also use greek letters
     >>> numpy.random.seed(0)
     >>> pn.beta(α=2, β=5).rvs(size=3)
-    array([ 0.9553641 ,  1.04662991,  0.98415009])
+    array([ 0.47917138,  0.6550558 ,  0.21501632])
 
     >>> # silly fake data
     >>> numpy.random.seed(0)
     >>> data = pn.beta(alpha=2, beta=5).rvs(size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.beta.fit(data)
-    params(alpha=1.6784891179355, beta=4.2459121691279, loc=0, scale=1)
+    params(alpha=1.6784891179355115, beta=4.2459121691279398, loc=0, scale=1)
 
     >>> # just estimate beta with a known alpha
     >>> pn.beta.fit(data, alpha=2)
-    params(alpha=2, beta=4.96992644, loc=0, scale=1)
+    params(alpha=2, beta=4.9699264393421139, loc=0, scale=1)
 
     >>> # include `loc` and `scale` in the estimate
-    >>> pn.alpha.fit(data, loc=None, scale=None)
-    params(alpha=1.81112, beta=4.69728, loc=-0.00540140, scale=1.03884)
+    >>> pn.beta.fit(data, loc=None, scale=None)
+    params(alpha=1.8111139255547926, beta=4.6972775768688697, loc=-0.0054013993799938431, scale=1.0388376932132561)
 
     References
     ----------
@@ -466,6 +467,7 @@ class beta(BaseDist_Mixin):
 
     dist = stats.beta
     param_template = namedtuple('params', ['alpha', 'beta', 'loc', 'scale'])
+    name = 'beta'
 
     @staticmethod
     @utils.greco_deco
@@ -486,13 +488,13 @@ class gamma(BaseDist_Mixin):
 
     Methods
     -------
-    fit(data, **guesses)
+    fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
-    from_params(params)
+    from_params
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
 
@@ -529,7 +531,7 @@ class gamma(BaseDist_Mixin):
     >>> data = pn.gamma(k=2, θ=5).rvs(size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.gamma.fit(data)
-    params(k=1.3379069223213478, loc=0, theta=7.5830062081633587)
+    params(k=1.3379069223213471, loc=0, theta=7.5830062081633622)
 
     >>> # just estimate theta with a known k
     >>> pn.gamma.fit(data, theta=5)
@@ -537,7 +539,7 @@ class gamma(BaseDist_Mixin):
 
     >>> # include `loc` in the estimate
     >>> pn.gamma.fit(data, loc=None)
-    params(k=1.099611776886, loc=0.2991473526658, theta=8.954245031559)
+    params(k=1.0996117768860174, loc=0.29914735266576881, theta=8.9542450315590756)
 
     References
     ----------
@@ -553,6 +555,7 @@ class gamma(BaseDist_Mixin):
 
     dist = stats.gamma
     param_template = namedtuple('params', ['k', 'loc', 'theta'])
+    name = 'gamma'
 
     @staticmethod
     @utils.greco_deco
@@ -571,13 +574,13 @@ class chi_squared(BaseDist_Mixin):
 
     Methods
     -------
-    fit(data, **guesses)
+    fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
-    from_params(params)
+    from_params
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
 
@@ -630,6 +633,7 @@ class chi_squared(BaseDist_Mixin):
 
     dist = stats.chi2
     param_template = namedtuple('params', ['k', 'loc', 'scale'])
+    nane = 'chi_squared'
 
     @staticmethod
     @utils.greco_deco
@@ -648,13 +652,13 @@ class pareto(BaseDist_Mixin):
 
     Methods
     -------
-    fit(data, **guesses)
+    fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
         and `scale` are fixed at 0 and 1, respectively. Thus, only
         `alpha` is estimated unless `loc` or `scale` are explicitly
         set to `None`.
-    from_params(params)
+    from_params
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
 
@@ -683,7 +687,7 @@ class pareto(BaseDist_Mixin):
 
     >>> # you can also use greek letters
     >>> numpy.random.seed(0)
-    >>> pn.pareto(α=5).rvs(size=3)
+    >>> pn.pareto(α=2).rvs(size=3)
     array([ 1.48875061,  1.87379424,  1.58662889])
 
     >>> # silly fake data
@@ -711,6 +715,7 @@ class pareto(BaseDist_Mixin):
 
     dist = stats.pareto
     param_template = namedtuple('params', ['alpha', 'loc', 'scale'])
+    name = 'pareto'
 
     @staticmethod
     @utils.greco_deco
@@ -729,12 +734,12 @@ class exponential(BaseDist_Mixin):
 
     Methods
     -------
-    fit(data, **guesses)
+    fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
         isfixed at 0. Thus, only `lambda_` is estimated unless `loc` is
         explicitly set to `None`.
-    from_params(params)
+    from_params
         Create a new distribution instances from the namedtuple result
         of the :meth:`~fit` method.
 
@@ -789,6 +794,7 @@ class exponential(BaseDist_Mixin):
     """
     dist = stats.expon
     param_template = namedtuple('params', ['lambda_', 'loc'])
+    name = 'exponential'
 
     @staticmethod
     @utils.greco_deco
