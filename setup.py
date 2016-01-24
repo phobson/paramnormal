@@ -51,4 +51,5 @@ if __name__ == "__main__":
         platforms=PLATFORMS,
         classifiers=CLASSIFIERS,
         install_requires=INSTALL_REQUIRES,
+        zip_safe=False
     )
