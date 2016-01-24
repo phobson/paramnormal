@@ -30,11 +30,12 @@ test:
   imports:
     - paramnormal
 
-  # commands:
-  #   - PWD=`pwd`; echo $PWD
+  commands:
+    - python -c "import paramnormal; paramnormal.test()"
 
   requires:
     - nose
+    - seaborn
 
 about:
   home: http://phobson.github.io/paramnormal/
