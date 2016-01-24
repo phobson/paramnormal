@@ -30,7 +30,9 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.5',
 ]
 INSTALL_REQUIRES = ['numpy', 'scipy', 'matplotlib']
-PACKAGE_DATA = {}
+PACKAGE_DATA = {
+    'paramnormal.tests.baseline_images.test_activity': ['*png'],
+}
 DATA_FILES = []
 
 
