@@ -188,9 +188,8 @@ paramnormal.activity.random(my_dist, shape=(2, 4))
 </div>
 <div class="section" id="fitting-distribution">
 <h2>Fitting distribution<a class="headerlink" href="#fitting-distribution" title="Permalink to this headline">¶</a></h2>
-<p>Fitting distribution to data follows a similar pattern.</p>
+<p>Fitting distributions to data follows a similar pattern.</p>
 <div class="code python highlight-python"><div class="highlight"><pre>data = paramnormal.activity.random(&#39;beta&#39;, α=3, β=2, shape=37)
-
 paramnormal.activity.fit(&#39;beta&#39;, data)
 </pre></div>
 </div>
@@ -207,10 +206,10 @@ paramnormal.activity.fit(&#39;beta&#39;, data)
 </div>
 <div class="section" id="plotting">
 <h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
-<p>There is a very limited amount of plotting functionality built into
-paramnormal. For the time being, we just plot the probability
-distribution function (PDF), and offload everything else to the seaborn
-module if it&#8217;s available.</p>
+<p>There is very limited plotting functionality built into paramnormal. For
+the time being, we just plot the probability distribution function
+(PDF), and offload everything else to the seaborn module if it&#8217;s
+available.</p>
 <div class="code python highlight-python"><div class="highlight"><pre>ax = paramnormal.activity.plot(&#39;beta&#39;, α=3, β=2)
 ax.figure
 </pre></div>

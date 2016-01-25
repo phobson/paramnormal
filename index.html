@@ -123,7 +123,58 @@
 <h1>paramnormal: Conventionally parameterized probability distributions<a class="headerlink" href="#paramnormal-conventionally-parameterized-probability-distributions" title="Permalink to this headline">¶</a></h1>
 <a class="reference external image-reference" href="https://travis-ci.org/phobson/paramnormal"><img alt="https://travis-ci.org/phobson/paramnormal.svg?branch=master" src="https://travis-ci.org/phobson/paramnormal.svg?branch=master" /></a>
 <a class="reference external image-reference" href="https://coveralls.io/github/phobson/paramnormal?branch=master"><img alt="https://coveralls.io/repos/phobson/paramnormal/badge.svg?branch=master&amp;service=github" src="https://coveralls.io/repos/phobson/paramnormal/badge.svg?branch=master&amp;service=github" /></a>
-<p>Scipy distributions are weird. Maybe these will be less weird.</p>
+<p>Scipy distributions are weird.
+Maybe these will be less weird.</p>
+<div class="section" id="the-problem-this-is-solving">
+<h2>The problem this is solving<a class="headerlink" href="#the-problem-this-is-solving" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s look at the lognormal distribution.
+The <a class="reference external" href="https://en.wikipedia.org/wiki/Log-normal_distribution">wikipedia article</a> states that they are parameterized by μ and σ, the mean and standard deviation of the underlying normal distribution.
+In this case, μ and σ can also be known as the location and scale parameters, respectively.</p>
+<p>However, to create a lognormal distribution in scipy, you need three parameters: location, scale, and shape.
+The tricky part is, however, is that &#8220;location&#8221; in scipy refers to an offset from zero, &#8220;shape&#8221; refers to σ, and the &#8220;scale&#8221; refers to <span class="math">\(e^\mu\)</span>.
+This is all explained the scipy documentation, but it took me a couple of readings and bad mistakes to figure it out.
+It&#8217;s also never really explicitly stated that scipy&#8217;s location parameter should be zero 99.999% of the time.
+That&#8217;s a very import point to understand when you&#8217;re fitting lognormal parameters to a sample and you end with three crazy numbers that don&#8217;t make any sense and distribution with values less than zero despite the fact that you thought lognormal distribution couldn&#8217;t have values less than zero.</p>
+<p>Point of all of this is that <em>paramnormal</em> is trying to make easy what scipy sometimes makes tricky.</p>
+<p>So where as in scipy, you would do this:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>import numpy
+from scipy import stats
+mu = 0.75
+sigma = 1.25
+dist = stats.lognorm(sigma, loc=0, scale=numpy.exp(mu)
+</pre></div>
+</div>
+<p>In paramnormal, you can do this:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">paramnormal</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.25</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can even use Greek letters</p>
+<div class="code python highlight-python"><div class="highlight"><pre>dist = paramnormal.lognormal(μ=0.75, σ=1.25)
+</pre></div>
+</div>
+<p>All three snippets return the same scipy distribution objects and have the same numerical methods (e.g., <code class="docutils literal"><span class="pre">cdf</span></code>, <code class="docutils literal"><span class="pre">pdf</span></code>, <code class="docutils literal"><span class="pre">rvs</span></code>, <code class="docutils literal"><span class="pre">ppf</span></code>).
+Paramnormal just provides a short cut that let&#8217;s you only specify the traditional distribution parameters you read about in your text book.</p>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>We have <a class="reference external" href="http://phobson.github.io/paramnormal/">HTML docs built with sphinx</a>.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Binaries are available through my conda channel</p>
+<p><code class="docutils literal"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">--channel=phobson</span> <span class="pre">paramnormal</span></code></p>
+<p>This is a pure python package, so installation from source should be as easy as running
+<code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code> from the source directory if you&#8217;ve cloned the repo.</p>
+<p>Otherwise, I think <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/phobson/paramnormal.git</span></code> will work.
+(I&#8217;ll upload to pip after this has sat around for a while.</p>
+</div>
+<div class="section" id="development-status">
+<h2>Development status<a class="headerlink" href="#development-status" title="Permalink to this headline">¶</a></h2>
+<p>From my perspective this is now feature complete, meaning it has all of the distribution that I use somewhat regularly.
+If you want to add a new distribution, get in touch.
+Otherwise, I&#8217;ll just be fixing bugs and typos/ommisions in the documentaion.</p>
+</div>
 <div class="section" id="tutorials">
 <h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">

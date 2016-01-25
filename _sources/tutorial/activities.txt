@@ -106,12 +106,11 @@ Lastly, you can reuse an already full-specified distribution and the
 Fitting distribution
 ~~~~~~~~~~~~~~~~~~~~
 
-Fitting distribution to data follows a similar pattern.
+Fitting distributions to data follows a similar pattern.
 
 .. code:: python
 
     data = paramnormal.activity.random('beta', α=3, β=2, shape=37)
-    
     paramnormal.activity.fit('beta', data)
 
 
@@ -141,10 +140,10 @@ You can still fix the primary parameters and unconstrain the defaults.
 Plotting
 ~~~~~~~~
 
-There is a very limited amount of plotting functionality built into
-paramnormal. For the time being, we just plot the probability
-distribution function (PDF), and offload everything else to the seaborn
-module if it's available.
+There is very limited plotting functionality built into paramnormal. For
+the time being, we just plot the probability distribution function
+(PDF), and offload everything else to the seaborn module if it's
+available.
 
 .. code:: python
 

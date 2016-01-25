@@ -134,7 +134,7 @@ The manual way:
 
 .. parsed-literal::
 
-    <scipy.stats._distn_infrastructure.rv_frozen at 0x10834ce48>
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x108c779b0>
 
 
 
@@ -149,6 +149,6 @@ From fit parameters:
 
 .. parsed-literal::
 
-    <scipy.stats._distn_infrastructure.rv_frozen at 0x10834c668>
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x108c77940>
 
 
