@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Probability Distributions &mdash; paramnormal 0.1 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -35,7 +35,7 @@
         <link rel="prev" title="Paramnormal Activity" href="tutorial/activities.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -45,11 +45,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="index.html" class="fa fa-home"> paramnormal</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> paramnormal
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -57,29 +73,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#a-new-challenger-appears">A new challenger appears</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#greek-letter-support">Greek-letter support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#other-distributions">Other distributions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/fitting.html#recap">Recap</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/activities.html">Paramnormal Activity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#random-number-generation">Random number generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#fitting-distribution">Fitting distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#plotting">Plotting</a></li>
-</ul>
-</li>
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/activities.html">Paramnormal Activity</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Probability Distributions</a></li>
@@ -87,10 +92,10 @@
 <li class="toctree-l1"><a class="reference internal" href="activity.html">Paramnormal Activities</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -105,20 +110,29 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
     <li>Probability Distributions</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/paramnormal.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/paramnormal.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-paramnormal.dist">
 <span id="probability-distributions"></span><span id="paramnormal-auto"></span><h1>Probability Distributions<a class="headerlink" href="#module-paramnormal.dist" title="Permalink to this headline">¶</a></h1>
@@ -153,28 +167,28 @@ Also acts as the scale parameter of distribution.</p>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html">http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html</a>
 <a class="reference external" href="https://en.wikipedia.org/wiki/normal_distribution">https://en.wikipedia.org/wiki/normal_distribution</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">array([ 8.52810469,  5.80031442,  6.95747597])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # english names and greek symbols are interchangeable
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # english names and greek symbols are interchangeable
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; pn.normal(μ=5, σ=2).rvs(size=3)
 array([ 8.52810469,  5.80031442,  6.95747597])
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># silly fake data</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># silly fake data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># pretend `data` is unknown and we want to fit a dist. to it</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">params(mu=5.6480512782619359, sigma=2.1722505742582769)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># estimate sigma when mu is fixed a known value:</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># estimate sigma when mu is fixed a known value:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">normal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">4.75</span><span class="p">)</span>
 <span class="go">params(mu=4.75, sigma=2.3505677305181645)</span>
 </pre></div>
@@ -243,33 +257,33 @@ estimated entirely from scratch.</p>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html">http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.lognorm.html</a>
 <a class="reference external" href="https://en.wikipedia.org/wiki/lognormal_distribution">https://en.wikipedia.org/wiki/lognormal_distribution</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">array([ 5054.85624027,   330.40342795,  1050.97750604])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # you can also use greek letters
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # you can also use greek letters
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; pn.lognormal(μ=5, σ=2).rvs(size=3)
 array([ 5054.85624027,   330.40342795,  1050.97750604])
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># silly fake data</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># silly fake data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># pretend `data` is unknown and we want to fit a dist. to it</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">params(mu=5.6480511731060181, sigma=2.172250571711877, offset=0)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># estimate sigma when mu is fixed a known value:</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># estimate sigma when mu is fixed a known value:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">4.75</span><span class="p">)</span>
 <span class="go">params(mu=4.75, sigma=2.3505859375000036, offset=0)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `offset` in the estimate</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># include `offset` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="go">params(mu=5.6538159643068386, sigma=2.1596452081058795, offset=-0.12039282461824304)</span>
 </pre></div>
@@ -343,22 +357,22 @@ they be estimated entirely from scratch.</p>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.weibull_min.html">http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.weibull_min.html</a>
 <a class="reference external" href="https://en.wikipedia.org/wiki/weibull_distribution">https://en.wikipedia.org/wiki/weibull_distribution</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">weibull</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">array([ 0.9553641 ,  1.04662991,  0.98415009])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># silly fake data</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># silly fake data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">weibull</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># pretend `data` is unknown and we want to fit a dist. to it</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">weibull</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">params(k=5.4158203125000091, loc=0, scale=1)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` and `scale` in the estimate</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># include `loc` and `scale` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">weibull</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="go">params(k=14.120107702486127, loc=-1.389856535577052, scale=2.4320324339845572)</span>
 </pre></div>
@@ -419,7 +433,7 @@ they be estimated entirely from scratch.</p>
 <p class="rubric">References</p>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.alpha.html">http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.alpha.html</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -427,21 +441,21 @@ they be estimated entirely from scratch.</p>
 <span class="go">array([ 0.20502995,  0.22566277,  0.21099298])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # you can also use greek letters
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # you can also use greek letters
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; pn.alpha(α=5).rvs(size=3)
 array([ 0.20502995,  0.22566277,  0.21099298])
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># silly fake data</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># silly fake data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># pretend `data` is unknown and we want to fit a dist. to it</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">params(alpha=4.8356445312500096, loc=0, scale=1)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` and `scale` in the estimate</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># include `loc` and `scale` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="go">params(alpha=8.6781299501492342, loc=-0.15002784429644306, scale=3.1262971852456447)</span>
 </pre></div>
@@ -503,33 +517,33 @@ they be estimated entirely from scratch.</p>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.beta.html">http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.beta.html</a>
 <a class="reference external" href="https://en.wikipedia.org/wiki/beta_distribution">https://en.wikipedia.org/wiki/beta_distribution</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">array([ 0.47917138,  0.6550558 ,  0.21501632])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # you can also use greek letters
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # you can also use greek letters
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; pn.beta(α=2, β=5).rvs(size=3)
 array([ 0.47917138,  0.6550558 ,  0.21501632])
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># silly fake data</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># silly fake data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># pretend `data` is unknown and we want to fit a dist. to it</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">params(alpha=1.6784891179355115, beta=4.2459121691279398, loc=0, scale=1)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># just estimate beta with a known alpha</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># just estimate beta with a known alpha</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">params(alpha=2, beta=4.9699264393421139, loc=0, scale=1)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` and `scale` in the estimate</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># include `loc` and `scale` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="go">params(alpha=1.8111139255547926, beta=4.6972775768688697, loc=-0.0054013993799938431, scale=1.0388376932132561)</span>
 </pre></div>
@@ -591,20 +605,20 @@ estimated entirely from scratch.</p>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gamma.html">http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gamma.html</a>
 <a class="reference external" href="https://en.wikipedia.org/wiki/gamma_distribution">https://en.wikipedia.org/wiki/gamma_distribution</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">array([ 25.69414788,  11.19240456,  27.13566137])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # you can also use greek letters
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # you can also use greek letters
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; pn.gamma(k=2, θ=5).rvs(size=3)
 array([ 25.69414788,  11.19240456,  27.13566137])
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # silly fake data
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # silly fake data
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; data = pn.gamma(k=2, θ=5).rvs(size=37)
 &gt;&gt;&gt; # pretend `data` is unknown and we want to fit a dist. to it
@@ -612,12 +626,12 @@ array([ 25.69414788,  11.19240456,  27.13566137])
 params(k=1.3379069223213471, loc=0, theta=7.5830062081633622)
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># just estimate theta with a known k</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># just estimate theta with a known k</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">gamma</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="go">params(k=1.8060453251225814, loc=0, theta=5)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` in the estimate</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># include `loc` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">gamma</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="go">params(k=1.0996117768860174, loc=0.29914735266576881, theta=8.9542450315590756)</span>
 </pre></div>
@@ -680,22 +694,22 @@ be estimated entirely from scratch.</p>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2.html">http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.chi2.html</a>
 <a class="reference external" href="https://en.wikipedia.org/wiki/Chi-squared_distribution">https://en.wikipedia.org/wiki/Chi-squared_distribution</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">chi_squared</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">array([ 1.59174902,  2.51186153,  1.84644629])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># silly fake data</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># silly fake data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">chi_squared</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># pretend `data` is unknown and we want to fit a dist. to it</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">chi_squared</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">params(k=2.2668945312500028, loc=0, scale=1)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` in the estimate</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># include `loc` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">chi_squared</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="go">params(k=1.9361813889429524, loc=0.037937143324767775, scale=1)</span>
 </pre></div>
@@ -757,28 +771,28 @@ estimated entirely from scratch.</p>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pareto.html">http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pareto.html</a>
 <a class="reference external" href="https://en.wikipedia.org/wiki/pareto_distribution">https://en.wikipedia.org/wiki/pareto_distribution</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">pareto</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">array([ 1.48875061,  1.87379424,  1.58662889])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # you can also use greek letters
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # you can also use greek letters
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; pn.pareto(α=2).rvs(size=3)
 array([ 1.48875061,  1.87379424,  1.58662889])
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># silly fake data</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># silly fake data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pareto</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># pretend `data` is unknown and we want to fit a dist. to it</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pretend `data` is unknown and we want to fit a dist. to it</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">pareto</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="go">params(alpha=1.7850585937500019, loc=0, scale=1)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` in the estimate</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># include `loc` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">pareto</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="go">params(alpha=1.8040853559635659, loc=0.009529403810858695, scale=1)</span>
 </pre></div>
@@ -839,20 +853,20 @@ estimated entirely from scratch.</p>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.expon.html">http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.expon.html</a>
 <a class="reference external" href="https://en.wikipedia.org/wiki/exponential_distribution">https://en.wikipedia.org/wiki/exponential_distribution</a></p>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">lambda_</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="go">array([ 0.39793725,  0.62796538,  0.46161157])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # you can also use greek letters
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # you can also use greek letters
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; pn.exponential(λ=2).rvs(size=3)
 array([ 0.39793725,  0.62796538,  0.46161157])
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; # silly fake data
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # silly fake data
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; data = pn.exponential(λ=2).rvs(size=37)
 &gt;&gt;&gt; # pretend `data` is unknown and we want to fit a dist. to it
@@ -860,7 +874,7 @@ array([ 0.39793725,  0.62796538,  0.46161157])
 params(lambda_=1.7849050026146085, loc=0)
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># include `loc` in the estimate</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># include `loc` in the estimate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">exponential</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="go">params(lambda_=1.8154701618164411, loc=0.0094842718426853996)</span>
 </pre></div>
@@ -892,15 +906,16 @@ params(lambda_=1.7849050026146085, loc=0)
 </div>
 
 
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="utils.html" class="btn btn-neutral float-right" title="Miscellaneous Utilities">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="utils.html" class="btn btn-neutral float-right" title="Miscellaneous Utilities" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="tutorial/activities.html" class="btn btn-neutral" title="Paramnormal Activity"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial/activities.html" class="btn btn-neutral" title="Paramnormal Activity" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -910,12 +925,13 @@ params(lambda_=1.7849050026146085, loc=0)
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Paul Hobson.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 

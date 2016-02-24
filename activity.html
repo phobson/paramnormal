@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Paramnormal Activities &mdash; paramnormal 0.1 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -34,7 +34,7 @@
         <link rel="prev" title="Miscellaneous Utilities" href="utils.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,11 +44,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="index.html" class="fa fa-home"> paramnormal</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> paramnormal
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -56,29 +72,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#a-new-challenger-appears">A new challenger appears</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#greek-letter-support">Greek-letter support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/overview.html#other-distributions">Other distributions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/fitting.html#recap">Recap</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/activities.html">Paramnormal Activity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#random-number-generation">Random number generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#fitting-distribution">Fitting distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/activities.html#plotting">Plotting</a></li>
-</ul>
-</li>
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/activities.html">Paramnormal Activity</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="paramnormal.html">Probability Distributions</a></li>
@@ -86,10 +91,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Paramnormal Activities</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -104,20 +109,29 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
     <li>Paramnormal Activities</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/activity.txt" rel="nofollow"> View page source</a>
+          
+            <a href="_sources/activity.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-paramnormal.activity">
 <span id="paramnormal-activities"></span><span id="act-auto"></span><h1>Paramnormal Activities<a class="headerlink" href="#module-paramnormal.activity" title="Permalink to this headline">¶</a></h1>
@@ -154,7 +168,7 @@ placed. If <cite>None</cite>, a scalar will be retured.</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; import numpy
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; import numpy
 &gt;&gt;&gt; import paramnormal
 &gt;&gt;&gt; numpy.random.seed(0)
 &gt;&gt;&gt; # define dist with a string
@@ -206,15 +220,15 @@ distribution.</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">5.75</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">2.25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 <span class="go">params(mu=6.4790576880446782, sigma=2.4437818960405617)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="go">params(mu=6.4790576880446782, sigma=2)</span>
 </pre></div>
 </div>
@@ -289,7 +303,7 @@ will be drawn.</p>
 </div>
 <p class="rubric">Examples</p>
 <p>Plot a simple PDF of a fully-specified normal distribution.</p>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; import numpy
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; import numpy
 &gt;&gt;&gt; import seaborn
 &gt;&gt;&gt; import paramnormal
 &gt;&gt;&gt; clean_bkgd = {&#39;axes.facecolor&#39;: &#39;none&#39;, &#39;figure.facecolor&#39;: &#39;none&#39;}
@@ -302,7 +316,7 @@ will be drawn.</p>
 <img alt="_images/activity-1.png" src="_images/activity-1.png" />
 </div>
 <p>Pass a data sample to fit the distribution on-the-fly.</p>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; paramnormal.utils.seed(0)
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; paramnormal.utils.seed(0)
 &gt;&gt;&gt; data = paramnormal.activity.random(&#39;normal&#39;, μ=5.4, σ=2.5, shape=(37))
 &gt;&gt;&gt; ax = paramnormal.activity.plot(&#39;normal&#39;, data=data)
 </pre></div>
@@ -312,8 +326,8 @@ will be drawn.</p>
 </div>
 <p>Use seaborn to show other representations of the distribution of
 real data:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">distplot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;upper left&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span> <span class="o">=</span> <span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">distplot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="figure">
@@ -321,7 +335,7 @@ real data:</p>
 </div>
 <p>Use <code class="docutils literal"><span class="pre">line_opts</span></code> and <code class="docutils literal"><span class="pre">distplot_opts</span></code> to customize more complex
 plots.</p>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; paramnormal.utils.seed(0)
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; paramnormal.utils.seed(0)
 &gt;&gt;&gt; data = paramnormal.activity.random(&#39;lognormal&#39;, μ=0.75, σ=1.2, shape=125)
 &gt;&gt;&gt; logdata = numpy.log10(data)
 &gt;&gt;&gt; line_opts = dict(color=&#39;firebrick&#39;, lw=3.5, label=&#39;Fit PDF&#39;)
@@ -337,7 +351,7 @@ plots.</p>
 </div>
 <p>Notice that the bins in log-space don&#8217;t work so well. We can
 compute them outselves.</p>
-<div class="highlight-python"><div class="highlight"><pre>&gt;&gt;&gt; paramnormal.utils.seed(0)
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; paramnormal.utils.seed(0)
 &gt;&gt;&gt; data = paramnormal.activity.random(&#39;lognormal&#39;, μ=0.75, σ=1.2, shape=125)
 &gt;&gt;&gt; logdata = numpy.log10(data)
 &gt;&gt;&gt; bins = numpy.logspace(logdata.min(), logdata.max(), num=30)
@@ -356,13 +370,14 @@ compute them outselves.</p>
 </div>
 
 
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="utils.html" class="btn btn-neutral" title="Miscellaneous Utilities"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="utils.html" class="btn btn-neutral" title="Miscellaneous Utilities" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -372,12 +387,13 @@ compute them outselves.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Paul Hobson.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 

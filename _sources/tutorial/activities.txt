@@ -47,7 +47,7 @@ lognormal random numbers.
 
 
 What's happening here is that
-``paramnormal.lognormal(mu=0.75, sigma=1.25)`` tranlates the arguments,
+``paramnormal.lognormal(mu=0.75, sigma=1.25)`` translates the arguments,
 passes them to ``scipy.stats.lognorm``, and returns scipy's distribution
 object. Then we call the ``rvs`` method of that object to generate five
 random numbers in an array.

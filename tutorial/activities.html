@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Paramnormal Activity &mdash; paramnormal 0.1 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -35,7 +35,7 @@
         <link rel="prev" title="Fitting distributions to data with paramnormal." href="fitting.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -45,11 +45,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="../index.html" class="fa fa-home"> paramnormal</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> paramnormal
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -57,23 +73,17 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#a-new-challenger-appears">A new challenger appears</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#greek-letter-support">Greek-letter support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#other-distributions">Other distributions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fitting.html#recap">Recap</a></li>
-</ul>
-</li>
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Paramnormal Activity</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#random-number-generation">Random number generation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fitting-distribution">Fitting distribution</a></li>
@@ -87,10 +97,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../activity.html">Paramnormal Activities</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -105,20 +115,29 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
     <li>Paramnormal Activity</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../_sources/tutorial/activities.txt" rel="nofollow"> View page source</a>
+          
+            <a href="../_sources/tutorial/activities.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="paramnormal-activity">
 <h1>Paramnormal Activity<a class="headerlink" href="#paramnormal-activity" title="Permalink to this headline">¶</a></h1>
@@ -126,11 +145,11 @@
 <code class="docutils literal"><span class="pre">paramnormal</span></code> is through the <code class="docutils literal"><span class="pre">activity</span></code> module.</p>
 <p>Random number generation, distribution fitting, and basic plotting are
 exposed through <code class="docutils literal"><span class="pre">activity</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%matplotlib inline
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>%matplotlib inline
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s">&#39;ignore&#39;</span><span class="p">)</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">seed</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
@@ -138,50 +157,50 @@ exposed through <code class="docutils literal"><span class="pre">activity</span>
 
 <span class="kn">import</span> <span class="nn">paramnormal</span>
 
-<span class="n">clean_bkgd</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;axes.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="s">&#39;figure.facecolor&#39;</span><span class="p">:</span><span class="s">&#39;none&#39;</span><span class="p">}</span>
-<span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&#39;ticks&#39;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="n">clean_bkgd</span><span class="p">)</span>
+<span class="n">clean_bkgd</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;axes.facecolor&#39;</span><span class="p">:</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="s1">&#39;figure.facecolor&#39;</span><span class="p">:</span><span class="s1">&#39;none&#39;</span><span class="p">}</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;ticks&#39;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="n">clean_bkgd</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="random-number-generation">
 <h2>Random number generation<a class="headerlink" href="#random-number-generation" title="Permalink to this headline">¶</a></h2>
 <p>Through the top-level API, you could do the following to generate
 lognormal random numbers.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.25</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">19.20297918</span><span class="p">,</span>   <span class="mf">3.49102891</span><span class="p">,</span>   <span class="mf">7.19526003</span><span class="p">,</span>  <span class="mf">34.85220823</span><span class="p">,</span>  <span class="mf">21.85538813</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="mf">19.20297918</span><span class="p">,</span>   <span class="mf">3.49102891</span><span class="p">,</span>   <span class="mf">7.19526003</span><span class="p">,</span>  <span class="mf">34.85220823</span><span class="p">,</span>  <span class="mf">21.85538813</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>What&#8217;s happening here is that
-<code class="docutils literal"><span class="pre">paramnormal.lognormal(mu=0.75,</span> <span class="pre">sigma=1.25)</span></code> tranlates the arguments,
+<code class="docutils literal"><span class="pre">paramnormal.lognormal(mu=0.75,</span> <span class="pre">sigma=1.25)</span></code> translates the arguments,
 passes them to <code class="docutils literal"><span class="pre">scipy.stats.lognorm</span></code>, and returns scipy&#8217;s distribution
 object. Then we call the <code class="docutils literal"><span class="pre">rvs</span></code> method of that object to generate five
 random numbers in an array.</p>
 <p>Through the <code class="docutils literal"><span class="pre">activity</span></code> API, that equivalent to:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="s">&#39;lognormal&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">paramnormal</span><span class="o">.</span><span class="n">activity</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="s1">&#39;lognormal&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">19.20297918</span><span class="p">,</span>   <span class="mf">3.49102891</span><span class="p">,</span>   <span class="mf">7.19526003</span><span class="p">,</span>  <span class="mf">34.85220823</span><span class="p">,</span>  <span class="mf">21.85538813</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="mf">19.20297918</span><span class="p">,</span>   <span class="mf">3.49102891</span><span class="p">,</span>   <span class="mf">7.19526003</span><span class="p">,</span>  <span class="mf">34.85220823</span><span class="p">,</span>  <span class="mf">21.85538813</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>And of course, Greek letters are still supported.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>seed(0)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>seed(0)
 paramnormal.activity.random(&#39;lognormal&#39;, μ=0.75, σ=1.25, shape=5)
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">19.20297918</span><span class="p">,</span>   <span class="mf">3.49102891</span><span class="p">,</span>   <span class="mf">7.19526003</span><span class="p">,</span>  <span class="mf">34.85220823</span><span class="p">,</span>  <span class="mf">21.85538813</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="mf">19.20297918</span><span class="p">,</span>   <span class="mf">3.49102891</span><span class="p">,</span>   <span class="mf">7.19526003</span><span class="p">,</span>  <span class="mf">34.85220823</span><span class="p">,</span>  <span class="mf">21.85538813</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Lastly, you can reuse an already full-specified distribution and the
 <code class="docutils literal"><span class="pre">shape</span></code> parameter can take a tuple to return <em>N</em>-dimensional arrays.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>seed(0)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>seed(0)
 my_dist = paramnormal.lognormal(μ=0.75, σ=1.25)
 paramnormal.activity.random(my_dist, shape=(2, 4))
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([[</span> <span class="mf">19.20297918</span><span class="p">,</span>   <span class="mf">3.49102891</span><span class="p">,</span>   <span class="mf">7.19526003</span><span class="p">,</span>  <span class="mf">34.85220823</span><span class="p">],</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span> <span class="mf">19.20297918</span><span class="p">,</span>   <span class="mf">3.49102891</span><span class="p">,</span>   <span class="mf">7.19526003</span><span class="p">,</span>  <span class="mf">34.85220823</span><span class="p">],</span>
        <span class="p">[</span> <span class="mf">21.85538813</span><span class="p">,</span>   <span class="mf">0.62400472</span><span class="p">,</span>   <span class="mf">6.94214304</span><span class="p">,</span>   <span class="mf">1.75207971</span><span class="p">]])</span>
 </pre></div>
 </div>
@@ -189,18 +208,18 @@ paramnormal.activity.random(my_dist, shape=(2, 4))
 <div class="section" id="fitting-distribution">
 <h2>Fitting distribution<a class="headerlink" href="#fitting-distribution" title="Permalink to this headline">¶</a></h2>
 <p>Fitting distributions to data follows a similar pattern.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>data = paramnormal.activity.random(&#39;beta&#39;, α=3, β=2, shape=37)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>data = paramnormal.activity.random(&#39;beta&#39;, α=3, β=2, shape=37)
 paramnormal.activity.fit(&#39;beta&#39;, data)
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">params</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">2.609817838242197</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.9104280289172266</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">2.609817838242197</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.9104280289172266</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can still fix the primary parameters and unconstrain the defaults.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>paramnormal.activity.fit(&#39;beta&#39;, data, β=2, loc=None)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>paramnormal.activity.fit(&#39;beta&#39;, data, β=2, loc=None)
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">params</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">2.7441640478582361</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=-</span><span class="mf">0.0031375474001911555</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">2.7441640478582361</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=-</span><span class="mf">0.0031375474001911555</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -210,14 +229,14 @@ paramnormal.activity.fit(&#39;beta&#39;, data)
 the time being, we just plot the probability distribution function
 (PDF), and offload everything else to the seaborn module if it&#8217;s
 available.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>ax = paramnormal.activity.plot(&#39;beta&#39;, α=3, β=2)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>ax = paramnormal.activity.plot(&#39;beta&#39;, α=3, β=2)
 ax.figure
 </pre></div>
 </div>
 <img alt="../_images/activities_16_0.png" src="../_images/activities_16_0.png" />
 <p>You can plot on an existing figure through the <code class="docutils literal"><span class="pre">ax</span></code> argument and
 control the line style through <code class="docutils literal"><span class="pre">line_opts</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>seaborn.set(style=&#39;ticks&#39;, rc=clean_bkgd)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>seaborn.set(style=&#39;ticks&#39;, rc=clean_bkgd)
 fig, (ax1, ax2) = pyplot.subplots(nrows=2, sharex=True, sharey=True)
 ax1 = paramnormal.activity.plot(&#39;beta&#39;, α=6, β=2, ax=ax1, line_opts=dict(color=&#39;firebrick&#39;, lw=3))
 ax2 = paramnormal.activity.plot(&#39;beta&#39;, α=2, β=6, ax=ax2, line_opts=dict(color=&#39;forestgreen&#39;, lw=1.25))
@@ -230,7 +249,7 @@ fig
 <img alt="../_images/activities_18_0.png" src="../_images/activities_18_0.png" />
 <p>Of course, you can create a fully-specified distribtion and omit the
 distribution parameters.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>beta = paramnormal.beta(α=3, β=2)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>beta = paramnormal.beta(α=3, β=2)
 ax = paramnormal.activity.plot(beta)
 ax.figure
 </pre></div>
@@ -238,7 +257,7 @@ ax.figure
 <img alt="../_images/activities_20_0.png" src="../_images/activities_20_0.png" />
 <p>Passing an array of sample data will fit the distribution to that data
 and allow you to use <code class="docutils literal"><span class="pre">seaborn.distplot</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>data = paramnormal.activity.random(&#39;beta&#39;, α=3, β=2, shape=125)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>data = paramnormal.activity.random(&#39;beta&#39;, α=3, β=2, shape=125)
 ax = paramnormal.activity.plot(&#39;beta&#39;, data, distplot=True)
 seaborn.despine()
 ax.legend()
@@ -247,7 +266,7 @@ ax.figure
 </div>
 <img alt="../_images/activities_22_0.png" src="../_images/activities_22_0.png" />
 <p>And you can control <code class="docutils literal"><span class="pre">seaborn.distplot</span></code> through <code class="docutils literal"><span class="pre">displot_opts</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>data = paramnormal.activity.random(&#39;normal&#39;, μ=0.75, σ=1.25, shape=125)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>data = paramnormal.activity.random(&#39;normal&#39;, μ=0.75, σ=1.25, shape=125)
 ax = paramnormal.activity.plot(&#39;normal&#39;, data, distplot=True,
                                distplot_opts=dict(hist=True, rug=True, kde=False, norm_hist=True))
 seaborn.despine()
@@ -260,15 +279,16 @@ ax.figure
 </div>
 
 
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../paramnormal.html" class="btn btn-neutral float-right" title="Probability Distributions">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../paramnormal.html" class="btn btn-neutral float-right" title="Probability Distributions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="fitting.html" class="btn btn-neutral" title="Fitting distributions to data with paramnormal."><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="fitting.html" class="btn btn-neutral" title="Fitting distributions to data with paramnormal." accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -278,12 +298,13 @@ ax.figure
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Paul Hobson.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 

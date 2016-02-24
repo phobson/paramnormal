@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>paramnormal.dist &mdash; paramnormal 0.1 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -34,7 +34,7 @@
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,11 +44,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="../../index.html" class="fa fa-home"> paramnormal</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> paramnormal
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -56,29 +72,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/overview.html#a-new-challenger-appears">A new challenger appears</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/overview.html#greek-letter-support">Greek-letter support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/overview.html#other-distributions">Other distributions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/fitting.html#recap">Recap</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/activities.html">Paramnormal Activity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/activities.html#random-number-generation">Random number generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/activities.html#fitting-distribution">Fitting distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/activities.html#plotting">Plotting</a></li>
-</ul>
-</li>
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/activities.html">Paramnormal Activity</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../paramnormal.html">Probability Distributions</a></li>
@@ -86,10 +91,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../activity.html">Paramnormal Activities</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -104,7 +109,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
@@ -113,14 +124,17 @@
     <li>paramnormal.dist</li>
       <li class="wy-breadcrumbs-aside">
         
+          
+        
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for paramnormal.dist</h1><div class="highlight"><pre>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
@@ -242,8 +256,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span>
-    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;mu&#39;</span><span class="p">,</span> <span class="s">&#39;sigma&#39;</span><span class="p">])</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;normal&#39;</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">])</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@utils.greco_deco</span>
@@ -328,19 +342,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">lognorm</span>
-    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;mu&#39;</span><span class="p">,</span> <span class="s">&#39;sigma&#39;</span><span class="p">,</span> <span class="s">&#39;offset&#39;</span><span class="p">])</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;lognormal&#39;</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">])</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;lognormal&#39;</span>
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@utils.greco_deco</span>
     <span class="k">def</span> <span class="nf">_process_args</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="n">loc_key</span><span class="p">,</span> <span class="n">scale_key</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">_get_loc_scale_keys</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;f0&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;f0&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;s&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span>
         <span class="k">if</span> <span class="n">offset</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;`offset` parameter is required. Recommended value is 0.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`offset` parameter is required. Recommended value is 0.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span> <span class="k">if</span> <span class="n">mu</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">mu</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">offset</span><span class="p">}</span>
 
     <span class="nd">@classmethod</span>
@@ -420,17 +434,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">weibull_min</span>
-    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;loc&#39;</span><span class="p">,</span> <span class="s">&#39;scale&#39;</span><span class="p">])</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;weibull&#39;</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">])</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;weibull&#39;</span>
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@utils.greco_deco</span>
     <span class="k">def</span> <span class="nf">_process_args</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="n">loc_key</span><span class="p">,</span> <span class="n">scale_key</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">_get_loc_scale_keys</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;f0&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;f0&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;c&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
 
 </div>
@@ -502,17 +516,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">alpha</span>
-    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;alpha&#39;</span><span class="p">,</span> <span class="s">&#39;loc&#39;</span><span class="p">,</span> <span class="s">&#39;scale&#39;</span><span class="p">])</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;alpha&#39;</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">])</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;alpha&#39;</span>
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@utils.greco_deco</span>
     <span class="k">def</span> <span class="nf">_process_args</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="n">loc_key</span><span class="p">,</span> <span class="n">scale_key</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">_get_loc_scale_keys</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="n">alpha_key</span> <span class="o">=</span> <span class="s">&#39;f0&#39;</span>
+            <span class="n">alpha_key</span> <span class="o">=</span> <span class="s1">&#39;f0&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">alpha_key</span> <span class="o">=</span> <span class="s">&#39;a&#39;</span>
+            <span class="n">alpha_key</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">alpha_key</span><span class="p">:</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
 
 </div>
@@ -588,19 +602,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">beta</span>
-    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;alpha&#39;</span><span class="p">,</span> <span class="s">&#39;beta&#39;</span><span class="p">,</span> <span class="s">&#39;loc&#39;</span><span class="p">,</span> <span class="s">&#39;scale&#39;</span><span class="p">])</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;beta&#39;</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">])</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;beta&#39;</span>
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@utils.greco_deco</span>
     <span class="k">def</span> <span class="nf">_process_args</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="n">loc_key</span><span class="p">,</span> <span class="n">scale_key</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">_get_loc_scale_keys</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="n">alpha_key</span> <span class="o">=</span> <span class="s">&#39;f0&#39;</span>
-            <span class="n">beta_key</span> <span class="o">=</span> <span class="s">&#39;f1&#39;</span>
+            <span class="n">alpha_key</span> <span class="o">=</span> <span class="s1">&#39;f0&#39;</span>
+            <span class="n">beta_key</span> <span class="o">=</span> <span class="s1">&#39;f1&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">alpha_key</span> <span class="o">=</span> <span class="s">&#39;a&#39;</span>
-            <span class="n">beta_key</span> <span class="o">=</span> <span class="s">&#39;b&#39;</span>
+            <span class="n">alpha_key</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
+            <span class="n">beta_key</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">alpha_key</span><span class="p">:</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta_key</span><span class="p">:</span> <span class="n">beta</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
 
 </div>
@@ -676,17 +690,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gamma</span>
-    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;loc&#39;</span><span class="p">,</span> <span class="s">&#39;theta&#39;</span><span class="p">])</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;gamma&#39;</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;theta&#39;</span><span class="p">])</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gamma&#39;</span>
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@utils.greco_deco</span>
     <span class="k">def</span> <span class="nf">_process_args</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="n">loc_key</span><span class="p">,</span> <span class="n">scale_key</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">_get_loc_scale_keys</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;f0&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;f0&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;a&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">theta</span><span class="p">}</span>
 
 </div>
@@ -754,17 +768,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2</span>
-    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="s">&#39;loc&#39;</span><span class="p">,</span> <span class="s">&#39;scale&#39;</span><span class="p">])</span>
-    <span class="n">nane</span> <span class="o">=</span> <span class="s">&#39;chi_squared&#39;</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">])</span>
+    <span class="n">nane</span> <span class="o">=</span> <span class="s1">&#39;chi_squared&#39;</span>
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@utils.greco_deco</span>
     <span class="k">def</span> <span class="nf">_process_args</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="n">loc_key</span><span class="p">,</span> <span class="n">scale_key</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">_get_loc_scale_keys</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;f0&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;f0&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;df&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;df&#39;</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
 
 </div>
@@ -836,17 +850,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pareto</span>
-    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;alpha&#39;</span><span class="p">,</span> <span class="s">&#39;loc&#39;</span><span class="p">,</span> <span class="s">&#39;scale&#39;</span><span class="p">])</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;pareto&#39;</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span><span class="p">])</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;pareto&#39;</span>
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@utils.greco_deco</span>
     <span class="k">def</span> <span class="nf">_process_args</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="n">loc_key</span><span class="p">,</span> <span class="n">scale_key</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">_get_loc_scale_keys</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;f0&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;f0&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="s">&#39;b&#39;</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
 
 </div>
@@ -915,8 +929,8 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">expon</span>
-    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;lambda_&#39;</span><span class="p">,</span> <span class="s">&#39;loc&#39;</span><span class="p">])</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;exponential&#39;</span>
+    <span class="n">param_template</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;lambda_&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">])</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;exponential&#39;</span>
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@utils.greco_deco</span>
@@ -931,18 +945,19 @@
 
 </div></div>
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s">&#39;normal&#39;</span><span class="p">,</span>
-    <span class="s">&#39;lognormal&#39;</span><span class="p">,</span>
-    <span class="s">&#39;weibull&#39;</span><span class="p">,</span>
-    <span class="s">&#39;alpha&#39;</span><span class="p">,</span>
-    <span class="s">&#39;beta&#39;</span><span class="p">,</span>
-    <span class="s">&#39;gamma&#39;</span><span class="p">,</span>
-    <span class="s">&#39;chi_squared&#39;</span><span class="p">,</span>
-    <span class="s">&#39;pareto&#39;</span><span class="p">,</span>
-    <span class="s">&#39;exponential&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;normal&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lognormal&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weibull&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;beta&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;gamma&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;chi_squared&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pareto&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;exponential&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 
+           </div>
           </div>
           <footer>
   
@@ -952,12 +967,13 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Paul Hobson.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 

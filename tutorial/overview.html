@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Why paramnormal ? &mdash; paramnormal 0.1 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -35,7 +35,7 @@
         <link rel="prev" title="paramnormal: Conventionally parameterized probability distributions" href="../index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -45,11 +45,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="../index.html" class="fa fa-home"> paramnormal</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> paramnormal
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -57,29 +73,23 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul class="current">
+            
+            
+                <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#a-new-challenger-appears">A new challenger appears</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#greek-letter-support">Greek-letter support</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-distributions">Other distributions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fitting.html#recap">Recap</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="activities.html">Paramnormal Activity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="activities.html#random-number-generation">Random number generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="activities.html#fitting-distribution">Fitting distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="activities.html#plotting">Plotting</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="activities.html">Paramnormal Activity</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../paramnormal.html">Probability Distributions</a></li>
@@ -87,10 +97,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../activity.html">Paramnormal Activities</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -105,20 +115,29 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
     <li>Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="../_sources/tutorial/overview.txt" rel="nofollow"> View page source</a>
+          
+            <a href="../_sources/tutorial/overview.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="why-paramnormal">
 <h1>Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?<a class="headerlink" href="#why-paramnormal" title="Permalink to this headline">¶</a></h1>
@@ -133,10 +152,10 @@ sometimes, creating a probability distribution using these parameters
 (and others) in <code class="docutils literal"><span class="pre">scipy.stats</span></code> can be confusing. Also the parameters in
 <code class="docutils literal"><span class="pre">numpy.random</span></code> can be inconsistently named (admittedly, just a minor
 inconvenience).</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%matplotlib inline
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>%matplotlib inline
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 </pre></div>
 </div>
@@ -155,14 +174,14 @@ distribution. A lot lof scientific programmers know what that would
 mean. But <code class="docutils literal"><span class="pre">mean</span></code> and <code class="docutils literal"><span class="pre">standard_deviation</span></code>, <code class="docutils literal"><span class="pre">loc</span></code> and <code class="docutils literal"><span class="pre">scale</span></code> or
 <code class="docutils literal"><span class="pre">mu</span></code> and <code class="docutils literal"><span class="pre">sigma</span></code> would have been better choices.</p>
 <p>Still, generating random numbers is pretty straight-forward:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>In scipy, you need an additional shape parameter (<code class="docutils literal"><span class="pre">s</span></code>), plus the usual
@@ -182,28 +201,24 @@ can never have values less than or equal to zerlo. So in that sense, the
 should be set to zero</strong>.</p>
 <p>With that out of the way, recreating the three numbers above in scipy is
 done as follows:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">stats</span><span class="o">.</span><span class="n">lognorm</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="p">))</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
 </pre></div>
 </div>
 <div class="section" id="a-new-challenger-appears">
 <h2>A new challenger appears<a class="headerlink" href="#a-new-challenger-appears" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal"><span class="pre">paramnormal</span></code> really just hopes to take away some of this friction.
 Consider the following:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">paramnormal</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">paramnormal</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>/Users/paul/miniconda3/envs/pnorm/lib/python3.5/site-packages/matplotlib/__init__.py:872: UserWarning: axes.color_cycle is deprecated and replaced with axes.prop_cycle; please use the latter.
-  warnings.warn(self.msg_depr % (key, alt_key))
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Hopefully that&#8217;s much more readable and straight-forward.</p>
@@ -213,11 +228,11 @@ Consider the following:</p>
 <p>Tom Augspurger added a <a class="reference external" href="https://github.com/phobson/paramnormal/commit/b859e601f7ef45acc1d90b5e8cbf14028c715bf1#diff-9486966ced6b55cf6eb6d3aac274249eR14">lovely little
 decorator</a>
 to let you use greek letters in the function signature.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>np.random.seed(0)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>np.random.seed(0)
 paramnormal.lognormal(μ=mu, σ=sigma).rvs(size=N)
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span> <span class="mf">5.83603919</span><span class="p">,</span>  <span class="mf">1.49205924</span><span class="p">,</span>  <span class="mf">2.66109578</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -225,11 +240,11 @@ paramnormal.lognormal(μ=mu, σ=sigma).rvs(size=N)
 <h2>Other distributions<a class="headerlink" href="#other-distributions" title="Permalink to this headline">¶</a></h2>
 <p>As of now, we provide a convenient interface for the following
 distributions in <code class="docutils literal"><span class="pre">scipy.stats</span></code>:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">paramnormal</span><span class="o">.</span><span class="n">dist</span><span class="o">.</span><span class="n">__all__</span><span class="p">:</span>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">paramnormal</span><span class="o">.</span><span class="n">dist</span><span class="o">.</span><span class="n">__all__</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">normal</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">normal</span>
 <span class="n">lognormal</span>
 <span class="n">weibull</span>
 <span class="n">alpha</span>
@@ -247,15 +262,16 @@ distributions.</p>
 </div>
 
 
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="fitting.html" class="btn btn-neutral float-right" title="Fitting distributions to data with paramnormal.">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="fitting.html" class="btn btn-neutral float-right" title="Fitting distributions to data with paramnormal." accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral" title="paramnormal: Conventionally parameterized probability distributions"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral" title="paramnormal: Conventionally parameterized probability distributions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -265,12 +281,13 @@ distributions.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Paul Hobson.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 

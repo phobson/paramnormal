@@ -33,11 +33,19 @@ a histogram.
 The primary method of creating a distribution from named parameters is
 shown below.
 
+The call to ``paramnormal.lognornal`` translates the parameter to be
+compatible with scipy. We then chain a call to the ``rvs`` (random
+variates) method of the returned scipy distribution.
+
 .. code:: python
 
     np.random.seed(0)
     x = paramnormal.lognormal(mu=1.75, sigma=0.75).rvs(370)
-    
+
+Here's a histogram to illustrate the distribution.
+
+.. code:: python
+
     bins = np.logspace(-0.5, 1.75, num=25)
     fig, ax = plt.subplots()
     _ = ax.hist(x, bins=bins, normed=True)
@@ -45,6 +53,14 @@ shown below.
     ax.set_xlabel('$X$')
     ax.set_ylabel('Probability')
     seaborn.despine()
+    fig
+
+
+
+
+.. image:: fitting_files/fitting_6_0.png
+
+
 
 Pretending for a moment that we didn't generate this dataset with
 explicit distribution parameters, how would we go about estimating them?
@@ -134,7 +150,7 @@ The manual way:
 
 .. parsed-literal::
 
-    <scipy.stats._distn_infrastructure.rv_frozen at 0x108c779b0>
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x2af889b1e0f0>
 
 
 
@@ -149,6 +165,6 @@ From fit parameters:
 
 .. parsed-literal::
 
-    <scipy.stats._distn_infrastructure.rv_frozen at 0x108c77940>
+    <scipy.stats._distn_infrastructure.rv_frozen at 0x2af889ddaef0>
 
 

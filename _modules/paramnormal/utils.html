@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>paramnormal.utils &mdash; paramnormal 0.1 documentation</title>
@@ -14,7 +15,6 @@
   
 
   
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -34,7 +34,7 @@
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="../../_static/js/modernizr.min.js"></script>
 
 </head>
 
@@ -44,11 +44,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
-          <a href="../../index.html" class="fa fa-home"> paramnormal</a>
-        
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> paramnormal
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -56,29 +72,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
           
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/overview.html#a-new-challenger-appears">A new challenger appears</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/overview.html#greek-letter-support">Greek-letter support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/overview.html#other-distributions">Other distributions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/fitting.html#recap">Recap</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/activities.html">Paramnormal Activity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/activities.html#random-number-generation">Random number generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/activities.html#fitting-distribution">Fitting distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorial/activities.html#plotting">Plotting</a></li>
-</ul>
-</li>
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/overview.html">Why <code class="docutils literal"><span class="pre">paramnormal</span></code> ?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/activities.html">Paramnormal Activity</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../paramnormal.html">Probability Distributions</a></li>
@@ -86,10 +91,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../activity.html">Paramnormal Activities</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -104,7 +109,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
@@ -113,27 +124,30 @@
     <li>paramnormal.utils</li>
       <li class="wy-breadcrumbs-aside">
         
+          
+        
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for paramnormal.utils</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 <span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="n">SYMBOLS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;μ&#39;</span><span class="p">:</span> <span class="s">&#39;mu&#39;</span><span class="p">,</span>
-    <span class="s">&#39;σ&#39;</span><span class="p">:</span> <span class="s">&#39;sigma&#39;</span><span class="p">,</span>
-    <span class="s">&#39;α&#39;</span><span class="p">:</span> <span class="s">&#39;alpha&#39;</span><span class="p">,</span>
-    <span class="s">&#39;β&#39;</span><span class="p">:</span> <span class="s">&#39;beta&#39;</span><span class="p">,</span>
-    <span class="s">&#39;γ&#39;</span><span class="p">:</span> <span class="s">&#39;gamma&#39;</span><span class="p">,</span>
-    <span class="s">&#39;λ&#39;</span><span class="p">:</span> <span class="s">&#39;lambda_&#39;</span><span class="p">,</span>
-    <span class="s">&#39;θ&#39;</span><span class="p">:</span> <span class="s">&#39;theta&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;μ&#39;</span><span class="p">:</span> <span class="s1">&#39;mu&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;σ&#39;</span><span class="p">:</span> <span class="s1">&#39;sigma&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;α&#39;</span><span class="p">:</span> <span class="s1">&#39;alpha&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;β&#39;</span><span class="p">:</span> <span class="s1">&#39;beta&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;γ&#39;</span><span class="p">:</span> <span class="s1">&#39;gamma&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;λ&#39;</span><span class="p">:</span> <span class="s1">&#39;lambda_&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;θ&#39;</span><span class="p">:</span> <span class="s1">&#39;theta&#39;</span><span class="p">,</span>
 <span class="p">}</span>
 
 
@@ -159,9 +173,9 @@
 </div>
 <span class="k">def</span> <span class="nf">_get_loc_scale_keys</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">fit</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;floc&#39;</span><span class="p">,</span> <span class="s">&#39;fscale&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;floc&#39;</span><span class="p">,</span> <span class="s1">&#39;fscale&#39;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">&#39;loc&#39;</span><span class="p">,</span> <span class="s">&#39;scale&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;scale&#39;</span>
 
 
 <span class="k">def</span> <span class="nf">_pop_none</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -176,6 +190,7 @@
     <span class="k">return</span> <span class="n">final</span>
 </pre></div>
 
+           </div>
           </div>
           <footer>
   
@@ -185,12 +200,13 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright 2015, Paul Hobson.
+
     </p>
   </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-  
 </footer>
+
         </div>
       </div>
 
