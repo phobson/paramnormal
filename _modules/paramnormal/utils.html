@@ -86,9 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/activities.html">Paramnormal Activity</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../paramnormal.html">Probability Distributions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../utils.html">Miscellaneous Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../activity.html">Paramnormal Activities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 </ul>
 
             
@@ -151,7 +149,7 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="greco_deco"><a class="viewcode-back" href="../../utils.html#paramnormal.utils.greco_deco">[docs]</a><span class="k">def</span> <span class="nf">greco_deco</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="greco_deco"><a class="viewcode-back" href="../../api/utils.html#paramnormal.utils.greco_deco">[docs]</a><span class="k">def</span> <span class="nf">greco_deco</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Decorator to let you use greek characters for fxn kwargs.&quot;&quot;&quot;</span>
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -162,7 +160,7 @@
     <span class="k">return</span> <span class="n">wrapper</span>
 
 </div>
-<div class="viewcode-block" id="seed"><a class="viewcode-back" href="../../utils.html#paramnormal.utils.seed">[docs]</a><span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+<div class="viewcode-block" id="seed"><a class="viewcode-back" href="../../api/utils.html#paramnormal.utils.seed">[docs]</a><span class="k">def</span> <span class="nf">seed</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Decorator to seed the RNG before any function. &quot;&quot;&quot;</span>
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>

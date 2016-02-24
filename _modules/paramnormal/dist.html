@@ -86,9 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/activities.html">Paramnormal Activity</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../paramnormal.html">Probability Distributions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../utils.html">Miscellaneous Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../activity.html">Paramnormal Activities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 </ul>
 
             
@@ -197,7 +195,7 @@
         <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="normal"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.normal">[docs]</a><span class="k">class</span> <span class="nc">normal</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="normal"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.normal">[docs]</a><span class="k">class</span> <span class="nc">normal</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to a normal distribution.</span>
 
@@ -266,7 +264,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">loc_key</span><span class="p">:</span> <span class="n">mu</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">sigma</span><span class="p">}</span>
 
 </div>
-<div class="viewcode-block" id="lognormal"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.lognormal">[docs]</a><span class="k">class</span> <span class="nc">lognormal</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="lognormal"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.lognormal">[docs]</a><span class="k">class</span> <span class="nc">lognormal</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to a lognormal distribution.</span>
 
@@ -358,12 +356,12 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span><span class="p">)</span> <span class="k">if</span> <span class="n">mu</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">mu</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">offset</span><span class="p">}</span>
 
     <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="lognormal.fit"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.lognormal.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
+<div class="viewcode-block" id="lognormal.fit"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.lognormal.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">param_template</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">sigma</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">offset</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
 </div></div>
-<div class="viewcode-block" id="weibull"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.weibull">[docs]</a><span class="k">class</span> <span class="nc">weibull</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="weibull"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.weibull">[docs]</a><span class="k">class</span> <span class="nc">weibull</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to a weibull distribution.</span>
 
@@ -448,7 +446,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
 
 </div>
-<div class="viewcode-block" id="alpha"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.alpha">[docs]</a><span class="k">class</span> <span class="nc">alpha</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="alpha"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.alpha">[docs]</a><span class="k">class</span> <span class="nc">alpha</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to a alpha distribution.</span>
 
@@ -530,7 +528,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">alpha_key</span><span class="p">:</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
 
 </div>
-<div class="viewcode-block" id="beta"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.beta">[docs]</a><span class="k">class</span> <span class="nc">beta</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="beta"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.beta">[docs]</a><span class="k">class</span> <span class="nc">beta</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to a beta distribution.</span>
 
@@ -618,7 +616,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">alpha_key</span><span class="p">:</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta_key</span><span class="p">:</span> <span class="n">beta</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
 
 </div>
-<div class="viewcode-block" id="gamma"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.gamma">[docs]</a><span class="k">class</span> <span class="nc">gamma</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="gamma"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.gamma">[docs]</a><span class="k">class</span> <span class="nc">gamma</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to a gamma distribution.</span>
 
@@ -704,7 +702,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">theta</span><span class="p">}</span>
 
 </div>
-<div class="viewcode-block" id="chi_squared"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.chi_squared">[docs]</a><span class="k">class</span> <span class="nc">chi_squared</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="chi_squared"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.chi_squared">[docs]</a><span class="k">class</span> <span class="nc">chi_squared</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to a chi-squared distribution.</span>
 
@@ -782,7 +780,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
 
 </div>
-<div class="viewcode-block" id="pareto"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.pareto">[docs]</a><span class="k">class</span> <span class="nc">pareto</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="pareto"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.pareto">[docs]</a><span class="k">class</span> <span class="nc">pareto</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to a pareto distribution.</span>
 
@@ -864,7 +862,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">scale</span><span class="p">}</span>
 
 </div>
-<div class="viewcode-block" id="exponential"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.exponential">[docs]</a><span class="k">class</span> <span class="nc">exponential</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
+<div class="viewcode-block" id="exponential"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.exponential">[docs]</a><span class="k">class</span> <span class="nc">exponential</span><span class="p">(</span><span class="n">BaseDist_Mixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create and fit data to an exponential distribution.</span>
 
@@ -939,7 +937,7 @@
         <span class="k">return</span> <span class="p">{</span><span class="n">loc_key</span><span class="p">:</span> <span class="n">loc</span><span class="p">,</span> <span class="n">scale_key</span><span class="p">:</span> <span class="n">lambda_</span><span class="o">**-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">lambda_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">lambda_</span><span class="p">}</span>
 
     <span class="nd">@classmethod</span>
-<div class="viewcode-block" id="exponential.fit"><a class="viewcode-back" href="../../paramnormal.html#paramnormal.dist.exponential.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
+<div class="viewcode-block" id="exponential.fit"><a class="viewcode-back" href="../../api/paramnormal.html#paramnormal.dist.exponential.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">param_template</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lambda_</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**-</span><span class="mi">1</span><span class="p">)</span>
 

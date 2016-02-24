@@ -1,7 +1,7 @@
 .. _act_auto:
 
-Paramnormal Activities
-======================
+Paramnormal Activity
+====================
 
 .. automodule:: paramnormal.activity
    :members:

@@ -86,9 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/activities.html">Paramnormal Activity</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../paramnormal.html">Probability Distributions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../utils.html">Miscellaneous Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../activity.html">Paramnormal Activities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
 </ul>
 
             
@@ -177,7 +175,7 @@
     <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
 
 
-<div class="viewcode-block" id="random"><a class="viewcode-back" href="../../activity.html#paramnormal.activity.random">[docs]</a><span class="k">def</span> <span class="nf">random</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="random"><a class="viewcode-back" href="../../api/activity.html#paramnormal.activity.random">[docs]</a><span class="k">def</span> <span class="nf">random</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate random data from a probability distribution.</span>
 
@@ -221,7 +219,7 @@
     <span class="k">return</span> <span class="n">distro</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">shape</span><span class="p">)</span>
 
 </div>
-<div class="viewcode-block" id="fit"><a class="viewcode-back" href="../../activity.html#paramnormal.activity.fit">[docs]</a><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">as_params</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
+<div class="viewcode-block" id="fit"><a class="viewcode-back" href="../../api/activity.html#paramnormal.activity.fit">[docs]</a><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">as_params</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Estimate the distribution parameters of sample data.</span>
 
@@ -277,7 +275,7 @@
     <span class="k">return</span> <span class="n">ax</span>
 
 
-<div class="viewcode-block" id="plot"><a class="viewcode-back" href="../../activity.html#paramnormal.activity.plot">[docs]</a><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fit_dist</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<div class="viewcode-block" id="plot"><a class="viewcode-back" href="../../api/activity.html#paramnormal.activity.plot">[docs]</a><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">distro</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fit_dist</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
          <span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">line_opts</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">distplot</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
          <span class="n">distplot_opts</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">guesses</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
