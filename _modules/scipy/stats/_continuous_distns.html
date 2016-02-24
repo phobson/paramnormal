@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>scipy.stats._continuous_distns &mdash; paramnormal 0.1 documentation</title>
+  <title>scipy.stats._continuous_distns &mdash; paramnormal 0.2 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="paramnormal 0.1 documentation" href="../../../index.html"/>
+    <link rel="top" title="paramnormal 0.2 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.1
+                0.2
               </div>
             
           
@@ -555,8 +555,10 @@
         <span class="c1"># Override rv_continuous.fit, so we can more efficiently handle the</span>
         <span class="c1"># case where floc and fscale are given.</span>
 
-        <span class="n">f0</span> <span class="o">=</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;f0&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-        <span class="n">f1</span> <span class="o">=</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">f0</span> <span class="o">=</span> <span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;f0&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fa&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span>
+              <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fix_a&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+        <span class="n">f1</span> <span class="o">=</span> <span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fb&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span>
+              <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fix_b&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
         <span class="n">floc</span> <span class="o">=</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;floc&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
         <span class="n">fscale</span> <span class="o">=</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fscale&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
 
@@ -749,7 +751,7 @@
 
 
 <span class="k">class</span> <span class="nc">burr_gen</span><span class="p">(</span><span class="n">rv_continuous</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A Burr continuous random variable.</span>
+    <span class="sd">&quot;&quot;&quot;A Burr (Type III) continuous random variable.</span>
 
 <span class="sd">    %(before_notes)s</span>
 
@@ -767,7 +769,15 @@
 
 <span class="sd">    `burr` takes ``c`` and ``d`` as shape parameters.</span>
 
+<span class="sd">    This is the PDF corresponding to the third CDF given in Burr&#39;s list;</span>
+<span class="sd">    specifically, it is equation (11) in Burr&#39;s paper [1]_.</span>
+
 <span class="sd">    %(after_notes)s</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Burr, I. W. &quot;Cumulative frequency functions&quot;, Annals of</span>
+<span class="sd">       Mathematical Statistics, 13(2), pp 215-232 (1942).</span>
 
 <span class="sd">    %(example)s</span>
 
@@ -866,7 +876,7 @@
         <span class="k">return</span> <span class="n">tan</span><span class="p">(</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.0</span><span class="o">-</span><span class="n">pi</span><span class="o">*</span><span class="n">q</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span>
+        <span class="k">return</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span><span class="p">,</span> <span class="n">nan</span>
 
     <span class="k">def</span> <span class="nf">_entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="p">)</span>
@@ -909,13 +919,17 @@
         <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">chi2</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sz</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rndm</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="n">df</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">df</span><span class="o">*</span><span class="mf">0.5</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">gam</span><span class="p">(</span><span class="n">df</span><span class="o">*</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_logpdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">df</span> <span class="o">-</span> <span class="n">special</span><span class="o">.</span><span class="n">gammaln</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">df</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">l</span> <span class="o">+</span> <span class="n">special</span><span class="o">.</span><span class="n">xlogy</span><span class="p">(</span><span class="n">df</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">_cdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">special</span><span class="o">.</span><span class="n">gammainc</span><span class="p">(</span><span class="n">df</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">special</span><span class="o">.</span><span class="n">gammainc</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">df</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_ppf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">special</span><span class="o">.</span><span class="n">gammaincinv</span><span class="p">(</span><span class="n">df</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">special</span><span class="o">.</span><span class="n">gammaincinv</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">df</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
         <span class="n">mu</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">special</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">df</span><span class="o">/</span><span class="mf">2.0</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="n">special</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">df</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
@@ -1129,7 +1143,7 @@
 <span class="sd">    for ``x &gt;= 0``.</span>
 
 <span class="sd">    %(after_notes)s</span>
-<span class="sd">    </span>
+
 <span class="sd">    A common parameterization for `expon` is in terms of the rate parameter</span>
 <span class="sd">    ``lambda``, such that ``pdf = lambda * exp(-lambda * x)``. This</span>
 <span class="sd">    parameterization corresponds to using ``scale = 1 / lambda``.</span>
@@ -1182,7 +1196,7 @@
 <span class="sd">    The probability density function for `exponnorm` is::</span>
 
 <span class="sd">        exponnorm.pdf(x, K) = 1/(2*K) exp(1/(2 * K**2)) exp(-x / K) * erfc(-(x - 1/K) / sqrt(2))</span>
-<span class="sd">           </span>
+
 <span class="sd">    where the shape parameter ``K &gt; 0``.</span>
 
 <span class="sd">    It can be thought of as the sum of a normally distributed random</span>
@@ -1919,6 +1933,10 @@
             <span class="n">comb</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">k</span> <span class="o">*</span> <span class="n">special</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
             <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">where</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">n</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vals</span><span class="p">,</span> <span class="n">inf</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_EULER</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
 <span class="n">genextreme</span> <span class="o">=</span> <span class="n">genextreme_gen</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;genextreme&#39;</span><span class="p">)</span>
 
 
@@ -2026,7 +2044,8 @@
 
     <span class="nd">@inherit_docstring_from</span><span class="p">(</span><span class="n">rv_continuous</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-        <span class="n">f0</span> <span class="o">=</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;f0&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">f0</span> <span class="o">=</span> <span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;f0&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fa&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">or</span>
+              <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fix_a&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
         <span class="n">floc</span> <span class="o">=</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;floc&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
         <span class="n">fscale</span> <span class="o">=</span> <span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fscale&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
 
@@ -2173,22 +2192,32 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_logpdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="o">+</span> <span class="n">special</span><span class="o">.</span><span class="n">xlogy</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="n">c</span> <span class="o">-</span> <span class="n">gamln</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="o">+</span> <span class="n">special</span><span class="o">.</span><span class="n">xlogy</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="n">c</span> <span class="o">-</span> <span class="n">special</span><span class="o">.</span><span class="n">gammaln</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_cdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-        <span class="n">val</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammainc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="n">c</span><span class="p">)</span>
-        <span class="n">cond</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">0</span><span class="o">*</span><span class="n">val</span>
-        <span class="k">return</span> <span class="n">where</span><span class="p">(</span><span class="n">cond</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">xc</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="n">c</span>
+        <span class="n">val1</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammainc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">xc</span><span class="p">)</span>
+        <span class="n">val2</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammaincc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">xc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">val1</span><span class="p">,</span> <span class="n">val2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_sf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="n">xc</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="n">c</span>
+        <span class="n">val1</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammainc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">xc</span><span class="p">)</span>
+        <span class="n">val2</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammaincc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">xc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">val2</span><span class="p">,</span> <span class="n">val1</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_ppf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
         <span class="n">val1</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammaincinv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
-        <span class="n">val2</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammaincinv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">-</span><span class="n">q</span><span class="p">)</span>
-        <span class="n">ic</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">c</span>
-        <span class="n">cond</span> <span class="o">=</span> <span class="n">c</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">val1</span>
-        <span class="k">return</span> <span class="n">where</span><span class="p">(</span><span class="n">cond</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">val1</span><span class="o">**</span><span class="n">ic</span><span class="p">,</span> <span class="n">val2</span><span class="o">**</span><span class="n">ic</span><span class="p">)</span>
+        <span class="n">val2</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammainccinv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">val1</span><span class="p">,</span> <span class="n">val2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_isf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="n">val1</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammaincinv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+        <span class="n">val2</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">gammainccinv</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">val2</span><span class="p">,</span> <span class="n">val1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_munp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
         <span class="c1"># Pochhammer symbol: poch(a,n) = gamma(a+n)/gamma(a)</span>
@@ -2196,7 +2225,7 @@
 
     <span class="k">def</span> <span class="nf">_entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
         <span class="n">val</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">psi</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">val</span> <span class="o">+</span> <span class="n">gamln</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">-</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">val</span> <span class="o">+</span> <span class="n">special</span><span class="o">.</span><span class="n">gammaln</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
 <span class="n">gengamma</span> <span class="o">=</span> <span class="n">gengamma_gen</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;gengamma&#39;</span><span class="p">)</span>
 
 
@@ -3099,7 +3128,9 @@
 
 
 <span class="k">def</span> <span class="nf">_lognorm_logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-    <span class="k">return</span> <span class="o">-</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">log</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">_lazywhere</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span>
+                      <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="o">-</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">log</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">)),</span>
+                      <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">lognorm_gen</span><span class="p">(</span><span class="n">rv_continuous</span><span class="p">):</span>
@@ -3119,9 +3150,11 @@
 
 <span class="sd">    %(after_notes)s</span>
 
-<span class="sd">    If ``log(x)`` is normally distributed with mean ``mu`` and variance</span>
-<span class="sd">    ``sigma**2``, then ``x`` is log-normally distributed with shape parameter</span>
-<span class="sd">    sigma and scale parameter ``exp(mu)``.</span>
+<span class="sd">    A common parametrization for a lognormal random variable ``Y`` is in</span>
+<span class="sd">    terms of the mean, ``mu``, and standard deviation, ``sigma``, of the</span>
+<span class="sd">    unique normally distributed random variable ``X`` such that exp(X) = Y.</span>
+<span class="sd">    This parametrization corresponds to setting ``s = sigma`` and ``scale =</span>
+<span class="sd">    exp(mu)``.</span>
 
 <span class="sd">    %(example)s</span>
 
@@ -3474,9 +3507,13 @@
         <span class="k">return</span> <span class="o">-</span><span class="n">special</span><span class="o">.</span><span class="n">stdtrit</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
-        <span class="n">mu2</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">df</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="n">df</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="o">-</span><span class="mf">2.0</span><span class="p">),</span> <span class="n">inf</span><span class="p">)</span>
-        <span class="n">g1</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">df</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">nan</span><span class="p">)</span>
-        <span class="n">g2</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">df</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">6.0</span><span class="o">/</span><span class="p">(</span><span class="n">df</span><span class="o">-</span><span class="mf">4.0</span><span class="p">),</span> <span class="n">nan</span><span class="p">)</span>
+        <span class="n">mu2</span> <span class="o">=</span> <span class="n">_lazywhere</span><span class="p">(</span><span class="n">df</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">df</span><span class="p">,),</span>
+                         <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="o">-</span><span class="mf">2.0</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+        <span class="n">g1</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">df</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+        <span class="n">g2</span> <span class="o">=</span> <span class="n">_lazywhere</span><span class="p">(</span><span class="n">df</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="n">df</span><span class="p">,),</span>
+                        <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="mf">6.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="o">-</span><span class="mf">4.0</span><span class="p">),</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mu2</span><span class="p">,</span> <span class="n">g1</span><span class="p">,</span> <span class="n">g2</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">t_gen</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
 
@@ -4533,7 +4570,7 @@
         <span class="k">return</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">c</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
 
     <span class="k">def</span> <span class="nf">_cdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">*</span><span class="n">x</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
         <span class="n">val</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">c</span><span class="p">)</span>
         <span class="n">c1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">pi</span>
         <span class="n">c2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">c1</span>
@@ -4722,7 +4759,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.1',
+            VERSION:'0.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
