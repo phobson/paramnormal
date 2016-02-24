@@ -2,7 +2,7 @@
 
 
 Tutorials
----------
+=========
 
 .. toctree::
    :maxdepth: 2
@@ -12,14 +12,12 @@ Tutorials
    tutorial/activities
 
 API Reference
--------------
+=============
 
 .. toctree::
    :maxdepth: 2
 
-   paramnormal.rst
-   utils.rst
-   activity.rst
+   api.rst
 
 
 Indices and tables
