@@ -12,19 +12,18 @@ NAME = "paramnormal"
 VERSION = "v0.2.0"
 AUTHOR = "Paul Hobson"
 AUTHOR_EMAIL = "pmhobson@gmail.com"
-URL = "https://github.com/phobson/paramnormal"
+URL = 'http://phobson.github.io/paramnormal/'
 DOWNLOAD_URL = "https://github.com/phobson/paramnormal/archive/master.zip"
 LICENSE = "BSD 3-clause"
 PACKAGES = find_packages()
 PLATFORMS = "Python 3.3 and later."
 CLASSIFIERS = [
-    "License :: OSI Approved :: BSD License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python",
-    "Intended Audience :: Science/Research",
-    "Topic :: Formats and Protocols :: Data Formats",
-    "Topic :: Scientific/Engineering :: Earth Sciences",
-    "Topic :: Software Development :: Libraries :: Python Modules",
+    'Programming Language :: Python',
+    'Operating System :: OS Independent',
+    'License :: OSI Approved :: BSD License',
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: Science/Research',
+    'Topic :: Scientific/Engineering :: Mathematics',
     'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',

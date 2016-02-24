@@ -27,6 +27,8 @@ result_images
 *.rar
 *.tar
 *.zip
+build
+dist
 
 # Logs and databases #
 ######################
