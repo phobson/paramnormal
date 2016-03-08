@@ -43,8 +43,8 @@ class BaseDist_Mixin:
 
     @classmethod
     def from_params(cls, params):
-        """ Create a distribution from the namedtuple result of the
-        :meth:`~fit` method.
+        """ Create a distribution from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
         Examples
         --------
@@ -71,8 +71,8 @@ class normal(BaseDist_Mixin):
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution.
     from_params
-        Create a new distribution instances from the namedtuple result
-        of the :meth:`~fit` method.
+        Create a new distribution instances from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -142,8 +142,8 @@ class lognormal(BaseDist_Mixin):
         is fixed at 0. Thus, only `mu` and `sigma` are estimated unless
         the `offset` is explicitly set to `None`.
     from_params
-        Create a new distribution instances from the namedtuple result
-        of the :meth:`~fit` method.
+        Create a new distribution instances from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -240,8 +240,8 @@ class weibull(BaseDist_Mixin):
         is estimated unless `loc` or `scale` are explicitly set to
         `None`.
     from_params
-        Create a new distribution instances from the namedtuple result
-        of the :meth:`~fit` method.
+        Create a new distribution instances from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -325,8 +325,8 @@ class alpha(BaseDist_Mixin):
         `alpha` is estimated unless `loc` or `scale` are explicitly set
         to `None`.
     from_params
-        Create a new distribution instances from the namedtuple result
-        of the :meth:`~fit` method.
+        Create a new distribution instances from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -407,8 +407,8 @@ class beta(BaseDist_Mixin):
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
     from_params
-        Create a new distribution instances from the namedtuple result
-        of the :meth:`~fit` method.
+        Create a new distribution instances from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -495,8 +495,8 @@ class gamma(BaseDist_Mixin):
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
     from_params
-        Create a new distribution instances from the namedtuple result
-        of the :meth:`~fit` method.
+        Create a new distribution instances from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -504,7 +504,7 @@ class gamma(BaseDist_Mixin):
         The shape and scale parameters of the distribution,
         respectively.
     loc : float, optional
-        Location parameter of the distribution. This default to, and
+        Location parameter of the distribution. This defaults to, and
         should probably be left at, 0.
 
         .. note ::
@@ -581,8 +581,8 @@ class chi_squared(BaseDist_Mixin):
         `alpha` and `beta` are estimated unless `loc` or `scale` are
         explicitly set to `None`.
     from_params
-        Create a new distribution instances from the namedtuple result
-        of the :meth:`~fit` method.
+        Create a new distribution instances from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -659,8 +659,8 @@ class pareto(BaseDist_Mixin):
         `alpha` is estimated unless `loc` or `scale` are explicitly
         set to `None`.
     from_params
-        Create a new distribution instances from the namedtuple result
-        of the :meth:`~fit` method.
+        Create a new distribution instances from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
     Parameters
     ----------
@@ -737,19 +737,19 @@ class exponential(BaseDist_Mixin):
     fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
-        isfixed at 0. Thus, only `lambda_` is estimated unless `loc` is
+        is fixed at 0. Thus, only `lambda_` is estimated unless `loc` is
         explicitly set to `None`.
     from_params
-        Create a new distribution instances from the namedtuple result
-        of the :meth:`~fit` method.
+        Create a new distribution instances from the ``namedtuple``
+        result of the :meth:`~fit` method.
 
     Parameters
     ----------
     lambda_ : float
         The shape parameter of the distribution.
     loc : float, optional
-        Location parameter of the distribution. This default to, and
-        should probably be left at, 0,
+        Location parameter of the distribution. This defaults to, and
+        should probably be left at, 0.
 
         .. note ::
            When fitting an exponential distribution to a dataset, this
