@@ -367,3 +367,33 @@ class Test_exponential(CheckDist_Mixin):
         )
 
 
+class Test_rice(CheckDist_Mixin):
+    def setup(self):
+        self.dist = dist.rice
+        self.cargs = []
+        self.ckwds = dict(R=10, sigma=2)
+
+        self.np_rand_fxn = stats.rice.rvs
+        self.npargs = [5]
+        self.npkwds = dict(loc=0, scale=2)
+
+    def test_processargs(self):
+        nt.assert_dict_equal(
+            self.dist._process_args(R=10, sigma=2),
+            dict(b=5, loc=0, scale=2)
+        )
+
+        nt.assert_dict_equal(
+            self.dist._process_args(R=10, sigma=2, fit=True),
+            dict(b=5, floc=0, fscale=2)
+        )
+
+    @seed
+    def test_fit(self):
+        data = stats.rice(5, loc=0, scale=2).rvs(size=37)
+        params = self.dist.fit(data)
+        check_params(
+            (params.R, 10.100674084593422),
+            (params.sigma, 1.759817171541185),
+            (params.loc, 0),
+        )
