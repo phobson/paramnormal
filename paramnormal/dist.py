@@ -857,11 +857,11 @@ class rice(BaseDist_Mixin):
     >>> data = pn.rice(R=10, sigma=2).rvs(size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.rice.fit(data)
-    params(R=10.206054687500021, sigma=1, loc=0)
+    params(R=10.100674084593422, sigma=1.759817171541185, loc=0)
 
     >>> # include `loc` in the estimate (bad idea)
     >>> pn.rice.fit(data, loc=None)
-    params(R=262123.93200905673, sigma=1, loc=-262113.67682828)
+    params(R=4.249154300734, sigma=1.862167512728, loc=5.570921659394)
 
     References
     ----------
@@ -880,7 +880,7 @@ class rice(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(R=None, loc=0, sigma=1, fit=False):
+    def _process_args(R=None, loc=0, sigma=None, fit=False):
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         return {loc_key: loc, scale_key: sigma, 'b': R/sigma if R is not None else None}
 
@@ -888,7 +888,6 @@ class rice(BaseDist_Mixin):
     def fit(cls, data, **guesses):
         b, loc, sigma = cls._fit(data, **guesses)
         return cls.param_template(R=b*sigma, loc=loc, sigma=sigma)
-
 
 
 __all__ = [
