@@ -26,10 +26,9 @@ install:
   - conda install --yes coverage docopt requests pyyaml
   - pip install coveralls
   - pip install .
-  - cp testing/matplotlibrc .
 
 script:
-  - nosetests --with-coverage --cover-package=paramnormal --verbose
+  - python check_paramnormal.py --with-coverage --cover-package=paramnormal --verbose
 
 after_success:
   - if [ ${COVERAGE} = true ]; then coveralls; fi
