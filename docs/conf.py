@@ -67,7 +67,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'paramnormal'
-copyright = '2015, Paul Hobson'
+copyright = '2015 - 2016, Paul Hobson'
 author = 'Paul Hobson'
 
 # The version info for the project you're documenting, acts as replacement for
