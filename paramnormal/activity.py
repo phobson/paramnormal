@@ -1,12 +1,8 @@
 import numpy
 from matplotlib import pyplot
-try:
-    import seaborn.apionly as seaborn
-except ImportError:  # pragma: no cover
-    seaborn = None
 
-from paramnormal import dist
-from paramnormal import utils
+from . import dist
+from . import utils
 
 
 def _check_distro(distro, **params):
@@ -33,10 +29,8 @@ def _check_ax(ax):
     if ax is None:
         fig, ax = pyplot.subplots()
     else:
-        try:
-            fig = ax.figure
-        except AttributeError:
-            raise ValueError("`ax` must be None or a matplotlib Axes.")
+        ax = pyplot.gca()
+        fig = ax.figure
 
     return fig, ax
 
@@ -142,8 +136,7 @@ def _plot_pdf(distro, xlimits, ax=None, xscale='linear', **line_opts):
 
 
 def plot(distro, data=None, fit_dist=True, ax=None, pad=0.1,
-         xscale='linear', line_opts=None, distplot=False,
-         distplot_opts=None, **guesses):
+         xscale='linear', line_opts=None, **guesses):
     """
     Plot the PDF of a dataset and other representations of the
     distribution (histogram, kernel density estimate, and rug plot).
@@ -273,12 +266,5 @@ def plot(distro, data=None, fit_dist=True, ax=None, pad=0.1,
 
     ax = _plot_pdf(distro, xlimits, ax=ax, xscale=xscale, **line_opts)
     ax.set_xscale(xscale)
-
-    distplot_opts = dict() if not distplot_opts else distplot_opts
-    distplot_opts['kde'] = distplot_opts.pop('kde', True)
-    if distplot and data is not None and seaborn is not None:
-        seaborn.distplot(data, ax=ax, **distplot_opts)
-        if distplot_opts['kde']:
-            ax.lines[1].set_label('KDE')
 
     return ax

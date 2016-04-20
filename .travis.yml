@@ -2,9 +2,6 @@ language: python
 
 matrix:
   include:
-    - python: 3.3
-      env:
-        - COVERAGE=false
     - python: 3.4
       env:
         - COVERAGE=false
@@ -27,10 +24,9 @@ install:
   - conda install --yes coverage docopt requests pyyaml
   - pip install coveralls
   - pip install .
-  - cp testing/matplotlibrc .
 
 script:
-  - nosetests --with-coverage --cover-package=paramnormal --verbose
+  - python check_paramnormal.py --with-coverage --cover-package=paramnormal --verbose
 
 after_success:
   - if [ ${COVERAGE} = true ]; then coveralls; fi

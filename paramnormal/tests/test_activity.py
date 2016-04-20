@@ -78,11 +78,6 @@ class Test__check_ax(object):
         nt.assert_equal(ax, ax1)
         nt.assert_equal(fig, fig1)
 
-    @nt.raises(ValueError)
-    @cleanup
-    def test_error(self):
-        activity._check_ax('junk')
-
 
 class Test_random(object):
     def test_normal(self):
@@ -139,29 +134,11 @@ def test_plot_fit():
     ax2.legend()
 
 
-@image_comparison(baseline_images=['test_plot_distplot'], extensions=['png'])
+@image_comparison(baseline_images=['test_plot_xlog'], extensions=['png'])
 @nptest.dec.skipif(sys.version_info.minor < 4)
 @seed
-def test_plot_distplot():
-    # third
-    fig3, ax3 = pyplot.subplots()
-    data = activity.random('normal', μ=5.4, σ=2.5, shape=37)
-    ax3 = activity.plot('normal', data=data, distplot=True, ax=ax3)
-    ax3.legend(loc='upper left')
-
-
-@image_comparison(baseline_images=['test_plot_distplot_lognormal'], extensions=['png'])
-@nptest.dec.skipif(sys.version_info.minor < 4)
-@seed
-def test_distplot_lognormal():
-    # fourth
-    fig4, ax4 = pyplot.subplots()
-    data = activity.random('lognormal', μ=0.75, σ=1.2, shape=125)
-    logdata = numpy.log10(data)
-    bins = numpy.logspace(logdata.min(), logdata.max(), num=30)
-    distplot_opts = dict(rug=True, kde=False, norm_hist=True, bins=bins)
-    line_opts = dict(color='firebrick', lw=3.5, label='Fit PDF')
-    ax4 = activity.plot('lognormal', data=data, distplot=True,
-                        xscale='log', pad=0.01, ax=ax4,
-                        line_opts=line_opts,
-                        distplot_opts=distplot_opts)
+def test_plot_xlog():
+    # first
+    fig, ax1 = pyplot.subplots()
+    loc_dist = dist.lognormal(μ=1.25, σ=0.75)
+    ax1 = activity.plot(loc_dist, ax=ax1, xscale='log')
