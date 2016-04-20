@@ -132,3 +132,13 @@ def test_plot_fit():
     ax2 = activity.plot(norm_dist, ax=ax2, line_opts=dict(label='Theoretical PDF'))
     ax2 = activity.plot('normal', data=data, ax=ax2, line_opts=dict(label='Fit PDF'))
     ax2.legend()
+
+
+@image_comparison(baseline_images=['test_plot_xlog'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
+@seed
+def test_plot_xlog():
+    # first
+    fig, ax1 = pyplot.subplots()
+    loc_dist = dist.lognormal(μ=1.25, σ=0.75)
+    ax1 = activity.plot(loc_dist, ax=ax1, xscale='log')
