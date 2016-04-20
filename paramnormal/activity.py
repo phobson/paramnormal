@@ -121,22 +121,8 @@ def fit(distro, data, as_params=True, **guesses):
         return distro.from_params(params)
 
 
-def _plot_pdf(distro, xlimits, ax=None, xscale='linear', **line_opts):
-    fig, ax = _check_ax(ax)
-    if xscale == 'log':
-        xlimits = numpy.log10(xlimits)
-        spacer = numpy.logspace
-    else:
-        spacer = numpy.linspace
-
-    x_hat = spacer(xlimits[0], xlimits[1], num=100)
-    y_hat = distro.pdf(x_hat)
-    ax.plot(x_hat, y_hat, **line_opts)
-    return ax
-
-
-def plot(distro, data=None, fit_dist=True, ax=None, pad=0.1,
-         xscale='linear', line_opts=None, **guesses):
+def plot(distro, which='PDF', data=None, fit_dist=True, ax=None,
+         pad=0.05, xscale='linear', line_opts=None, **guesses):
     """
     Plot the PDF of a dataset and other representations of the
     distribution (histogram, kernel density estimate, and rug plot).
@@ -253,18 +239,31 @@ def plot(distro, data=None, fit_dist=True, ax=None, pad=0.1,
 
     """
 
+    # validate the axes and distribution function (`which`)
+    fig, ax = _check_ax(ax)
     if data is not None:
         distro = fit(distro, data, as_params=False, **guesses)
     else:
         distro = _check_distro(distro, **guesses)
+    fxn = getattr(distro, which.lower())
 
-    fig, ax = _check_ax(ax)
-
-    line_opts = dict() if line_opts is None else line_opts
-    line_opts['label'] = line_opts.pop('label', 'PDF')
+    # determine and set the xlimits of the plot
     xlimits = distro.ppf([pad/100, 1 - pad/100])
 
-    ax = _plot_pdf(distro, xlimits, ax=ax, xscale=xscale, **line_opts)
+    # determine the x-values
+    if xscale == 'log':
+        #xlimits = numpy.log10(xlimits)
+        x_hat = numpy.logspace(*numpy.log10(xlimits), num=100)
+    else:
+        x_hat = numpy.linspace(*xlimits, num=100)
+
+    # compute y-values
+    y_hat = fxn(x_hat)
+
+    line_opts = dict() if line_opts is None else line_opts
+    line_opts['label'] = line_opts.pop('label', which)
+
+    line, = ax.plot(x_hat, y_hat, **line_opts)
     ax.set_xscale(xscale)
 
     return ax

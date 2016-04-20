@@ -111,20 +111,20 @@ class Test_fit(object):
 
         assert_dists_are_equivalent(dist, stats.norm(params.mu, params.sigma))
 
-@image_comparison(baseline_images=['test_plot_basic'], extensions=['png'])
+@image_comparison(baseline_images=['test_plot_pdf_basic'], extensions=['png'])
 @nptest.dec.skipif(sys.version_info.minor < 4)
 @seed
-def test_plot_basic():
+def test_plot_pdf_basic():
     # first
     fig, ax1 = pyplot.subplots()
     norm_dist = dist.normal(μ=5.4, σ=2.5)
     ax1 = activity.plot(norm_dist, ax=ax1)
 
 
-@image_comparison(baseline_images=['test_plot_fit'], extensions=['png'])
+@image_comparison(baseline_images=['test_plot_pdf_fit'], extensions=['png'])
 @nptest.dec.skipif(sys.version_info.minor < 4)
 @seed
-def test_plot_fit():
+def test_plot_pdf_fit():
     # second
     fig2, ax2 = pyplot.subplots()
     norm_dist = dist.normal(μ=5.4, σ=2.5)
@@ -134,11 +134,85 @@ def test_plot_fit():
     ax2.legend()
 
 
-@image_comparison(baseline_images=['test_plot_xlog'], extensions=['png'])
+@image_comparison(baseline_images=['test_plot_pdf_xlog'], extensions=['png'])
 @nptest.dec.skipif(sys.version_info.minor < 4)
 @seed
-def test_plot_xlog():
+def test_plot_pdf_xlog():
     # first
     fig, ax1 = pyplot.subplots()
     loc_dist = dist.lognormal(μ=1.25, σ=0.75)
     ax1 = activity.plot(loc_dist, ax=ax1, xscale='log')
+
+
+@image_comparison(baseline_images=['test_plot_cdf_basic'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
+@seed
+def test_plot_cdf_basic():
+    # first
+    fig, ax1 = pyplot.subplots()
+    norm_dist = dist.normal(μ=5.4, σ=2.5)
+    ax1 = activity.plot(norm_dist, ax=ax1, which='cdf')
+
+
+@image_comparison(baseline_images=['test_plot_cdf_fit'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
+@seed
+def test_plot_cdf_fit():
+    # second
+    fig2, ax2 = pyplot.subplots()
+    norm_dist = dist.normal(μ=5.4, σ=2.5)
+    data = activity.random('normal', μ=5.4, σ=2.5, shape=37)
+    ax2 = activity.plot(norm_dist, ax=ax2, line_opts=dict(label='Theoretical CDF'), which='cdf')
+    ax2 = activity.plot('normal', data=data, ax=ax2, line_opts=dict(label='Fit CDF'), which='cdf')
+    ax2.legend()
+
+
+@image_comparison(baseline_images=['test_plot_cdf_xlog'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
+@seed
+def test_plot_cdf_xlog():
+    # first
+    fig, ax1 = pyplot.subplots()
+    loc_dist = dist.lognormal(μ=1.25, σ=0.75)
+    ax1 = activity.plot(loc_dist, ax=ax1, xscale='log', which='CDF')
+    ax1.legend()
+
+@image_comparison(baseline_images=['test_plot_sf_basic'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
+@seed
+def test_plot_sf_basic():
+    # first
+    fig, ax1 = pyplot.subplots()
+    norm_dist = dist.normal(μ=5.4, σ=2.5)
+    ax1 = activity.plot(norm_dist, ax=ax1, which='sf')
+
+
+@image_comparison(baseline_images=['test_plot_sf_fit'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
+@seed
+def test_plot_sf_fit():
+    # second
+    fig2, ax2 = pyplot.subplots()
+    norm_dist = dist.normal(μ=5.4, σ=2.5)
+    data = activity.random('normal', μ=5.4, σ=2.5, shape=37)
+    ax2 = activity.plot(norm_dist, ax=ax2, line_opts=dict(label='Theoretical sf'), which='sf')
+    ax2 = activity.plot('normal', data=data, ax=ax2, line_opts=dict(label='Fit sf'), which='sf')
+    ax2.legend()
+
+
+@image_comparison(baseline_images=['test_plot_sf_xlog'], extensions=['png'])
+@nptest.dec.skipif(sys.version_info.minor < 4)
+@seed
+def test_plot_sf_xlog():
+    # first
+    fig, ax1 = pyplot.subplots()
+    loc_dist = dist.lognormal(μ=1.25, σ=0.75)
+    ax1 = activity.plot(loc_dist, ax=ax1, xscale='log', which='sf')
+    ax1.legend()
+
+
+@cleanup
+@nt.raises(AttributeError)
+def test_plot_bad_attribute():
+    loc_dist = dist.lognormal(μ=1.25, σ=0.75)
+    activity.plot(loc_dist, xscale='log', which='JUNK')
