@@ -27,9 +27,9 @@ def _check_distro(distro, **params):
 
 def _check_ax(ax):
     if ax is None:
-        fig, ax = pyplot.subplots()
-    else:
         ax = pyplot.gca()
+        fig = ax.figure
+    else:
         fig = ax.figure
 
     return fig, ax
