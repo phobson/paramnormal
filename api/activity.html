@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Paramnormal Activity &mdash; paramnormal 0.2 documentation</title>
+  <title>Paramnormal Activity &mdash; paramnormal 0.3.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="paramnormal 0.2 documentation" href="../index.html"/>
+    <link rel="top" title="paramnormal 0.3.0 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="Probability Distributions" href="paramnormal.html"/>
         <link rel="prev" title="API Reference" href="../api.html"/> 
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.2
+                0.3.0
               </div>
             
           
@@ -243,7 +243,7 @@ distribution.</p>
 
 <dl class="function">
 <dt id="paramnormal.activity.plot">
-<code class="descclassname">paramnormal.activity.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>distro</em>, <em>data=None</em>, <em>fit_dist=True</em>, <em>ax=None</em>, <em>pad=0.1</em>, <em>xscale='linear'</em>, <em>line_opts=None</em>, <em>distplot=False</em>, <em>distplot_opts=None</em>, <em>**guesses</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/paramnormal/activity.html#plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.activity.plot" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">paramnormal.activity.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>distro</em>, <em>which='PDF'</em>, <em>data=None</em>, <em>fit_dist=True</em>, <em>ax=None</em>, <em>pad=0.05</em>, <em>xscale='linear'</em>, <em>line_opts=None</em>, <em>**guesses</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/paramnormal/activity.html#plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.activity.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the PDF of a dataset and other representations of the
 distribution (histogram, kernel density estimate, and rug plot).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -337,9 +337,6 @@ real data:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure">
-<img alt="../_images/activity-3.png" src="../_images/activity-3.png" />
-</div>
 <p>Use <code class="docutils literal"><span class="pre">line_opts</span></code> and <code class="docutils literal"><span class="pre">distplot_opts</span></code> to customize more complex
 plots.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; paramnormal.utils.seed(0)
@@ -353,9 +350,6 @@ plots.</p>
 ...                                distplot_opts=distplot_opts)
 </pre></div>
 </div>
-<div class="figure">
-<img alt="../_images/activity-4.png" src="../_images/activity-4.png" />
-</div>
 <p>Notice that the bins in log-space don&#8217;t work so well. We can
 compute them outselves.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; paramnormal.utils.seed(0)
@@ -368,9 +362,6 @@ compute them outselves.</p>
 ...                                line_opts=line_opts,
 ...                                distplot_opts=distplot_opts)
 </pre></div>
-</div>
-<div class="figure">
-<img alt="../_images/activity-5.png" src="../_images/activity-5.png" />
 </div>
 </dd></dl>
 
@@ -395,7 +386,7 @@ compute them outselves.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Paul Hobson.
+        &copy; Copyright 2015 - 2016, Paul Hobson.
 
     </p>
   </div>
@@ -417,7 +408,7 @@ compute them outselves.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.2',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

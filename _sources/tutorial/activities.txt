@@ -18,6 +18,7 @@ exposed through ``activity``.
     warnings.simplefilter('ignore')
     
     from numpy.random import seed
+    from scipy import stats
     from matplotlib import pyplot
     import seaborn
     
@@ -103,8 +104,8 @@ Lastly, you can reuse an already full-specified distribution and the
 
 
 
-Fitting distribution
-~~~~~~~~~~~~~~~~~~~~
+Fitting distributions
+~~~~~~~~~~~~~~~~~~~~~
 
 Fitting distributions to data follows a similar pattern.
 
@@ -119,6 +120,22 @@ Fitting distributions to data follows a similar pattern.
 .. parsed-literal::
 
     params(alpha=2.609817838242197, beta=1.9104280289172266, loc=0, scale=1)
+
+
+
+Equivalent command to perform the same fits in raw scipy is shown below:
+
+.. code:: python
+
+    # constrained loc and scale
+    stats.beta.fit(data, floc=0, fscale=1)
+
+
+
+
+.. parsed-literal::
+
+    (2.609817838242197, 1.9104280289172266, 0, 1)
 
 
 
@@ -137,24 +154,48 @@ You can still fix the primary parameters and unconstrain the defaults.
 
 
 
+And again in raw scipy:
+
+.. code:: python
+
+    # constrained beta and scale, unconstrained loc
+    stats.beta.fit(data, f1=2, fscale=1)
+
+
+
+
+.. parsed-literal::
+
+    (2.7441640478582361, 2, -0.0031375474001911555, 1)
+
+
+
 Plotting
 ~~~~~~~~
 
-There is very limited plotting functionality built into paramnormal. For
-the time being, we just plot the probability distribution function
-(PDF), and offload everything else to the seaborn module if it's
-available.
+There is very limited plotting functionality built into paramnormal. The
+probability distribution function (PDF) is plotted by default, but any
+other method of the distributions can be plotted by specifying the
+``which`` parameters.
 
 .. code:: python
 
     ax = paramnormal.activity.plot('beta', α=3, β=2)
-    ax.figure
+    paramnormal.activity.plot('beta', α=3, β=2, ax=ax, which='CDF')
+    ax.legend()
 
 
 
 
-.. image:: activities_files/activities_16_0.png
 
+.. parsed-literal::
+
+    <matplotlib.legend.Legend at 0x10f0a1f98>
+
+
+
+
+.. image:: activities_files/activities_20_1.png
 
 
 You can plot on an existing figure through the ``ax`` argument and
@@ -162,20 +203,16 @@ control the line style through ``line_opts``.
 
 .. code:: python
 
-    seaborn.set(style='ticks', rc=clean_bkgd)
-    fig, (ax1, ax2) = pyplot.subplots(nrows=2, sharex=True, sharey=True)
-    ax1 = paramnormal.activity.plot('beta', α=6, β=2, ax=ax1, line_opts=dict(color='firebrick', lw=3))
-    ax2 = paramnormal.activity.plot('beta', α=2, β=6, ax=ax2, line_opts=dict(color='forestgreen', lw=1.25))
-    ax1.set_ylabel('α=6, β=2')
+    fig, (ax, ax2) = pyplot.subplots(nrows=2, sharex=True, sharey=True)
+    paramnormal.activity.plot('beta', α=6, β=2, ax=ax, line_opts=dict(color='firebrick', lw=3))
+    paramnormal.activity.plot('beta', α=2, β=6, ax=ax2, line_opts=dict(color='forestgreen', lw=1.25))
+    ax.set_ylabel('α=6, β=2')
     ax2.set_ylabel('α=2, β=6')
     seaborn.despine(fig)
-    fig
 
 
 
-
-.. image:: activities_files/activities_18_0.png
-
+.. image:: activities_files/activities_22_0.png
 
 
 Of course, you can create a fully-specified distribtion and omit the
@@ -185,47 +222,32 @@ distribution parameters.
 
     beta = paramnormal.beta(α=3, β=2)
     ax = paramnormal.activity.plot(beta)
-    ax.figure
-
-
-
-
-.. image:: activities_files/activities_20_0.png
-
-
-
-Passing an array of sample data will fit the distribution to that data
-and allow you to use ``seaborn.distplot``.
-
-.. code:: python
-
-    data = paramnormal.activity.random('beta', α=3, β=2, shape=125)
-    ax = paramnormal.activity.plot('beta', data, distplot=True)
-    seaborn.despine()
-    ax.legend()
-    ax.figure
-
-
-
-
-.. image:: activities_files/activities_22_0.png
-
-
-
-And you can control ``seaborn.distplot`` through ``displot_opts``.
-
-.. code:: python
-
-    data = paramnormal.activity.random('normal', μ=0.75, σ=1.25, shape=125)
-    ax = paramnormal.activity.plot('normal', data, distplot=True,
-                                   distplot_opts=dict(hist=True, rug=True, kde=False, norm_hist=True))
-    seaborn.despine()
-    ax.legend()
-    ax.figure
-
 
 
 
 .. image:: activities_files/activities_24_0.png
 
+
+And finally, you can pass an array of data and an unfrozen distribution,
+and a new distribution will be fit to your data.
+
+.. code:: python
+
+    data = paramnormal.activity.random('beta', α=2, β=6, shape=37) + \
+           paramnormal.activity.random('normal', μ=5, σ=1, shape=37)
+    ax = paramnormal.activity.plot('normal', data=data, line_opts=dict(label='Emperical Fit'))
+    ax = paramnormal.activity.plot('normal', μ=5, σ=1, line_opts=dict(label='Theoretical'))
+    ax.legend()
+
+
+
+
+.. parsed-literal::
+
+    <matplotlib.legend.Legend at 0x10fb86518>
+
+
+
+
+.. image:: activities_files/activities_26_1.png
 

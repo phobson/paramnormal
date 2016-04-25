@@ -163,6 +163,7 @@ distributions in ``scipy.stats``:
     chi_squared
     pareto
     exponential
+    rice
 
 
 Feel free to submit a pull request at

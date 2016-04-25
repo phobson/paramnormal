@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Paramnormal Activity &mdash; paramnormal 0.2 documentation</title>
+  <title>Paramnormal Activity &mdash; paramnormal 0.3.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="paramnormal 0.2 documentation" href="../index.html"/>
+    <link rel="top" title="paramnormal 0.3.0 documentation" href="../index.html"/>
         <link rel="next" title="API Reference" href="../api.html"/>
         <link rel="prev" title="Fitting distributions to data with paramnormal." href="fitting.html"/> 
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2
+                0.3.0
               </div>
             
           
@@ -86,7 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting distributions to data with <code class="docutils literal"><span class="pre">paramnormal</span></code>.</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Paramnormal Activity</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#random-number-generation">Random number generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fitting-distribution">Fitting distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fitting-distributions">Fitting distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plotting">Plotting</a></li>
 </ul>
 </li>
@@ -150,6 +150,7 @@ exposed through <code class="docutils literal"><span class="pre">activity</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">seed</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
 <span class="kn">import</span> <span class="nn">seaborn</span>
 
@@ -203,14 +204,22 @@ paramnormal.activity.random(my_dist, shape=(2, 4))
 </pre></div>
 </div>
 </div>
-<div class="section" id="fitting-distribution">
-<h2>Fitting distribution<a class="headerlink" href="#fitting-distribution" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fitting-distributions">
+<h2>Fitting distributions<a class="headerlink" href="#fitting-distributions" title="Permalink to this headline">¶</a></h2>
 <p>Fitting distributions to data follows a similar pattern.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span></span>data = paramnormal.activity.random(&#39;beta&#39;, α=3, β=2, shape=37)
 paramnormal.activity.fit(&#39;beta&#39;, data)
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">2.609817838242197</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.9104280289172266</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Equivalent command to perform the same fits in raw scipy is shown below:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="c1"># constrained loc and scale</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">floc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fscale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">2.609817838242197</span><span class="p">,</span> <span class="mf">1.9104280289172266</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can still fix the primary parameters and unconstrain the defaults.</p>
@@ -220,59 +229,61 @@ paramnormal.activity.fit(&#39;beta&#39;, data)
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">2.7441640478582361</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=-</span><span class="mf">0.0031375474001911555</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>And again in raw scipy:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="c1"># constrained beta and scale, unconstrained loc</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fscale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">2.7441640478582361</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0031375474001911555</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="plotting">
 <h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
-<p>There is very limited plotting functionality built into paramnormal. For
-the time being, we just plot the probability distribution function
-(PDF), and offload everything else to the seaborn module if it&#8217;s
-available.</p>
+<p>There is very limited plotting functionality built into paramnormal. The
+probability distribution function (PDF) is plotted by default, but any
+other method of the distributions can be plotted by specifying the
+<code class="docutils literal"><span class="pre">which</span></code> parameters.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span></span>ax = paramnormal.activity.plot(&#39;beta&#39;, α=3, β=2)
-ax.figure
+paramnormal.activity.plot(&#39;beta&#39;, α=3, β=2, ax=ax, which=&#39;CDF&#39;)
+ax.legend()
 </pre></div>
 </div>
-<img alt="../_images/activities_16_0.png" src="../_images/activities_16_0.png" />
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10f0a1f98&gt;
+</pre></div>
+</div>
+<img alt="../_images/activities_20_1.png" src="../_images/activities_20_1.png" />
 <p>You can plot on an existing figure through the <code class="docutils literal"><span class="pre">ax</span></code> argument and
 control the line style through <code class="docutils literal"><span class="pre">line_opts</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span></span>seaborn.set(style=&#39;ticks&#39;, rc=clean_bkgd)
-fig, (ax1, ax2) = pyplot.subplots(nrows=2, sharex=True, sharey=True)
-ax1 = paramnormal.activity.plot(&#39;beta&#39;, α=6, β=2, ax=ax1, line_opts=dict(color=&#39;firebrick&#39;, lw=3))
-ax2 = paramnormal.activity.plot(&#39;beta&#39;, α=2, β=6, ax=ax2, line_opts=dict(color=&#39;forestgreen&#39;, lw=1.25))
-ax1.set_ylabel(&#39;α=6, β=2&#39;)
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>fig, (ax, ax2) = pyplot.subplots(nrows=2, sharex=True, sharey=True)
+paramnormal.activity.plot(&#39;beta&#39;, α=6, β=2, ax=ax, line_opts=dict(color=&#39;firebrick&#39;, lw=3))
+paramnormal.activity.plot(&#39;beta&#39;, α=2, β=6, ax=ax2, line_opts=dict(color=&#39;forestgreen&#39;, lw=1.25))
+ax.set_ylabel(&#39;α=6, β=2&#39;)
 ax2.set_ylabel(&#39;α=2, β=6&#39;)
 seaborn.despine(fig)
-fig
 </pre></div>
 </div>
-<img alt="../_images/activities_18_0.png" src="../_images/activities_18_0.png" />
+<img alt="../_images/activities_22_0.png" src="../_images/activities_22_0.png" />
 <p>Of course, you can create a fully-specified distribtion and omit the
 distribution parameters.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span></span>beta = paramnormal.beta(α=3, β=2)
 ax = paramnormal.activity.plot(beta)
-ax.figure
-</pre></div>
-</div>
-<img alt="../_images/activities_20_0.png" src="../_images/activities_20_0.png" />
-<p>Passing an array of sample data will fit the distribution to that data
-and allow you to use <code class="docutils literal"><span class="pre">seaborn.distplot</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span></span>data = paramnormal.activity.random(&#39;beta&#39;, α=3, β=2, shape=125)
-ax = paramnormal.activity.plot(&#39;beta&#39;, data, distplot=True)
-seaborn.despine()
-ax.legend()
-ax.figure
-</pre></div>
-</div>
-<img alt="../_images/activities_22_0.png" src="../_images/activities_22_0.png" />
-<p>And you can control <code class="docutils literal"><span class="pre">seaborn.distplot</span></code> through <code class="docutils literal"><span class="pre">displot_opts</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span></span>data = paramnormal.activity.random(&#39;normal&#39;, μ=0.75, σ=1.25, shape=125)
-ax = paramnormal.activity.plot(&#39;normal&#39;, data, distplot=True,
-                               distplot_opts=dict(hist=True, rug=True, kde=False, norm_hist=True))
-seaborn.despine()
-ax.legend()
-ax.figure
 </pre></div>
 </div>
 <img alt="../_images/activities_24_0.png" src="../_images/activities_24_0.png" />
+<p>And finally, you can pass an array of data and an unfrozen distribution,
+and a new distribution will be fit to your data.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span></span>data = paramnormal.activity.random(&#39;beta&#39;, α=2, β=6, shape=37) + \
+       paramnormal.activity.random(&#39;normal&#39;, μ=5, σ=1, shape=37)
+ax = paramnormal.activity.plot(&#39;normal&#39;, data=data, line_opts=dict(label=&#39;Emperical Fit&#39;))
+ax = paramnormal.activity.plot(&#39;normal&#39;, μ=5, σ=1, line_opts=dict(label=&#39;Theoretical&#39;))
+ax.legend()
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10fb86518&gt;
+</pre></div>
+</div>
+<img alt="../_images/activities_26_1.png" src="../_images/activities_26_1.png" />
 </div>
 </div>
 
@@ -295,7 +306,7 @@ ax.figure
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Paul Hobson.
+        &copy; Copyright 2015 - 2016, Paul Hobson.
 
     </p>
   </div>
@@ -317,7 +328,7 @@ ax.figure
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.2',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

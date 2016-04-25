@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Probability Distributions &mdash; paramnormal 0.2 documentation</title>
+  <title>Probability Distributions &mdash; paramnormal 0.3.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="paramnormal 0.2 documentation" href="../index.html"/>
+    <link rel="top" title="paramnormal 0.3.0 documentation" href="../index.html"/>
         <link rel="up" title="API Reference" href="../api.html"/>
         <link rel="next" title="Miscellaneous Utilities" href="utils.html"/>
         <link rel="prev" title="Paramnormal Activity" href="activity.html"/> 
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.2
+                0.3.0
               </div>
             
           
@@ -589,7 +589,7 @@ respectively.</p>
 </div></blockquote>
 <p><strong>loc</strong> : float, optional</p>
 <blockquote class="last">
-<div><p>Location parameter of the distribution. This default to, and
+<div><p>Location parameter of the distribution. This defaults to, and
 should probably be left at, 0.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -837,8 +837,8 @@ array([ 1.48875061,  1.87379424,  1.58662889])
 </div></blockquote>
 <p><strong>loc</strong> : float, optional</p>
 <blockquote class="last">
-<div><p>Location parameter of the distribution. This default to, and
-should probably be left at, 0,</p>
+<div><p>Location parameter of the distribution. This defaults to, and
+should probably be left at, 0.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">When fitting an exponential distribution to a dataset, this
@@ -909,6 +909,97 @@ params(lambda_=1.7849050026146085, loc=0)
 
 </dd></dl>
 
+<dl class="class">
+<dt id="paramnormal.dist.rice">
+<em class="property">class </em><code class="descclassname">paramnormal.dist.</code><code class="descname">rice</code><a class="reference internal" href="../_modules/paramnormal/dist.html#rice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.rice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">paramnormal.dist.BaseDist_Mixin</span></code></p>
+<p>Create and fit data to a Rice distribution.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>R</strong> : float</p>
+<blockquote>
+<div><p>The shape parameter of the distribution.</p>
+</div></blockquote>
+<p><strong>sigma</strong> : float</p>
+<blockquote>
+<div><p>The standard deviate of the distribution.</p>
+</div></blockquote>
+<p><strong>loc</strong> : float, optional</p>
+<blockquote class="last">
+<div><p>Location parameter of the distribution. This defaults to, and
+should probably be left at, 0.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When fitting an Rice distribution to a dataset, this
+will be fixed at its default value unless you explicitly set
+it to other values. Set to <cite>None</cite> if you wish that it be
+estimated entirely from scratch.</p>
+</div>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal"><span class="pre">scipy.stats.rice</span></code>, <code class="xref py py-obj docutils literal"><span class="pre">numpy.random.exponential</span></code></p>
+</div>
+<p class="rubric">References</p>
+<p><a class="reference external" href="http://scipy.github.io/devdocs/generated/scipy.stats.rice">http://scipy.github.io/devdocs/generated/scipy.stats.rice</a>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Rice_distribution">https://en.wikipedia.org/wiki/Rice_distribution</a></p>
+<p class="rubric">Examples</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">paramnormal</span> <span class="kn">as</span> <span class="nn">pn</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">rice</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">array([ 15.67835764,  13.36907874,  10.37753817])</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span>&gt;&gt;&gt; # you can also use greek letters
+&gt;&gt;&gt; numpy.random.seed(0)
+&gt;&gt;&gt; pn.rice(R=10, σ=2).rvs(size=3)
+array([ 15.67835764,  13.36907874,  10.37753817])
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># silly fake data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">rice</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pretend `data` is unknown and we want to fit a dist. to it</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">rice</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="go">params(R=10.100674084593422, sigma=1.759817171541185, loc=0)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># include `loc` in the estimate (bad idea)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pn</span><span class="o">.</span><span class="n">rice</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="go">params(R=4.249154300734, sigma=1.862167512728, loc=5.570921659394)</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<dl class="attribute">
+<dt id="paramnormal.dist.rice.dist">
+<code class="descname">dist</code><em class="property"> = &lt;scipy.stats._continuous_distns.rice_gen object&gt;</em><a class="headerlink" href="#paramnormal.dist.rice.dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="paramnormal.dist.rice.param_template">
+<code class="descname">param_template</code><a class="headerlink" href="#paramnormal.dist.rice.param_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">params</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="paramnormal.dist.rice.name">
+<code class="descname">name</code><em class="property"> = 'rice'</em><a class="headerlink" href="#paramnormal.dist.rice.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="paramnormal.dist.rice.fit">
+<em class="property">classmethod </em><code class="descname">fit</code><span class="sig-paren">(</span><em>data</em>, <em>**guesses</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/paramnormal/dist.html#rice.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#paramnormal.dist.rice.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -930,7 +1021,7 @@ params(lambda_=1.7849050026146085, loc=0)
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Paul Hobson.
+        &copy; Copyright 2015 - 2016, Paul Hobson.
 
     </p>
   </div>
@@ -952,7 +1043,7 @@ params(lambda_=1.7849050026146085, loc=0)
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.2',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

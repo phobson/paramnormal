@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Fitting distributions to data with paramnormal. &mdash; paramnormal 0.2 documentation</title>
+  <title>Fitting distributions to data with paramnormal. &mdash; paramnormal 0.3.0 documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   
 
   
-    <link rel="top" title="paramnormal 0.2 documentation" href="../index.html"/>
+    <link rel="top" title="paramnormal 0.3.0 documentation" href="../index.html"/>
         <link rel="next" title="Paramnormal Activity" href="activities.html"/>
         <link rel="prev" title="Why paramnormal ?" href="overview.html"/> 
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.2
+                0.3.0
               </div>
             
           
@@ -185,6 +185,7 @@ variates) method of the returned scipy distribution.</p>
 </pre></div>
 </div>
 <img alt="../_images/fitting_6_0.png" src="../_images/fitting_6_0.png" />
+<img alt="../_images/fitting_6_1.png" src="../_images/fitting_6_1.png" />
 <p>Pretending for a moment that we didn&#8217;t generate this dataset with
 explicit distribution parameters, how would we go about estimating them?</p>
 <p>Scipy provides a maximum-likelihood estimation for estimating
@@ -227,6 +228,7 @@ function with our histogram.</p>
 <span class="n">seaborn</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
 </pre></div>
 </div>
+<img alt="../_images/fitting_12_0.png" src="../_images/fitting_12_0.png" />
 <div class="section" id="recap">
 <h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="fitting-data">
@@ -245,14 +247,14 @@ function with our histogram.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">1.75</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x2af889b1e0f0&gt;
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x111614f98&gt;
 </pre></div>
 </div>
 <p>From fit parameters:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span></span><span class="n">paramnormal</span><span class="o">.</span><span class="n">lognormal</span><span class="o">.</span><span class="n">from_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x2af889ddaef0&gt;
+<div class="highlight-python"><div class="highlight"><pre><span></span>&lt;scipy.stats._distn_infrastructure.rv_frozen at 0x1116142e8&gt;
 </pre></div>
 </div>
 </div>
@@ -278,7 +280,7 @@ function with our histogram.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2015, Paul Hobson.
+        &copy; Copyright 2015 - 2016, Paul Hobson.
 
     </p>
   </div>
@@ -300,7 +302,7 @@ function with our histogram.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.2',
+            VERSION:'0.3.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
