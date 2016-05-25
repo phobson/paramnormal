@@ -19,15 +19,20 @@ before_install:
 
 
 install:
-  - conda create --yes -n test python=$TRAVIS_PYTHON_VERSION scipy nose seaborn
+  - conda create --yes -n test python=$TRAVIS_PYTHON_VERSION scipy seaborn
   - source activate test
   - conda install --yes coverage docopt requests pyyaml
+  - conda install --yes pytest pytest-mpl pytest-cov --channel=conda-forge
   - pip install coveralls
   - pip install .
 
 script:
-  - python check_paramnormal.py --with-coverage --cover-package=paramnormal --verbose
+  - python check_paramnormal.py --mpl --verbose
 
 after_success:
-  - if [ ${COVERAGE} = true ]; then coveralls; fi
+  - if [ ${COVERAGE} = true ]; then
+      coverage run --source paramnormal check_paramnormal.py;
+      coverage report -m;
+      coveralls;
+    fi
 

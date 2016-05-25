@@ -13,6 +13,7 @@
 # test output
 .noseids
 .coverage
+.cache
 result_images
 
 # Packages #

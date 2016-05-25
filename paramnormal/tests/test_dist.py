@@ -55,6 +55,9 @@ class CheckDist_Mixin(object):
         newdist = self.dist.from_params(params)
         assert (isinstance(newdist, stats._distn_infrastructure.rv_frozen))
 
+    def test_xxx(self):
+        self.dist(*self.cargs, **self.ckwds)
+
 
 class Test_normal(CheckDist_Mixin):
     def setup(self):
