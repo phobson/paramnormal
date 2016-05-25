@@ -13,7 +13,7 @@ class BaseDist_Mixin:
 
     @classmethod
     def _fit(cls, data, **guesses):
-        args = utils._pop_none(**cls._process_args(fit=True, **guesses))
+        args = utils._remove_nones(**cls._process_args(fit=True, **guesses))
         _sp_params = cls.dist.fit(data, **args)
         return _sp_params
 

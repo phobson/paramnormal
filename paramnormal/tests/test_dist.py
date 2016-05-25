@@ -3,14 +3,13 @@ from functools import wraps
 import numpy
 from scipy import stats
 
-import nose.tools as nt
+import pytest
 import numpy.testing as nptest
 
 from paramnormal import dist
 from paramnormal.utils import seed
 
 
-@nt.nottest
 @seed
 def generate_knowns(np_rand_fxn, size, *args, **kwargs):
     # numpy.random.pareto is actually a Lomax and needs
@@ -20,20 +19,18 @@ def generate_knowns(np_rand_fxn, size, *args, **kwargs):
     return np_rand_fxn(*args, **kwargs) + shift
 
 
-@nt.nottest
 @seed
 def generate_test_dist(dist, size, *cargs, **ckwargs):
     return dist(*cargs, **ckwargs).rvs(size=size)
 
 
-@nt.nottest
 def check_params(*value_pairs):
     for result, expected in value_pairs:
-        nt.assert_almost_equal(result, expected, places=5)
+        assert (result - expected) < 0.00001
 
 
 class CheckDist_Mixin(object):
-    @nt.nottest
+
     def do_check(self, size):
         result = generate_test_dist(self.dist, size, *self.cargs, **self.ckwds)
         known = generate_knowns(self.np_rand_fxn, size, *self.npargs, **self.npkwds)
@@ -56,7 +53,7 @@ class CheckDist_Mixin(object):
         data = generate_test_dist(self.dist, 37, *self.cargs, **self.ckwds)
         params = self.dist.fit(data)
         newdist = self.dist.from_params(params)
-        nt.assert_true(isinstance(newdist, stats._distn_infrastructure.rv_frozen))
+        assert (isinstance(newdist, stats._distn_infrastructure.rv_frozen))
 
 
 class Test_normal(CheckDist_Mixin):
@@ -70,15 +67,13 @@ class Test_normal(CheckDist_Mixin):
         self.npkwds = dict(loc=4, scale=1.75)
 
     def test_processargs(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(mu=2, sigma=2.45),
-            dict(loc=2, scale=2.45)
-        )
+        result = self.dist._process_args(mu=2, sigma=2.45)
+        expected = dict(loc=2, scale=2.45)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(mu=2, sigma=2.45, fit=True),
-            dict(floc=2, fscale=2.45)
-        )
+        result = self.dist._process_args(mu=2, sigma=2.45, fit=True)
+        expected = dict(floc=2, fscale=2.45)
+        assert result == expected
 
     @seed
     def test_fit(self):
@@ -101,19 +96,17 @@ class Test_lognormal(CheckDist_Mixin):
         self.npkwds = dict(mean=4, sigma=1.75)
 
     def test_process_args(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(mu=2, sigma=2.45),
-            dict(scale=numpy.exp(2), s=2.45, loc=0)
-        )
+        result = self.dist._process_args(mu=2, sigma=2.45)
+        expected = dict(scale=numpy.exp(2), s=2.45, loc=0)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(mu=2, sigma=2.45, fit=True),
-            dict(fscale=numpy.exp(2), f0=2.45, floc=0)
-        )
+        result = self.dist._process_args(mu=2, sigma=2.45, fit=True)
+        expected = dict(fscale=numpy.exp(2), f0=2.45, floc=0)
+        assert result == expected
 
-    @nt.raises(ValueError)
     def test_process_args_no_offset(self):
-        self.dist._process_args(offset=None)
+        with pytest.raises(ValueError):
+            self.dist._process_args(offset=None)
 
     @seed
     def test_fit(self):
@@ -137,15 +130,13 @@ class Test_weibull(CheckDist_Mixin):
         self.npkwds = dict()
 
     def test_process_args(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(k=2),
-            dict(c=2, loc=0, scale=1)
-        )
+        result = self.dist._process_args(k=2)
+        expected = dict(c=2, loc=0, scale=1)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(k=2, fit=True),
-            dict(f0=2, floc=0, fscale=1)
-        )
+        result = self.dist._process_args(k=2, fit=True)
+        expected = dict(f0=2, floc=0, fscale=1)
+        assert result == expected
 
     @seed
     def test_fit(self):
@@ -164,20 +155,18 @@ class Test_alpha(CheckDist_Mixin):
         self.cargs = []
         self.ckwds = dict(alpha=2)
 
-    @nt.nottest
+
     def do_check(self, size):
         pass
 
     def test_process_args(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(alpha=2),
-            dict(a=2, loc=0, scale=1)
-        )
+        result = self.dist._process_args(alpha=2)
+        expected = dict(a=2, loc=0, scale=1)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(alpha=2, fit=True),
-            dict(f0=2, floc=0, fscale=1)
-        )
+        result = self.dist._process_args(alpha=2, fit=True)
+        expected = dict(f0=2, floc=0, fscale=1)
+        assert result == expected
 
     @seed
     def test_fit(self):
@@ -201,15 +190,13 @@ class Test_beta(CheckDist_Mixin):
         self.npkwds = dict()
 
     def test_process_args(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(alpha=2, beta=5),
-            dict(a=2, b=5, loc=0, scale=1)
-        )
+        result = self.dist._process_args(alpha=2, beta=5)
+        expected = dict(a=2, b=5, loc=0, scale=1)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(alpha=2, beta=5, fit=True),
-            dict(f0=2, f1=5, floc=0, fscale=1)
-        )
+        result = self.dist._process_args(alpha=2, beta=5, fit=True)
+        expected = dict(f0=2, f1=5, floc=0, fscale=1)
+        assert result == expected
 
     @seed
     def test_fit(self):
@@ -251,15 +238,13 @@ class Test_gamma(CheckDist_Mixin):
         self.npkwds = dict()
 
     def test_process_args(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(k=1, theta=2),
-            dict(a=1, loc=0, scale=2)
-        )
+        result = self.dist._process_args(k=1, theta=2)
+        expected = dict(a=1, loc=0, scale=2)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(k=1, theta=2, fit=True),
-            dict(f0=1, floc=0, fscale=2)
-        )
+        result = self.dist._process_args(k=1, theta=2, fit=True)
+        expected = dict(f0=1, floc=0, fscale=2)
+        assert result == expected
 
     @seed
     def test_fit(self):
@@ -283,15 +268,13 @@ class Test_chi_squared(CheckDist_Mixin):
         self.npkwds = dict()
 
     def test_process_args(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(k=5),
-            dict(df=5, loc=0, scale=1)
-        )
+        result = self.dist._process_args(k=5)
+        expected = dict(df=5, loc=0, scale=1)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(k=5, fit=True),
-            dict(f0=5, floc=0, fscale=1)
-        )
+        result = self.dist._process_args(k=5, fit=True)
+        expected = dict(f0=5, floc=0, fscale=1)
+        assert result == expected
 
     @seed
     def test_fit(self):
@@ -315,15 +298,13 @@ class Test_pareto(CheckDist_Mixin):
         self.npkwds = dict(shift=1)
 
     def test_process_args(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(alpha=4.78),
-            dict(b=4.78, loc=0, scale=1)
-        )
+        result = self.dist._process_args(alpha=4.78)
+        expected = dict(b=4.78, loc=0, scale=1)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(alpha=4.78, fit=True),
-            dict(f0=4.78, floc=0, fscale=1)
-        )
+        result = self.dist._process_args(alpha=4.78, fit=True)
+        expected = dict(f0=4.78, floc=0, fscale=1)
+        assert result == expected
 
     @seed
     def test_fit(self):
@@ -347,15 +328,13 @@ class Test_exponential(CheckDist_Mixin):
         self.npkwds = dict()
 
     def test_process_args(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(lambda_=2.0),
-            dict(loc=0, scale=0.5)
-        )
+        result = self.dist._process_args(lambda_=2.0)
+        expected = dict(loc=0, scale=0.5)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(lambda_=2.0, fit=True),
-            dict(floc=0, fscale=0.5)
-        )
+        result = self.dist._process_args(lambda_=2.0, fit=True)
+        expected = dict(floc=0, fscale=0.5)
+        assert result == expected
 
     @seed
     def test_fit(self):
@@ -378,15 +357,13 @@ class Test_rice(CheckDist_Mixin):
         self.npkwds = dict(loc=0, scale=2)
 
     def test_processargs(self):
-        nt.assert_dict_equal(
-            self.dist._process_args(R=10, sigma=2),
-            dict(b=5, loc=0, scale=2)
-        )
+        result = self.dist._process_args(R=10, sigma=2)
+        expected = dict(b=5, loc=0, scale=2)
+        assert result == expected
 
-        nt.assert_dict_equal(
-            self.dist._process_args(R=10, sigma=2, fit=True),
-            dict(b=5, floc=0, fscale=2)
-        )
+        result = self.dist._process_args(R=10, sigma=2, fit=True)
+        expected = dict(b=5, floc=0, fscale=2)
+        assert result == expected
 
     @seed
     def test_fit(self):
