@@ -1,3 +1,10 @@
-from numpy.testing import Tester
+from pkg_resources import resource_filename
 
-test = Tester().test
+import pytest
+
+import paramnormal
+
+def test(*args):
+    options = [resource_filename('paramnormal', 'tests')]
+    options.extend(list(args))
+    return pytest.main(options)

@@ -18,7 +18,7 @@ def _check_distro(distro, **params):
         except:
             raise ValueError("{} is not a valid paramnormal distribution".format(distro))
 
-    _params = utils._pop_none(**params)
+    _params = utils._remove_nones(**params)
     if as_class:
         return distro
     else:

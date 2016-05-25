@@ -42,7 +42,7 @@ def _get_loc_scale_keys(fit=False):
         return 'loc', 'scale'
 
 
-def _pop_none(**kwargs):
+def _remove_nones(**kwargs):
     """
     Removes any kwargs whose values are `None`.
     """
