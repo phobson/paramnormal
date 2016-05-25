@@ -109,7 +109,7 @@ def test_create_normal():
     assert_dists_are_equivalent(dist, stats.norm(params.mu, params.sigma))
 
 
-@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=12)
+@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=15)
 @seed
 def test_plot_pdf_basic():
     # first
@@ -119,7 +119,7 @@ def test_plot_pdf_basic():
     return fig
 
 
-@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=12)
+@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=15)
 @seed
 def test_plot_pdf_fit():
     # second
@@ -132,7 +132,7 @@ def test_plot_pdf_fit():
     return fig2
 
 
-@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=12)
+@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=15)
 @seed
 def test_plot_pdf_xlog():
     # first
@@ -142,7 +142,7 @@ def test_plot_pdf_xlog():
     return fig
 
 
-@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=12)
+@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=15)
 @seed
 def test_plot_cdf_basic():
     # first
@@ -152,7 +152,7 @@ def test_plot_cdf_basic():
     return fig
 
 
-@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=12)
+@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=15)
 @seed
 def test_plot_cdf_fit():
     # second
@@ -165,7 +165,7 @@ def test_plot_cdf_fit():
     return fig2
 
 
-@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=12)
+@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=15)
 @seed
 def test_plot_cdf_xlog():
     # first
@@ -176,7 +176,7 @@ def test_plot_cdf_xlog():
     return fig
 
 
-@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=12)
+@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=15)
 @seed
 def test_plot_sf_basic():
     # first
@@ -186,7 +186,7 @@ def test_plot_sf_basic():
     return fig
 
 
-@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=12)
+@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=15)
 @seed
 def test_plot_sf_fit():
     # second
@@ -199,7 +199,7 @@ def test_plot_sf_fit():
     return fig2
 
 
-@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=12)
+@pytest.mark.mpl_image_compare(baseline_dir=BASELINE_DIR, tolerance=15)
 @seed
 def test_plot_sf_xlog():
     # first
