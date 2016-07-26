@@ -324,18 +324,18 @@ class Test_exponential(CheckDist_Mixin):
     def setup(self):
         self.dist = dist.exponential
         self.cargs = []
-        self.ckwds = dict(lambda_=2)
+        self.ckwds = dict(lamda=2)
 
         self.np_rand_fxn = numpy.random.exponential
         self.npargs = [0.5]
         self.npkwds = dict()
 
     def test_process_args(self):
-        result = self.dist._process_args(lambda_=2.0)
+        result = self.dist._process_args(lamda=2.0)
         expected = dict(loc=0, scale=0.5)
         assert result == expected
 
-        result = self.dist._process_args(lambda_=2.0, fit=True)
+        result = self.dist._process_args(lamda=2.0, fit=True)
         expected = dict(floc=0, fscale=0.5)
         assert result == expected
 
@@ -344,7 +344,7 @@ class Test_exponential(CheckDist_Mixin):
         data = numpy.random.exponential(0.5, size=37)
         params = self.dist.fit(data)
         check_params(
-            (params.lambda_, 1.7849050026146085),
+            (params.lamda, 1.7849050026146085),
             (params.loc, 0),
         )
 
