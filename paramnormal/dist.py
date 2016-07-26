@@ -737,7 +737,7 @@ class exponential(BaseDist_Mixin):
     fit
         Use scipy's maximum likelihood estimation methods to estimate
         the parameters of the data's distribution. By default, `loc`
-        is fixed at 0. Thus, only `lambda_` is estimated unless `loc` is
+        is fixed at 0. Thus, only `lamda` is estimated unless `loc` is
         explicitly set to `None`.
     from_params
         Create a new distribution instances from the ``namedtuple``
@@ -745,8 +745,13 @@ class exponential(BaseDist_Mixin):
 
     Parameters
     ----------
-    lambda_ : float
+    lamda : float
         The shape parameter of the distribution.
+
+        .. note ::
+           For our purposes, we spell `lambda` as `lamda` to avoid
+           conflicting with the python keyword ``lambda``.
+
     loc : float, optional
         Location parameter of the distribution. This defaults to, and
         should probably be left at, 0.
@@ -762,7 +767,7 @@ class exponential(BaseDist_Mixin):
     >>> import numpy
     >>> import paramnormal as pn
     >>> numpy.random.seed(0)
-    >>> pn.exponential(lambda_=2).rvs(size=3)
+    >>> pn.exponential(lamda=2).rvs(size=3)
     array([ 0.39793725,  0.62796538,  0.46161157])
 
     >>> # you can also use greek letters
@@ -775,11 +780,11 @@ class exponential(BaseDist_Mixin):
     >>> data = pn.exponential(λ=2).rvs(size=37)
     >>> # pretend `data` is unknown and we want to fit a dist. to it
     >>> pn.exponential.fit(data)
-    params(lambda_=1.7849050026146085, loc=0)
+    params(lamda=1.7849050026146085, loc=0)
 
     >>> # include `loc` in the estimate
     >>> pn.exponential.fit(data, loc=None)
-    params(lambda_=1.8154701618164411, loc=0.0094842718426853996)
+    params(lamda=1.8154701618164411, loc=0.0094842718426853996)
 
     References
     ----------
@@ -793,19 +798,19 @@ class exponential(BaseDist_Mixin):
 
     """
     dist = stats.expon
-    param_template = namedtuple('params', ['lambda_', 'loc'])
+    param_template = namedtuple('params', ['lamda', 'loc'])
     name = 'exponential'
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(lambda_=None, loc=0, fit=False):
+    def _process_args(lamda=None, loc=0, fit=False):
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
-        return {loc_key: loc, scale_key: lambda_**-1 if lambda_ is not None else lambda_}
+        return {loc_key: loc, scale_key: lamda**-1 if lamda is not None else lamda}
 
     @classmethod
     def fit(cls, data, **guesses):
         params = cls._fit(data, **guesses)
-        return cls.param_template(loc=params[0], lambda_=params[1]**-1)
+        return cls.param_template(loc=params[0], lamda=params[1]**-1)
 
 
 class rice(BaseDist_Mixin):
