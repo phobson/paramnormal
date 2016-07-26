@@ -10,7 +10,7 @@ SYMBOLS = {
     'α': 'alpha',
     'β': 'beta',
     'γ': 'gamma',
-    'λ': 'lambda_',
+    'λ': 'lamda',
     'θ': 'theta',
 }
 
