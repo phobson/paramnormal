@@ -27,3 +27,12 @@ def test_greco_deco(distro, distargs, expected):
 def test__remove_nones(a, b, c, expected):
     result = utils._remove_nones(a=a, b=b, c=c)
     assert result == expected
+
+
+@pytest.mark.parametrize(('fit', 'expected'), [
+    (True, ('floc', 'fscale')),
+    (False, ('loc', 'scale')),
+])
+def test__get_loc_scale_keys(fit, expected):
+    result = utils._get_loc_scale_keys(fit=fit)
+    assert result == expected
