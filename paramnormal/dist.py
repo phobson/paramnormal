@@ -887,7 +887,16 @@ class rice(BaseDist_Mixin):
     @utils.greco_deco
     def _process_args(R=None, loc=0, sigma=None, fit=False):
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
-        return {loc_key: loc, scale_key: sigma, 'b': R/sigma if R is not None else None}
+
+        if fit:
+            bkey = 'fb'
+        else:
+            bkey = 'b'
+
+        b = None
+        if R is not None and sigma is not None:
+            b = R / sigma
+        return {loc_key: loc, scale_key: sigma, bkey: b}
 
     @classmethod
     def fit(cls, data, **guesses):

@@ -365,7 +365,7 @@ class Test_rice(CheckDist_Mixin):
         assert result == expected
 
         result = self.dist._process_args(R=10, sigma=2, fit=True)
-        expected = dict(b=5, floc=0, fscale=2)
+        expected = dict(fb=5, floc=0, fscale=2)
         assert result == expected
 
     @seed
