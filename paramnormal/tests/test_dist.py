@@ -377,3 +377,35 @@ class Test_rice(CheckDist_Mixin):
             (params.sigma, 1.759817171541185),
             (params.loc, 0),
         )
+
+
+class Test_truncated_normal(CheckDist_Mixin):
+    def setup(self):
+        self.dist = dist.truncated_normal
+        self.cargs = []
+        self.ckwds = dict(lower=-0.5, upper=2.5, mu=1, sigma=4)
+
+        self.np_rand_fxn = stats.truncnorm.rvs
+        self.npargs = [-0.375, 0.375]
+        self.npkwds = dict(loc=1, scale=4)
+
+    def test_processargs(self):
+        result = self.dist._process_args(lower=-0.5, upper=2.5, mu=1, sigma=4)
+        expected = dict(a=-0.375, b=0.375, loc=1, scale=4)
+        assert result == expected
+
+        result = self.dist._process_args(upper=2.5, mu=1, sigma=4, fit=True)
+        expected = dict(f0=None, f1=0.375, floc=1, fscale=4)
+        assert result == expected
+
+    @seed
+    def test_fit(self):
+        stn = stats.truncnorm(-0.375, 0.375, loc=1, scale=4)
+        data = stn.rvs(size=37000)
+        params = self.dist.fit(data, lower=-0.5, mu=1, sigma=4)
+        check_params(
+            (params.lower, -0.5),
+            (params.upper, 2.4999301),
+            (params.mu, 1),
+            (params.sigma, 4),
+        )
