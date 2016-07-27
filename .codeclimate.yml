@@ -2,4 +2,5 @@ languages:
   Python: true
 exclude_paths:
 - "docs/*"
+- "docs/*/*"
 - "conda.recipe/*"
