@@ -6,6 +6,11 @@ paramnormal: Conventionally parameterized probability distributions
 .. image:: https://coveralls.io/repos/phobson/paramnormal/badge.svg?branch=master&service=github
   :target: https://coveralls.io/github/phobson/paramnormal?branch=master
 
+.. image:: https://codeclimate.com/github/phobson/paramnormal/badges/gpa.svg
+   :target: https://codeclimate.com/github/phobson/paramnormal
+   :alt: Code Climate
+
+
 Scipy distributions are weird.
 Maybe these will be less weird.
 
@@ -60,7 +65,7 @@ Installation
 Binaries are available through my conda channel
 
 ``conda install --channel=phobson paramnormal``
-   
+
 This is a pure python package, so installation from source should be as easy as running
 ``pip install .`` from the source directory if you've cloned the repo.
 
