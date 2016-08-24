@@ -57,7 +57,6 @@ Thumbs.db
 
 # Sphinx Docs #
 ###############
-docs/_build
 docs/_static
 docs/_templates
 docs/tutorial/*.rst
