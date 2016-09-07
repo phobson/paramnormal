@@ -38,7 +38,7 @@ So where as in scipy, you would do this:
     from scipy import stats
     mu = 0.75
     sigma = 1.25
-    dist = stats.lognorm(sigma, loc=0, scale=numpy.exp(mu)
+    dist = stats.lognorm(sigma, loc=0, scale=numpy.exp(mu))
 
 In paramnormal, you can do this:
 
