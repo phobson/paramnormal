@@ -6,10 +6,6 @@ paramnormal: Conventionally parameterized probability distributions
 .. image:: https://coveralls.io/repos/phobson/paramnormal/badge.svg?branch=master&service=github
   :target: https://coveralls.io/github/phobson/paramnormal?branch=master
 
-.. image:: https://codeclimate.com/github/phobson/paramnormal/badges/gpa.svg
-   :target: https://codeclimate.com/github/phobson/paramnormal
-   :alt: Code Climate
-
 
 Scipy distributions are weird.
 Maybe these will be less weird.
