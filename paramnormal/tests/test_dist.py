@@ -26,7 +26,7 @@ def generate_test_dist(dist, size, *cargs, **ckwargs):
 
 def check_params(*value_pairs):
     for result, expected in value_pairs:
-        assert (result - expected) < 0.00001
+        assert (result - expected) < 0.0001
 
 
 class CheckDist_Mixin(object):
@@ -344,7 +344,7 @@ class Test_exponential(CheckDist_Mixin):
         data = numpy.random.exponential(0.5, size=37)
         params = self.dist.fit(data)
         check_params(
-            (params.lamda, 1.7849050026146085),
+            (params.lamda, 1.785060162078026),
             (params.loc, 0),
         )
 
