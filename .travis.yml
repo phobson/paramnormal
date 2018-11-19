@@ -11,6 +11,9 @@ matrix:
     - python: 3.6
       env:
         - COVERAGE=true
+    - python: 3.7
+      env:
+        - COVERAGE=false
 
 before_install:
   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
