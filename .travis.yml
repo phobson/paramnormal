@@ -12,8 +12,12 @@ matrix:
       env:
         - COVERAGE=true
     - python: 3.7
+      language: python
+      sudo: required
+      dist: xenial
       env:
         - COVERAGE=false
+        - ARGS=""
 
 before_install:
   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
