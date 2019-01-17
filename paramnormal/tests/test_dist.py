@@ -158,7 +158,6 @@ class Test_alpha(CheckDist_Mixin):
         self.cargs = []
         self.ckwds = dict(alpha=2)
 
-
     def do_check(self, size):
         pass
 

@@ -46,9 +46,5 @@ def _remove_nones(**kwargs):
     """
     Removes any kwargs whose values are `None`.
     """
-
-    final = kwargs.copy()
-    for k in kwargs:
-        if kwargs[k] is None:
-            final.pop(k)
-    return final
+    return {k: v for k, v in kwargs.items() if v is not None}
+    
