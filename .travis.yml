@@ -2,10 +2,6 @@ language: python
 
 matrix:
   include:
-    - python: 3.4
-      env:
-        - COVERAGE=false
-        - TESTARGS=""
     - python: 3.5
       env:
         - COVERAGE=false
@@ -45,4 +41,3 @@ after_success:
       coverage report -m;
       coveralls;
     fi
-
