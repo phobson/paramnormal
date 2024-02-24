@@ -1,10 +1,7 @@
-from functools import wraps
-
 import numpy
-from scipy import stats
-
-import pytest
 import numpy.testing as nptest
+import pytest
+from scipy import stats
 
 from paramnormal import dist
 from paramnormal.utils import seed
@@ -14,7 +11,7 @@ from paramnormal.utils import seed
 def generate_knowns(np_rand_fxn, size, *args, **kwargs):
     # numpy.random.pareto is actually a Lomax and needs
     # to be shifted by 1
-    shift = kwargs.pop('shift', 0)
+    shift = kwargs.pop("shift", 0)
     kwargs.update(dict(size=size))
     return np_rand_fxn(*args, **kwargs) + shift
 
@@ -29,8 +26,7 @@ def check_params(*value_pairs):
         assert (result - expected) < 0.0001
 
 
-class CheckDist_Mixin(object):
-
+class CheckDist_Mixin:
     def do_check(self, size):
         result = generate_test_dist(self.dist, size, *self.cargs, **self.ckwds)
         known = generate_knowns(self.np_rand_fxn, size, *self.npargs, **self.npkwds)
@@ -53,7 +49,7 @@ class CheckDist_Mixin(object):
         data = generate_test_dist(self.dist, 37, *self.cargs, **self.ckwds)
         params = self.dist.fit(data)
         newdist = self.dist.from_params(params)
-        assert (isinstance(newdist, stats._distn_infrastructure.rv_frozen))
+        assert isinstance(newdist, stats._distn_infrastructure.rv_frozen)
 
     def test_xxx(self):
         self.dist(*self.cargs, **self.ckwds)
@@ -115,11 +111,7 @@ class Test_lognormal(CheckDist_Mixin):
     def test_fit(self):
         data = numpy.random.lognormal(mean=2.0, sigma=6.7, size=37)
         params = self.dist.fit(data)
-        check_params(
-            (params.mu, 4.1709713618),
-            (params.sigma, 7.2770395662),
-            (params.offset, 0.0)
-        )
+        check_params((params.mu, 4.1709713618), (params.sigma, 7.2770395662), (params.offset, 0.0))
 
 
 class Test_weibull(CheckDist_Mixin):

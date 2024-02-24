@@ -1,5 +1,2 @@
-from .dist import *
-from . import activity
-from . import utils
-
-from .tests import test
+from paramnormal.dist import *  # noqa
+from paramnormal.tests import test  # noqa

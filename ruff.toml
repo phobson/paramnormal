@@ -1,0 +1,18 @@
+line-length = 100
+
+[lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    ## flake8-bugbear
+    # "B",
+    # flake8-simplify
+    "SIM",
+]
+
+[format]
+indent-style = "space"
