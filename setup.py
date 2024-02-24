@@ -7,7 +7,7 @@ from setuptools import find_packages, setup
 DESCRIPTION = "paramnormal: Conventionally parameterized probability distributions"
 LONG_DESCRIPTION = DESCRIPTION
 NAME = "paramnormal"
-VERSION = "v0.4.0"
+VERSION = "v0.4.1"
 AUTHOR = "Paul Hobson"
 AUTHOR_EMAIL = "pmhobson@gmail.com"
 URL = "http://phobson.github.io/paramnormal/"
