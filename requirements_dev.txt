@@ -1,0 +1,13 @@
+numpy>=1.6
+scipy>=0.14
+matplotlib>=1.5
+pytest
+pytest-cov
+pytest-mpl
+coverage
+docopt
+requests
+pyyaml
+ruff
+pre-commit
+isort
