@@ -7,14 +7,14 @@ from setuptools import find_packages, setup
 DESCRIPTION = "paramnormal: Conventionally parameterized probability distributions"
 LONG_DESCRIPTION = DESCRIPTION
 NAME = "paramnormal"
-VERSION = "v0.3.0"
+VERSION = "v0.4.0"
 AUTHOR = "Paul Hobson"
 AUTHOR_EMAIL = "pmhobson@gmail.com"
 URL = "http://phobson.github.io/paramnormal/"
 DOWNLOAD_URL = "https://github.com/phobson/paramnormal/archive/master.zip"
 LICENSE = "BSD 3-clause"
 PACKAGES = find_packages()
-PLATFORMS = "Python 3.4 and later."
+PLATFORMS = "Python 3.10 and later."
 CLASSIFIERS = [
     "Programming Language :: Python",
     "Operating System :: OS Independent",
@@ -22,9 +22,9 @@ CLASSIFIERS = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Mathematics",
-    "Programming Language :: Python :: 3.4",
-    "Programming Language :: Python :: 3.5",
-    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 INSTALL_REQUIRES = ["numpy", "scipy", "matplotlib"]
 PACKAGE_DATA = {
