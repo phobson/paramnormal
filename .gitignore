@@ -8,7 +8,8 @@
 *.so
 *.pyc
 *.egg-info
-
+.ruff_cache
+build
 
 # test output
 .noseids

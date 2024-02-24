@@ -1,22 +1,21 @@
 import numpy
 from matplotlib import pyplot
 
-from . import dist
-from . import utils
+from paramnormal import dist, utils
 
 
 def _check_distro(distro, **params):
     # check if we're returning the class definition or an instance
-    as_class = params.pop('as_class', False)
-    if hasattr(distro, 'pdf'):
+    as_class = params.pop("as_class", False)
+    if hasattr(distro, "pdf"):
         return distro
-    elif hasattr(distro, 'from_params'):
+    elif hasattr(distro, "from_params"):
         return _check_distro(distro.name, as_class=as_class, **params)
     else:
         try:
             distro = getattr(dist, distro)
-        except:
-            raise ValueError("{} is not a valid paramnormal distribution".format(distro))
+        except (AttributeError, TypeError):
+            raise ValueError(f"{distro} is not a valid paramnormal distribution")
 
     _params = utils._remove_nones(**params)
     if as_class:
@@ -74,7 +73,7 @@ def random(distro, **params):
 
     """
 
-    shape = params.pop('shape', None)
+    shape = params.pop("shape", None)
     distro = _check_distro(distro, **params)
     return distro.rvs(size=shape)
 
@@ -121,8 +120,17 @@ def fit(distro, data, as_params=True, **guesses):
         return distro.from_params(params)
 
 
-def plot(distro, which='PDF', data=None, fit_dist=True, ax=None,
-         pad=0.05, xscale='linear', line_opts=None, **guesses):
+def plot(
+    distro,
+    which="PDF",
+    data=None,
+    fit_dist=True,
+    ax=None,
+    pad=0.05,
+    xscale="linear",
+    line_opts=None,
+    **guesses,
+):
     """
     Plot the PDF of a dataset and other representations of the
     distribution (histogram, kernel density estimate, and rug plot).
@@ -248,11 +256,11 @@ def plot(distro, which='PDF', data=None, fit_dist=True, ax=None,
     fxn = getattr(distro, which.lower())
 
     # determine and set the xlimits of the plot
-    xlimits = distro.ppf([pad/100, 1 - pad/100])
+    xlimits = distro.ppf([pad / 100, 1 - pad / 100])
 
     # determine the x-values
-    if xscale == 'log':
-        #xlimits = numpy.log10(xlimits)
+    if xscale == "log":
+        # xlimits = numpy.log10(xlimits)
         x_hat = numpy.logspace(*numpy.log10(xlimits), num=100)
     else:
         x_hat = numpy.linspace(*xlimits, num=100)
@@ -261,9 +269,9 @@ def plot(distro, which='PDF', data=None, fit_dist=True, ax=None,
     y_hat = fxn(x_hat)
 
     line_opts = dict() if line_opts is None else line_opts
-    line_opts['label'] = line_opts.pop('label', which)
+    line_opts["label"] = line_opts.pop("label", which)
 
-    line, = ax.plot(x_hat, y_hat, **line_opts)
+    (line,) = ax.plot(x_hat, y_hat, **line_opts)
     ax.set_xscale(xscale)
 
     return ax
