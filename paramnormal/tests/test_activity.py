@@ -25,33 +25,36 @@ def check_params(*value_pairs):
         assert (result - expected) < 0.00001
 
 
-class Test__check_distro:
-    def test_string_bad(self):
-        with pytest.raises(ValueError):
-            activity._check_distro("junk")
+def test_string_bad():
+    with pytest.raises(ValueError):
+        activity._check_distro("junk")
 
-    def test_number(self):
-        with pytest.raises(ValueError):
-            activity._check_distro(45)
 
-    def test_pndist_as_class(self):
-        assert activity._check_distro(dist.normal, as_class=True) == dist.normal
+def test_number():
+    with pytest.raises(ValueError):
+        activity._check_distro(45)
 
-    def test_string_good_as_class(self):
-        assert activity._check_distro("normal", as_class=True) == dist.normal
 
-    def test_pndist(self):
-        assert_dists_are_equivalent(
-            activity._check_distro(dist.normal, mu=0, sigma=1), stats.norm(0, 1)
-        )
+def test_pndist_as_class():
+    assert activity._check_distro(dist.normal, as_class=True) == dist.normal
 
-    def test_string(self):
-        assert_dists_are_equivalent(
-            activity._check_distro("normal", mu=0, sigma=1), stats.norm(0, 1)
-        )
 
-    def test_scipy_dist(self):
-        assert_dists_are_equivalent(activity._check_distro(stats.lognorm(s=2)), stats.lognorm(s=2))
+def test_string_good_as_class():
+    assert activity._check_distro("normal", as_class=True) == dist.normal
+
+
+def test_pndist():
+    assert_dists_are_equivalent(
+        activity._check_distro(dist.normal, mu=0, sigma=1), stats.norm(0, 1)
+    )
+
+
+def test_string():
+    assert_dists_are_equivalent(activity._check_distro("normal", mu=0, sigma=1), stats.norm(0, 1))
+
+
+def test_scipy_dist():
+    assert_dists_are_equivalent(activity._check_distro(stats.lognorm(s=2)), stats.lognorm(s=2))
 
 
 @pytest.mark.parametrize("ax", [None, pyplot.gca(), "junk"])
