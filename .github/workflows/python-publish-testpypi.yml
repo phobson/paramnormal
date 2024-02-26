@@ -4,7 +4,7 @@ on:
   push:
     # Pattern matched against refs/tags
     tags:
-      - 'test*' # Push events to every tag not containing /
+      - 'v**test' # Push events to every tag not containing /
 
 jobs:
   build:
