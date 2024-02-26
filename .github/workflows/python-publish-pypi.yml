@@ -3,7 +3,7 @@ on:
   push:
     # Pattern matched against refs/tags
     tags:
-      - 'v*' # Push events to every tag not containing /
+      - 'v*/release' # Push events to every that ends in /release
 jobs:
   build:
     name: Build distribution 📦
