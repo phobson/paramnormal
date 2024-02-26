@@ -3,7 +3,7 @@ on:
   push:
     # Pattern matched against refs/tags
     tags:
-      - 'v*/release' # Push events to every that ends in /release
+      - 'v*/release' # Push events to every that ends in /release (only 1 /-level)
 jobs:
   build:
     name: Build distribution 📦
