@@ -208,3 +208,56 @@ def test_plot_bad_attribute():
     with pytest.raises(AttributeError):
         loc_dist = dist.lognormal(μ=1.25, σ=0.75)
         activity.plot(loc_dist, xscale="log", which="JUNK")
+
+
+def test_plot_line_opts_not_mutated():
+    opts = dict(color="red")
+    activity.plot("normal", mu=0, sigma=1, line_opts=opts)
+    assert opts == dict(color="red")
+
+
+def test_plot_fit_dist_false_requires_full_spec():
+    data = numpy.random.normal(size=20)
+    with pytest.raises(ValueError):
+        activity.plot("normal", data=data, fit_dist=False, mu=0)
+    ax = activity.plot("normal", data=data, fit_dist=False, mu=0, sigma=1)
+    assert isinstance(ax, pyplot.Axes)
+
+
+def test_plot_fit_dist_false_does_not_fit():
+    data = numpy.random.normal(loc=50, size=20)
+    pyplot.close("all")
+    fig, ax = pyplot.subplots()
+    activity.plot("normal", data=data, fit_dist=False, mu=0, sigma=1, ax=ax)
+    assert ax.lines[0].get_xdata().max() < 10
+
+
+@pytest.mark.parametrize(
+    "opts",
+    [
+        None,
+        dict(rug=True, kde=False, norm_hist=True),
+        dict(hist=False, rug=True, color="green"),
+        dict(bins=numpy.logspace(-1, 1, 10), kde=False),
+    ],
+)
+def test_plot_distplot(opts):
+    pytest.importorskip("seaborn")
+    data = numpy.random.lognormal(size=50)
+    fig, ax = pyplot.subplots()
+    out = activity.plot("lognormal", data=data, distplot=True, distplot_opts=opts, ax=ax)
+    assert out is ax
+    assert len(ax.lines) >= 1
+    assert len(ax.patches) > 0 or (opts and opts.get("hist") is False)
+
+
+def test_plot_distplot_bad_option():
+    pytest.importorskip("seaborn")
+    with pytest.raises(TypeError):
+        activity.plot("normal", data=numpy.arange(10.0), distplot=True, distplot_opts=dict(foo=1))
+
+
+def test_plot_distplot_without_data_is_noop():
+    fig, ax = pyplot.subplots()
+    activity.plot("normal", mu=0, sigma=1, distplot=True, ax=ax)
+    assert len(ax.patches) == 0

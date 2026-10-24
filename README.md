@@ -71,6 +71,12 @@ uv run ruff check . && uv run ruff format --check .
 uv run --group docs sphinx-build -b html docs docs/_build/html
 ```
 
+Then view the docs with:
+
+```shell
+uv run python -m http.server 8001 --directory docs/_build/html
+```
+
 ## Development status
 
 From my perspective this is now feature complete, meaning it has all of the distribution that I use somewhat regularly.

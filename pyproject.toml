@@ -29,9 +29,13 @@ dependencies = ["numpy", "scipy", "matplotlib"]
 Homepage = "http://phobson.github.io/paramnormal/"
 Source = "https://github.com/phobson/paramnormal"
 
+[project.optional-dependencies]
+plot = ["seaborn"]
+
 [dependency-groups]
 dev = [
     "pytest",
+    "seaborn",
     "pytest-cov",
     "pytest-mpl",
     "pre-commit",
@@ -46,6 +50,7 @@ docs = [
     "numpydoc",
     "seaborn",
     "ipython",
+    "ipykernel>=7.4.0",
 ]
 
 [tool.setuptools.packages.find]

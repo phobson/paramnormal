@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Literal, TypeAlias, overload
+from typing import Any, Literal, TypeAlias, overload
 
 import numpy
 from matplotlib import pyplot
@@ -138,6 +138,46 @@ def fit(
         return cls.from_params(params)
 
 
+def _draw_distplot(sample: FloatArray, ax: Axes, opts: dict[str, Any] | None) -> None:
+    """Histogram, KDE and rug plot of ``sample``.
+
+    Replaces the deprecated ``seaborn.distplot``, accepting its common options:
+    ``hist``, ``kde``, ``rug``, ``norm_hist``, ``bins``, ``color``, and the
+    ``hist_kws``, ``kde_kws`` and ``rug_kws`` dictionaries.
+    """
+    try:
+        import seaborn
+    except ImportError as err:
+        raise ImportError(
+            "`seaborn` is required for `distplot=True`; install `paramnormal[plot]`"
+        ) from err
+
+    o = dict(opts or {})
+    hist = o.pop("hist", True)
+    kde = o.pop("kde", True)
+    rug = o.pop("rug", False)
+    norm_hist = o.pop("norm_hist", False)
+    bins = o.pop("bins", "auto")
+    color = o.pop("color", None)
+    hist_kws = dict(o.pop("hist_kws", None) or {})
+    kde_kws = dict(o.pop("kde_kws", None) or {})
+    rug_kws = dict(o.pop("rug_kws", None) or {})
+    if o:
+        raise TypeError(f"unsupported `distplot_opts`: {sorted(o)}")
+
+    if color is not None:
+        for kws in (hist_kws, kde_kws, rug_kws):
+            kws.setdefault("color", color)
+
+    if hist:
+        stat = "density" if (norm_hist or kde) else "count"
+        seaborn.histplot(x=sample, bins=bins, stat=stat, ax=ax, **hist_kws)
+    if kde:
+        seaborn.kdeplot(x=sample, ax=ax, **kde_kws)
+    if rug:
+        seaborn.rugplot(x=sample, ax=ax, **rug_kws)
+
+
 def plot(
     distro: Distro,
     which: str = "PDF",
@@ -147,6 +187,8 @@ def plot(
     pad: float = 0.05,
     xscale: Literal["linear", "log"] = "linear",
     line_opts: dict[str, str | float] | None = None,
+    distplot: bool = False,
+    distplot_opts: dict[str, Any] | None = None,
     **guesses: float | None,
 ) -> Axes:
     """
@@ -265,31 +307,33 @@ def plot(
 
     """
 
-    # validate the axes and distribution function (`which`)
     fig, ax = _check_ax(ax)
-    if data is not None:
-        frozen = fit(distro, data, as_params=False, **guesses)
+    sample = None if data is None else numpy.asarray(data, dtype=float)
+    if sample is not None and fit_dist:
+        frozen = fit(distro, sample, as_params=False, **guesses)
     else:
         frozen = _check_distro(distro, **guesses)
+        if any(v is None for v in (*frozen.args, *frozen.kwds.values())):
+            raise ValueError("`distro` must be fully specified when it is not being fit to `data`")
     fxn = getattr(frozen, which.lower())
 
-    # determine and set the xlimits of the plot
-    xlimits = frozen.ppf([pad / 100, 1 - pad / 100])
+    if distplot and sample is not None:
+        _draw_distplot(sample, ax, distplot_opts)
 
-    # determine the x-values
-    lo, hi = (float(v) for v in xlimits)
+    # determine the x-values from the distribution's quantiles
+    lo, hi = (float(v) for v in frozen.ppf([pad / 100, 1 - pad / 100]))
     if xscale == "log":
         x_hat = numpy.logspace(numpy.log10(lo), numpy.log10(hi), num=100)
     else:
         x_hat = numpy.linspace(lo, hi, num=100)
 
-    # compute y-values
     y_hat = fxn(x_hat)
 
-    line_opts = dict() if line_opts is None else line_opts
-    line_opts["label"] = line_opts.pop("label", which)
+    # copy so the caller's dict is never modified
+    opts = dict(line_opts or {})
+    opts.setdefault("label", which)
 
-    (line,) = ax.plot(x_hat, y_hat, **line_opts)  # ty: ignore[invalid-argument-type]
+    ax.plot(x_hat, y_hat, **opts)  # ty: ignore[invalid-argument-type]
     ax.set_xscale(xscale)
 
     return ax
