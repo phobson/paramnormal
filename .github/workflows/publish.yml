@@ -70,7 +70,7 @@ jobs:
         with:
           name: python-package-distributions
           path: dist/
-      - uses: sigstore/gh-action-sigstore-python@v3.0.1
+      - uses: sigstore/gh-action-sigstore-python@v3.5.0
         with:
           inputs: ./dist/*.tar.gz ./dist/*.whl
       - name: Create release and upload artifacts
