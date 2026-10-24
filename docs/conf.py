@@ -4,9 +4,9 @@ clean_bkgd = {"axes.facecolor": "none", "figure.facecolor": "none"}
 seaborn.set_theme(style="ticks", rc=clean_bkgd)
 
 project = "paramnormal"
-copyright = "2015 - 2024, Paul Hobson"
+copyright = "2015 - 2026, Paul Hobson"
 author = "Paul Hobson"
-version = release = "0.4.4"
+version = release = "0.5.0"
 
 extensions = [
     "sphinx.ext.autodoc",
