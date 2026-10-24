@@ -1,24 +1,39 @@
 from collections import namedtuple
+from collections.abc import Callable
+from typing import ClassVar, Literal, Never, cast
 
 import numpy
 from scipy import stats
+from scipy.stats import rv_continuous
+from scipy.stats.distributions import rv_frozen
 
 from paramnormal import utils
+from paramnormal.types import NDArrayLike, ParamsLike
 
 
 class BaseDist_Mixin:
-    def __new__(cls, **params):
-        dist_params = cls._process_args(fit=False, **params)
+    dist: ClassVar[rv_continuous]
+    param_template: ClassVar[Callable[..., ParamsLike]]
+    name: ClassVar[str]
+
+    @staticmethod
+    def _process_args(*args: Never, **kwargs: Never) -> dict[str, float | None]:
+        raise NotImplementedError
+
+    def __new__(cls, **params: float | None) -> rv_frozen:
+        process_args = cast(Callable[..., dict[str, float | None]], cls._process_args)
+        dist_params = process_args(fit=False, **params)
         return cls.dist(**dist_params)
 
     @classmethod
-    def _fit(cls, data, **guesses):
-        args = utils._remove_nones(**cls._process_args(fit=True, **guesses))
-        _sp_params = cls.dist.fit(data, **args)
+    def _fit(cls, data: NDArrayLike, **guesses: float | None) -> tuple[float, ...]:
+        process_args = cast(Callable[..., dict[str, float | None]], cls._process_args)
+        args = utils._remove_nones(**process_args(fit=True, **guesses))
+        _sp_params = cls.dist.fit(numpy.asarray(data, dtype=float), **args)  # ty: ignore[invalid-argument-type]
         return _sp_params
 
     @classmethod
-    def fit(cls, data, **guesses):
+    def fit(cls, data: NDArrayLike, **guesses: float | None) -> ParamsLike:
         """Fit a distribution to sample using scipy's maximum
         likelihood estimation methods.
 
@@ -42,7 +57,7 @@ class BaseDist_Mixin:
         return cls.param_template(*cls._fit(data, **guesses))
 
     @classmethod
-    def from_params(cls, params):
+    def from_params(cls, params: ParamsLike) -> rv_frozen:
         """Create a distribution from the ``namedtuple``
         result of the :meth:`~fit` method.
 
@@ -58,7 +73,7 @@ class BaseDist_Mixin:
         """
 
         kwargs = dict(zip(params._fields, params))
-        return cls(**kwargs)
+        return cls.__new__(cls, **kwargs)
 
 
 class normal(BaseDist_Mixin):
@@ -125,7 +140,9 @@ class normal(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(mu=None, sigma=None, fit=False):
+    def _process_args(
+        mu: float | None = None, sigma: float | None = None, fit: bool = False
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         return {loc_key: mu, scale_key: sigma}
 
@@ -211,7 +228,12 @@ class lognormal(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(mu=None, sigma=None, offset=0, fit=False):
+    def _process_args(
+        mu: float | None = None,
+        sigma: float | None = None,
+        offset: float | None = 0,
+        fit: bool = False,
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         key = "f0" if fit else "s"
         if offset is None and not fit:
@@ -219,7 +241,7 @@ class lognormal(BaseDist_Mixin):
         return {key: sigma, scale_key: numpy.exp(mu) if mu is not None else mu, loc_key: offset}
 
     @classmethod
-    def fit(cls, data, **guesses):
+    def fit(cls, data: NDArrayLike, **guesses: float | None) -> ParamsLike:
         params = cls._fit(data, **guesses)
         return cls.param_template(mu=numpy.log(params[2]), sigma=params[0], offset=params[1])
 
@@ -300,7 +322,9 @@ class weibull(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(k=None, loc=0, scale=1, fit=False):
+    def _process_args(
+        k: float | None = None, loc: float | None = 0, scale: float | None = 1, fit: bool = False
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         key = "f0" if fit else "c"
         return {key: k, loc_key: loc, scale_key: scale}
@@ -379,7 +403,12 @@ class alpha(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(alpha=None, loc=0, scale=1, fit=False):
+    def _process_args(
+        alpha: float | None = None,
+        loc: float | None = 0,
+        scale: float | None = 1,
+        fit: bool = False,
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         alpha_key = "f0" if fit else "a"
         return {alpha_key: alpha, loc_key: loc, scale_key: scale}
@@ -467,7 +496,13 @@ class beta(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(alpha=None, beta=None, loc=0, scale=1, fit=False):
+    def _process_args(
+        alpha: float | None = None,
+        beta: float | None = None,
+        loc: float | None = 0,
+        scale: float | None = 1,
+        fit: bool = False,
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         alpha_key = "f0" if fit else "a"
         beta_key = "f1" if fit else "b"
@@ -551,7 +586,9 @@ class gamma(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(k=None, theta=None, loc=0, fit=False):
+    def _process_args(
+        k: float | None = None, theta: float | None = None, loc: float | None = 0, fit: bool = False
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         key = "f0" if fit else "a"
         return {key: k, loc_key: loc, scale_key: theta}
@@ -626,7 +663,9 @@ class chi_squared(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(k=None, loc=0, scale=1, fit=False):
+    def _process_args(
+        k: float | None = None, loc: float | None = 0, scale: float | None = 1, fit: bool = False
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         key = "f0" if fit else "df"
         return {key: k, loc_key: loc, scale_key: 1}
@@ -705,7 +744,12 @@ class pareto(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(alpha=None, loc=0, scale=1, fit=False):
+    def _process_args(
+        alpha: float | None = None,
+        loc: float | None = 0,
+        scale: float | None = 1,
+        fit: bool = False,
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         key = "f0" if fit else "b"
         return {key: alpha, loc_key: loc, scale_key: scale}
@@ -787,12 +831,14 @@ class exponential(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(lamda=None, loc=0, fit=False):
+    def _process_args(
+        lamda: float | None = None, loc: float | None = 0, fit: bool = False
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         return {loc_key: loc, scale_key: lamda**-1 if lamda is not None else lamda}
 
     @classmethod
-    def fit(cls, data, **guesses):
+    def fit(cls, data: NDArrayLike, **guesses: float | None) -> ParamsLike:
         params = cls._fit(data, **guesses)
         return cls.param_template(loc=params[0], lamda=params[1] ** -1)
 
@@ -870,7 +916,9 @@ class rice(BaseDist_Mixin):
 
     @staticmethod
     @utils.greco_deco
-    def _process_args(R=None, loc=0, sigma=None, fit=False):
+    def _process_args(
+        R: float | None = None, loc: float | None = 0, sigma: float | None = None, fit: bool = False
+    ) -> dict[str, float | None]:
         loc_key, scale_key = utils._get_loc_scale_keys(fit=fit)
         bkey = "fb" if fit else "b"
 
@@ -880,12 +928,26 @@ class rice(BaseDist_Mixin):
         return {loc_key: loc, scale_key: sigma, bkey: b}
 
     @classmethod
-    def fit(cls, data, **guesses):
+    def fit(cls, data: NDArrayLike, **guesses: float | None) -> ParamsLike:
         b, loc, sigma = cls._fit(data, **guesses)
         return cls.param_template(R=b * sigma, loc=loc, sigma=sigma)
 
 
 __all__ = [
+    "normal",
+    "lognormal",
+    "weibull",
+    "alpha",
+    "beta",
+    "gamma",
+    "chi_squared",
+    "pareto",
+    "exponential",
+    "rice",
+]
+
+
+DistNames = Literal[
     "normal",
     "lognormal",
     "weibull",

@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paramnormal"
+version = "0.5.0"
+description = "paramnormal: Conventionally parameterized probability distributions"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [{ name = "Paul Hobson", email = "pmhobson@gmail.com" }]
+classifiers = [
+    "Typing :: Typed",
+    "Programming Language :: Python",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = ["numpy", "scipy", "matplotlib"]
+
+[project.urls]
+Homepage = "http://phobson.github.io/paramnormal/"
+Source = "https://github.com/phobson/paramnormal"
+
+[project.optional-dependencies]
+plot = ["seaborn"]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "seaborn",
+    "pytest-cov",
+    "pytest-mpl",
+    "pre-commit",
+    "ruff",
+    "scipy-stubs>=1.15.3.0",
+    "ty>=0.0.91",
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "myst-nb",
+    "numpydoc",
+    "seaborn",
+    "ipython",
+    "ipykernel>=7.4.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["paramnormal*"]
+
+[tool.setuptools.package-data]
+"paramnormal" = ["py.typed"]
+"paramnormal.tests.baseline_images.test_activity" = ["*.png"]
+
+[tool.pytest.ini_options]
+markers = ["mpl_image_compare"]
+
+[tool.ty.src]
+include = ["paramnormal"]
+exclude = ["paramnormal/tests"]
+
+[tool.ty.rules]
+# the distributions deliberately name their namedtuples "params"
+mismatched-type-name = "ignore"

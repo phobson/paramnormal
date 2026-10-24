@@ -1,4 +1,4 @@
-from pkg_resources import resource_filename
+from pathlib import Path
 
 
 def test(*args):
@@ -7,6 +7,6 @@ def test(*args):
     except ImportError:
         raise ImportError("`pytest` is required to run the test suite")
 
-    options = [resource_filename("paramnormal", "tests")]
+    options = [str(Path(__file__).parent)]
     options.extend(list(args))
     return pytest.main(options)
