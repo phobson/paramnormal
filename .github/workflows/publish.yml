@@ -1,81 +1,30 @@
-name: Publish
+# This workflow will upload a Python Package to PyPI when a release is created.
+# For more information see: https://docs.astral.sh/uv/guides/publish/
 
-on:
-  push:
-    tags:
-      - "v*/release" # PyPI
-      - "v**test*" # TestPyPI
-
+name: Publish Python Package
 permissions:
   contents: read
 
+on:
+  release:
+    types: [created]
+
 jobs:
-  build:
-    name: Build distributions
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v7
-      - run: uv build
-      - uses: actions/upload-artifact@v7
-        with:
-          name: python-package-distributions
-          path: dist/
+  deploy:
 
-  publish-testpypi:
-    name: Publish to TestPyPI
-    if: contains(github.ref_name, 'test')
-    needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: test
-      url: https://test.pypi.org/p/paramnormal
+    environment: pypi
     permissions:
+      contents: read
       id-token: write
-    steps:
-      - uses: astral-sh/setup-uv@v7
-      - uses: actions/download-artifact@v8
-        with:
-          name: python-package-distributions
-          path: dist/
-      - run: uv publish --trusted-publishing always --publish-url https://test.pypi.org/legacy/
 
-  publish-pypi:
-    name: Publish to PyPI
-    if: endsWith(github.ref_name, '/release')
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: release
-      url: https://pypi.org/p/paramnormal
-    permissions:
-      id-token: write
     steps:
-      - uses: astral-sh/setup-uv@v7
-      - uses: actions/download-artifact@v8
-        with:
-          name: python-package-distributions
-          path: dist/
-      - run: uv publish --trusted-publishing always
-
-  github-release:
-    name: Create GitHub release
-    needs: publish-pypi
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-    steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: python-package-distributions
-          path: dist/
-      - uses: sigstore/gh-action-sigstore-python@v3.5.0
-        with:
-          inputs: ./dist/*.tar.gz ./dist/*.whl
-      - name: Create release and upload artifacts
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: >-
-          gh release create '${{ github.ref_name }}' dist/**
-          --repo '${{ github.repository }}' --generate-notes
+    - uses: actions/checkout@v7
+      with:
+        persist-credentials: false
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+    - name: Build
+      run: uv build
+    - name: Publish
+      run: uv publish --trusted-publishing always
