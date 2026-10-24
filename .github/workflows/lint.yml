@@ -20,3 +20,5 @@ jobs:
         run: uv run --only-group dev ruff check --output-format=github .
       - name: Ruff format
         run: uv run --only-group dev ruff format --check .
+      - name: ty
+        run: uv run --group dev ty check

@@ -1,30 +1,37 @@
+from __future__ import annotations
+
+from typing import Literal, TypeAlias, overload
+
 import numpy
 from matplotlib import pyplot
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure, SubFigure
+from scipy.stats.distributions import rv_frozen
 
 from paramnormal import dist, utils
+from paramnormal.types import FloatArray, NDArrayLike, ParamsLike
+
+Distro: TypeAlias = str | type[dist.BaseDist_Mixin] | rv_frozen
 
 
-def _check_distro(distro, **params):
-    # check if we're returning the class definition or an instance
-    as_class = params.pop("as_class", False)
-    if hasattr(distro, "pdf"):
+def _get_class(distro: Distro) -> type[dist.BaseDist_Mixin]:
+    if isinstance(distro, type) and issubclass(distro, dist.BaseDist_Mixin):
         return distro
-    elif hasattr(distro, "from_params"):
-        return _check_distro(distro.name, as_class=as_class, **params)
-    else:
-        try:
-            distro = getattr(dist, distro)
-        except (AttributeError, TypeError):
-            raise ValueError(f"{distro} is not a valid paramnormal distribution")
+    if isinstance(distro, str):
+        cls = getattr(dist, distro, None)
+        if isinstance(cls, type) and issubclass(cls, dist.BaseDist_Mixin):
+            return cls
+    raise ValueError(f"{distro} is not a valid paramnormal distribution")
 
-    _params = utils._remove_nones(**params)
-    if as_class:
+
+def _check_distro(distro: Distro, **params: float | None) -> rv_frozen:
+    # frozen scipy distributions pass straight through
+    if isinstance(distro, rv_frozen):
         return distro
-    else:
-        return distro(**_params)
+    return _get_class(distro)(**utils._remove_nones(**params))
 
 
-def _check_ax(ax):
+def _check_ax(ax: Axes | None) -> tuple[Figure | SubFigure, Axes]:
     if ax is None:
         ax = pyplot.gca()
         fig = ax.figure
@@ -34,7 +41,9 @@ def _check_ax(ax):
     return fig, ax
 
 
-def random(distro, **params):
+def random(
+    distro: Distro, *, shape: int | tuple[int, ...] | None = None, **params: float | None
+) -> float | FloatArray:
     """
     Generate random data from a probability distribution.
 
@@ -73,12 +82,21 @@ def random(distro, **params):
 
     """
 
-    shape = params.pop("shape", None)
     distro = _check_distro(distro, **params)
     return distro.rvs(size=shape)
 
 
-def fit(distro, data, as_params=True, **guesses):
+@overload
+def fit(
+    distro: Distro, data: NDArrayLike, as_params: Literal[True] = True, **guesses: float | None
+) -> ParamsLike: ...
+@overload
+def fit(
+    distro: Distro, data: NDArrayLike, as_params: Literal[False], **guesses: float | None
+) -> rv_frozen: ...
+def fit(
+    distro: Distro, data: NDArrayLike, as_params: bool = True, **guesses: float | None
+) -> ParamsLike | rv_frozen:
     """
     Estimate the distribution parameters of sample data.
 
@@ -112,25 +130,25 @@ def fit(distro, data, as_params=True, **guesses):
     params(mu=6.4790576880446782, sigma=2)
     """
 
-    distro = _check_distro(distro, as_class=True)
-    params = distro.fit(data, **guesses)
+    cls = _get_class(distro)
+    params = cls.fit(data, **guesses)
     if as_params:
         return params
     else:
-        return distro.from_params(params)
+        return cls.from_params(params)
 
 
 def plot(
-    distro,
-    which="PDF",
-    data=None,
-    fit_dist=True,
-    ax=None,
-    pad=0.05,
-    xscale="linear",
-    line_opts=None,
-    **guesses,
-):
+    distro: Distro,
+    which: str = "PDF",
+    data: NDArrayLike | None = None,
+    fit_dist: bool = True,
+    ax: Axes | None = None,
+    pad: float = 0.05,
+    xscale: Literal["linear", "log"] = "linear",
+    line_opts: dict[str, str | float] | None = None,
+    **guesses: float | None,
+) -> Axes:
     """
     Plot the PDF of a dataset and other representations of the
     distribution (histogram, kernel density estimate, and rug plot).
@@ -250,20 +268,20 @@ def plot(
     # validate the axes and distribution function (`which`)
     fig, ax = _check_ax(ax)
     if data is not None:
-        distro = fit(distro, data, as_params=False, **guesses)
+        frozen = fit(distro, data, as_params=False, **guesses)
     else:
-        distro = _check_distro(distro, **guesses)
-    fxn = getattr(distro, which.lower())
+        frozen = _check_distro(distro, **guesses)
+    fxn = getattr(frozen, which.lower())
 
     # determine and set the xlimits of the plot
-    xlimits = distro.ppf([pad / 100, 1 - pad / 100])
+    xlimits = frozen.ppf([pad / 100, 1 - pad / 100])
 
     # determine the x-values
+    lo, hi = (float(v) for v in xlimits)
     if xscale == "log":
-        # xlimits = numpy.log10(xlimits)
-        x_hat = numpy.logspace(*numpy.log10(xlimits), num=100)
+        x_hat = numpy.logspace(numpy.log10(lo), numpy.log10(hi), num=100)
     else:
-        x_hat = numpy.linspace(*xlimits, num=100)
+        x_hat = numpy.linspace(lo, hi, num=100)
 
     # compute y-values
     y_hat = fxn(x_hat)
@@ -271,7 +289,7 @@ def plot(
     line_opts = dict() if line_opts is None else line_opts
     line_opts["label"] = line_opts.pop("label", which)
 
-    (line,) = ax.plot(x_hat, y_hat, **line_opts)
+    (line,) = ax.plot(x_hat, y_hat, **line_opts)  # ty: ignore[invalid-argument-type]
     ax.set_xscale(xscale)
 
     return ax

@@ -4,14 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "paramnormal"
-version = "0.4.4"
+version = "0.5.0"
 description = "paramnormal: Conventionally parameterized probability distributions"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "BSD-3-Clause"
 license-files = ["LICENSE"]
 authors = [{ name = "Paul Hobson", email = "pmhobson@gmail.com" }]
 classifiers = [
+    "Typing :: Typed",
     "Programming Language :: Python",
     "Operating System :: OS Independent",
     "Development Status :: 5 - Production/Stable",
@@ -35,6 +36,8 @@ dev = [
     "pytest-mpl",
     "pre-commit",
     "ruff",
+    "scipy-stubs>=1.15.3.0",
+    "ty>=0.0.91",
 ]
 docs = [
     "sphinx",
@@ -49,7 +52,16 @@ docs = [
 include = ["paramnormal*"]
 
 [tool.setuptools.package-data]
+"paramnormal" = ["py.typed"]
 "paramnormal.tests.baseline_images.test_activity" = ["*.png"]
 
 [tool.pytest.ini_options]
 markers = ["mpl_image_compare"]
+
+[tool.ty.src]
+include = ["paramnormal"]
+exclude = ["paramnormal/tests"]
+
+[tool.ty.rules]
+# the distributions deliberately name their namedtuples "params"
+mismatched-type-name = "ignore"

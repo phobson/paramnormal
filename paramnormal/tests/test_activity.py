@@ -36,11 +36,11 @@ def test_number():
 
 
 def test_pndist_as_class():
-    assert activity._check_distro(dist.normal, as_class=True) == dist.normal
+    assert activity._get_class(dist.normal) == dist.normal
 
 
 def test_string_good_as_class():
-    assert activity._check_distro("normal", as_class=True) == dist.normal
+    assert activity._get_class("normal") == dist.normal
 
 
 def test_pndist():
