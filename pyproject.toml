@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paramnormal"
+version = "0.4.4"
+description = "paramnormal: Conventionally parameterized probability distributions"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [{ name = "Paul Hobson", email = "pmhobson@gmail.com" }]
+classifiers = [
+    "Programming Language :: Python",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = ["numpy", "scipy", "matplotlib"]
+
+[project.urls]
+Homepage = "http://phobson.github.io/paramnormal/"
+Source = "https://github.com/phobson/paramnormal"
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "pytest-mpl",
+    "pre-commit",
+    "ruff",
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "myst-nb",
+    "numpydoc",
+    "seaborn",
+    "ipython",
+]
+
+[tool.setuptools.packages.find]
+include = ["paramnormal*"]
+
+[tool.setuptools.package-data]
+"paramnormal.tests.baseline_images.test_activity" = ["*.png"]
+
+[tool.pytest.ini_options]
+markers = ["mpl_image_compare"]

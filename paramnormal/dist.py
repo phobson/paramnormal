@@ -1,4 +1,5 @@
 from collections import namedtuple
+from typing import Literal
 
 import numpy
 from scipy import stats
@@ -886,6 +887,20 @@ class rice(BaseDist_Mixin):
 
 
 __all__ = [
+    "normal",
+    "lognormal",
+    "weibull",
+    "alpha",
+    "beta",
+    "gamma",
+    "chi_squared",
+    "pareto",
+    "exponential",
+    "rice",
+]
+
+
+DistNames = Literal[
     "normal",
     "lognormal",
     "weibull",

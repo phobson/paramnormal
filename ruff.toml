@@ -1,22 +1,5 @@
 line-length = 100
 
-[lint]
-select = [
-    # pycodestyle
-    "E",
-    # Pyflakes
-    "F",
-    # pyupgrade
-    "UP",
-    ## flake8-bugbear
-    # "B",
-    # flake8-simplify
-    "SIM",
-]
-
-[format]
-indent-style = "space"
-
 exclude = [
     ".bzr",
     ".direnv",
@@ -47,3 +30,23 @@ exclude = [
     "docs",
     "docs/sphinxext",
 ]
+
+[lint]
+isort.known-first-party = ["paramnormal"]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # isort
+    "I",
+    # pyupgrade
+    "UP",
+    ## flake8-bugbear
+    # "B",
+    # flake8-simplify
+    "SIM",
+]
+
+[format]
+indent-style = "space"

@@ -13,8 +13,8 @@ def convert_nb(nbname):
     sh(["jupyter", "nbconvert", "--to", "notebook",
         "--execute", "--inplace", nbname + ".ipynb"])
 
-    # Convert to .rst for Sphinx
-    sh(["jupyter", "nbconvert", "--to", "rst", nbname + ".ipynb"])
+    # Convert to .md for Sphinx
+    sh(["jupyter", "nbconvert", "--to", "markdown", nbname + ".ipynb"])
 
     # Clear notebook output
     sh(["jupyter", "nbconvert", "--to", "notebook", "--inplace",
